@@ -1,0 +1,51 @@
+{
+    "en": {
+        "fullName": "English",
+        "global": {
+            "goBack": "Go back"
+        },
+        "navbar": {
+            "home": "Home",
+            "products": "Products",
+            "faq": "FAQ",
+            "contacts": "Contacts"
+        },
+        "home": {
+            "subtitle": "Discover our lovingly handmade plushies. Perfect as a gift or to decorate your home!",
+            "CTA": "Buy now!"
+        },
+        "products": {
+            "title": "Products"
+        },
+        "detailProduct": {
+            "price": "Price",
+            "addToCart": "Add to cart"
+        },
+        "FAQ": {
+            "title": "FAQ",
+            "shipping": [
+                "Orders are shipped within 3–5 business days. Once shipped, you will receive an email with tracking information.",
+                "Any customs fees, duties, or taxes are the responsibility of the buyer.",
+                "<strong>No returns or refunds are accepted.</strong>",
+                "Once the plush toy has been shipped, <strong>we are no longer responsible for the package, including any delays or customs issues.</strong>"
+            ],
+            "items": [
+                {
+                    "question": "How can I order a product?",
+                    "answer": "I am based in the UK and offer shipping to UK, USA, Canada, New Zealand, Australia. I currently cannot offer shipping to the EU and NI due to the new GPSR regulations. However, if you live outside of the EU and your country is not listed, let me know and I will add your country as an option!"
+                },
+                {
+                    "question": "What are the shipping times?",
+                    "answer": "Shipping times are generally 3 to 5 business days within Italy, starting from order confirmation. For customized products or special requests, times may be slightly longer. You will receive a notification as soon as your package has been shipped, along with the tracking code."
+                },
+                {
+                    "question": "Can I request a custom product?",
+                    "answer": "Absolutely! We are happy to create custom pieces according to your preferences. You can contact us through the Contacts page specifying your requests, colors, or particular details. We will get back to you as soon as possible to define the project and production times together."
+                }
+            ]
+        },
+        "contacts": {
+            "title": "Contacts"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+// MAIN PALETTE COLORS of the website crochet giogi
+$color-primary: #E88C66; // arancio volpe (caldo e vivace, elemento chiave del logo)
+$color-secondary: #F2C6B4; // rosa cipria (delicato e accogliente)
+$color-third: #F6E9DD; // panna/beige chiaro (sfondo e spazi neutri)
+$color-fourth: #8FA087; // verde salvia tenue (per equilibrio e freschezza)
+$color-fifth: #5E6A60; // verde oliva scuro/grigio (per testi e contrasti)
+
+// scale of grays
+$color-black: #000000;
+$color-white: #ffffff;
+$color-gray-100: #f8f9fa;
+$color-gray-200: #e9ecef;
+$color-gray-300: #dee2e6;
+$color-gray-400: #ced4da;
+$color-gray-500: #adb5bd;
+$color-gray-600: #6c757d;
+$color-gray-700: #495057;
+$color-gray-800: #343a40;
+$color-gray-900: #212529;
+
+// gradients
+$gradient-primary: linear-gradient(90deg, $color-secondary, $color-primary);
+$gradient-secondary: linear-gradient(120deg, $color-gray-900 0%, #ef723c 100%);
+
+// colors text + labels + disabled
+
+// background and text colors mains
+$body-bg: #fef1e6;
+$body-color: $color-gray-200;

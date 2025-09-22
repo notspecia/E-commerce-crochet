@@ -1,0 +1,51 @@
+{
+    "fr": {
+        "fullName": "Français",
+        "global": {
+            "goBack": "Retour"
+        },
+        "navbar": {
+            "home": "Accueil",
+            "products": "Produits",
+            "faq": "FAQ",
+            "contacts": "Contacts"
+        },
+        "home": {
+            "subtitle": "Découvrez nos peluches faites main avec amour. Parfaites comme cadeau ou pour décorer votre maison !",
+            "CTA": "Achetez maintenant !"
+        },
+        "products": {
+            "title": "Produits"
+        },
+        "detailProduct": {
+            "price": "Prix",
+            "addToCart": "Ajouter au panier"
+        },
+        "FAQ": {
+            "title": "FAQ",
+            "shipping": [
+                "Les commandes sont expédiées sous 3 à 5 jours ouvrables. Une fois expédiée, vous recevrez un e-mail avec les informations de suivi.",
+                "Les frais de douane, droits ou taxes éventuels sont à la charge de l’acheteur.",
+                "<strong>Aucun retour ni remboursement n’est accepté.</strong>",
+                "Une fois la peluche expédiée, <strong>nous ne sommes plus responsables du colis, y compris des retards ou des problèmes de douane.</strong>"
+            ],
+            "items": [
+                {
+                    "question": "Comment puis-je commander un produit ?",
+                    "answer": "Pour commander un produit, il suffit de sélectionner l'article souhaité dans notre vitrine, de l'ajouter à votre panier et de suivre la procédure de paiement guidée. Vous recevrez un e-mail de confirmation avec tous les détails de la commande et vous pourrez suivre l'état de l'expédition directement depuis votre compte."
+                },
+                {
+                    "question": "Quels sont les délais de livraison ?",
+                    "answer": "Les délais de livraison sont généralement de 3 à 5 jours ouvrables en Italie, à partir de la confirmation de la commande. Pour les produits personnalisés ou les demandes spéciales, les délais peuvent être légèrement plus longs. Vous recevrez une notification dès que votre colis aura été expédié, avec le code de suivi."
+                },
+                {
+                    "question": "Puis-je demander un produit personnalisé ?",
+                    "answer": "Absolument ! Nous sommes ravis de réaliser des créations sur mesure selon vos préférences. Vous pouvez nous contacter via la page Contacts en précisant vos demandes, couleurs ou détails particuliers. Nous vous répondrons dans les plus brefs délais pour définir ensemble le projet et les délais de réalisation."
+                }
+            ]
+        },
+        "contacts": {
+            "title": "Contacts"
+        }
+    }
+}

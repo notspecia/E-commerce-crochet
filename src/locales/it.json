@@ -1,0 +1,51 @@
+{
+    "it": {
+        "fullName": "Italiano",
+        "global": {
+            "goBack": "Vai indietro"
+        },
+        "navbar": {
+            "home": "Home",
+            "products": "Prodotti",
+            "faq": "FAQ",
+            "contacts": "Contatti"
+        },
+        "home": {
+            "subtitle": "Scopri i nostri pupazzi fatti a mano con amore. Perfetti come regalo o per decorare la tua casa!",
+            "CTA": "Acquista ora!"
+        },
+        "products": {
+            "title": "Prodotti"
+        },
+        "detailProduct": {
+            "price": "Prezzo",
+            "addToCart": "Aggiungi al carrello"
+        },
+        "FAQ": {
+            "title": "FAQ",
+            "shipping": [
+                "Gli ordini vengono spediti entro 3-5 giorni lavorativi. Una volta spediti, riceverai una email con le informazioni di tracciamento del pacco.",
+                "Eventuali spese doganali, dazi o tasse sono a carico dell’acquirente.",
+                "<strong>Non si accettano resi o rimborsi.</strong>",
+                "Una volta spedito il pupazzo, <strong>non siamo più responsabili del pacco, inclusi eventuali ritardi o problemi doganali.</strong>"
+            ],
+            "items": [
+                {
+                    "question": "Come posso ordinare un prodotto?",
+                    "answer": "Per ordinare un prodotto, basta selezionare l’articolo desiderato dalla nostra vetrina, aggiungerlo al carrello e seguire la procedura guidata di checkout. Riceverai una conferma via email con tutti i dettagli dell’ordine e potrai monitorare lo stato della spedizione direttamente dal tuo account."
+                },
+                {
+                    "question": "Quali sono i tempi di spedizione?",
+                    "answer": "I tempi di spedizione variano generalmente da 3 a 5 giorni lavorativi in Italia, a partire dalla conferma dell’ordine. In caso di prodotti personalizzati o richieste particolari, i tempi potrebbero allungarsi leggermente. Riceverai comunque una notifica appena il tuo pacco sarà stato spedito, con il codice di tracciamento."
+                },
+                {
+                    "question": "Posso richiedere un prodotto personalizzato?",
+                    "answer": "Certamente! Siamo felici di realizzare creazioni su misura secondo le tue preferenze. Puoi contattarci tramite la pagina Contatti specificando le tue richieste, colori o dettagli particolari. Ti risponderemo al più presto per definire insieme il progetto e i tempi di realizzazione."
+                }
+            ]
+        },
+        "contacts": {
+            "title": "Contatti"
+        }
+    }
+}

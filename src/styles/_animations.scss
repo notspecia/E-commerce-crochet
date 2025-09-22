@@ -1,0 +1,87 @@
+/* Slide da sinistra verso destra */
+.slide-left-enter-active,
+.slide-left-leave-active {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide-left-enter-from {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.slide-left-enter-to {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-left-leave-from {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-left-leave-to {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+
+/* Slide da destra  verso sinistra */
+.slide-right-enter-active,
+.slide-right-leave-active {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide-right-enter-from {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.slide-right-enter-to {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-right-leave-from {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-right-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+
+/* Animazione shake */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-2px);
+    }
+
+    40% {
+        transform: translateX(2px);
+    }
+
+    60% {
+        transform: translateX(-2px);
+    }
+
+    80% {
+        transform: translateX(2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* Disabilita scroll quando un pannello è aperto */
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}

@@ -1,0 +1,90 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+
+/* 
+I18N LANG
+- t() → traduce una singola stringa (string)
+- tm() → traduce e restituisce oggetti o array (translate messages) 
+*/
+const { tm } = useI18n();
+
+// rendiamo le costanti con le stringhe shipping + items accordion reactive al cambio lingua
+const shipping = computed(() => tm('FAQ.shipping')); // Prende array shipping tradotti
+const items = computed(() => tm('FAQ.items')); // TODO Prende array items accordions tradotti
+</script>
+
+
+
+<!-- TODO agigungere contenuto e le vere FAQ sostituendo i placeholder -->
+<template>
+    <section class="w-75 mx-auto">
+        <h2 class="header text-center mb-5">FAQ & Shipping</h2>
+
+        <!-- DISCLAIMER TRADOTTI DA i18n -->
+        <template v-for="line in shipping">
+            <p v-html="line"></p>
+        </template>
+
+
+        <div class="accordion" id="accordionExample">
+            <div v-for="(item, index) in items" :key="index" class="accordion-item mt-4">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        :data-bs-target="`#collapse${index}`" aria-expanded="false"
+                        :aria-controls="`#collapse${index}`">
+                        <i class="bi bi-arrow-through-heart-fill" v-html="item.question"></i>
+                    </button>
+                </h2>
+                <div :id="'collapse' + index" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <hr class="mx-3 my-0">
+                    <div class="accordion-body fs-6" v-html="item.answer"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
+
+
+
+<style scoped lang="scss">
+p {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 30px;
+
+    :deep(strong) {
+        color: $color-primary;
+        font-weight: $font-weight-bold;
+    }
+
+}
+
+
+.accordion {
+    margin-top: 90px;
+    --bs-accordion-color: black; // colore testo sempre nero
+    --bs-accordion-btn-color: black;
+    --bs-accordion-btn-bg: white;
+    --bs-accordion-active-color: black; // colore testo attivo
+    --bs-accordion-active-bg: white; // sfondo attivo
+    --bs-accordion-bg: white; // sfondo default
+    --bs-accordion-btn-focus-box-shadow: none;
+
+    .accordion-button {
+        gap: 10px;
+        font-weight: $font-weight-bold;
+        border: 1px solid $color-black;
+    }
+
+    .accordion-item:has(.accordion-button:not(.collapsed)) {
+        border: 2px solid $color-black;
+        box-shadow: 0px 2px 7px $color-white;
+    }
+
+    .accordion-button:not(.collapsed) {
+        border: none;
+    }
+}
+</style>

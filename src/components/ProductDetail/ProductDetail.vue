@@ -1,0 +1,185 @@
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+import { useCartStore } from '../../stores/cart';
+import MarkdownIt from 'markdown-it';
+import { API_BASE_URL } from '../../utils/costants';
+import Reviews from '../Reviews/Reviews.vue';
+import type Product from '../../models/Product.model';
+import { goTopPage } from '../../utils/utils';
+
+
+/* PROPS TS */
+const props = defineProps<{
+    product: Product;
+}>();
+
+
+/* CART PINIA STATE */
+const cartStore = useCartStore();
+
+
+/* MARKDOWNS CONVERTER */
+const md = new MarkdownIt();
+
+const descriptionMarkdown = computed((): string => {
+    return md.render(props.product.description || ''); // conversione Markdown in HTML 
+});
+
+
+/* REF */
+const quantity = ref<number>(1); // quantità del prodotto da aggiungere al carrello (default 1)
+const mainImage = ref<string>(props.product.images[0]?.url || ''); // immagine principale da far apparire in alto tra le sclete del carosello
+
+
+/* FUNCTIONS */
+// funzione per cambiare immagine come principale ingradinta in alto
+const setMainImage = (url: string) => {
+    mainImage.value = url;
+};
+
+// funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
+const handleAddToCart = (): void => {
+    goTopPage();
+    cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
+    quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
+    cartStore.cartIsOpen = true; // apro il carrello dopo l'aggiunta del prodotto
+}
+</script>
+
+
+
+<template>
+    <div class="row g-5">
+
+        <!-- COLONNA SINISTRA: IMMAGINI -->
+        <div class="col-12 col-md-6">
+            <!-- immagine principale selezionata -->
+            <div class="main-image-container mb-3">
+                <img :src="`${API_BASE_URL}${mainImage}`" alt="Immagine prodotto" class="img-fluid main-image" />
+            </div>
+            <!-- thumbnails scelta immagini -->
+            <div class="gap-3 thumbnail-container">
+                <img v-for="(img, i) in props.product.images" :key="i" :src="`${API_BASE_URL}${img.url}`"
+                    :alt='`Thumbnail immagine prodotto ${i + 1}`' class="thumbnail"
+                    :class="{ active: mainImage === img.url }" @click="setMainImage(img.url)" />
+            </div>
+        </div>
+
+        <!-- COLONNA DESTRA: DETTAGLI -->
+        <div class="col-12 col-md-6">
+            <h2 class="my-1">{{ props.product.title }}</h2>
+            <p class="fs-4 my-4"> {{ $t('detailProduct.price') }}: {{ props.product.price.toFixed(2) }}€</p>
+            <!-- bottone per modificare quantita del prodotto da aggiungere al carrello -->
+            <div class="button-quantity mb-3">
+                <i class="bi bi-dash" @click="quantity--" :class="{ disabled: quantity === 1 }"></i>
+                <span>{{ quantity }}</span>
+                <i class="bi bi-plus" @click="quantity++"></i>
+            </div>
+            <!-- bottone per aggiungere il prodotto al carrello -->
+            <div class="button-add-product" @click="handleAddToCart">
+                <span> {{ $t('detailProduct.addToCart') }}</span>
+            </div>
+            <!-- descrizioni aggiuntive sul prodotto  usando markdown-it converter con v-html -->
+            <p class="fs-5 mt-4" v-html="descriptionMarkdown"></p>
+            <!-- width height data -->
+            <p class="fs-6 mt-1">
+                larghezza: {{ props.product.width }} cm <br />
+                altezza: {{ props.product.height }} cm
+            </p>
+            <!-- Component con recensione del prodotto dettaglio -->
+            <Reviews :productId="props.product.documentId" />
+        </div>
+    </div>
+</template>
+
+
+
+<style scoped lang="scss">
+// cotainer con img principale selezionata
+.main-image-container {
+    text-align: center;
+
+    .main-image {
+        max-height: 500px;
+        border-radius: 10px;
+    }
+}
+
+// container thumbnail con le immagini possibili da selezionare da mettere come principale visible
+.thumbnail-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    // immagini selezionabili style
+    .thumbnail {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        // effetti hover images
+        &:hover {
+            transform: scale(1.05);
+            border-color: #aaa;
+        }
+
+        &.active {
+            border-color: $color-primary;
+        }
+    }
+}
+
+// style colonna descrittiva
+h2 {
+    font-size: 2.7rem;
+}
+
+// bottone modifica quantita da aggiungere al carrello 
+.button-quantity {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+    font-size: 1.4rem;
+    background-color: $color-gray-100;
+    color: $color-black;
+    padding: 8px 10px;
+    border: 1px solid $color-gray-900;
+    border-radius: 5px;
+
+    i {
+        cursor: pointer;
+        color: $color-black;
+    }
+
+    i.disabled {
+        color: #ccc;
+        pointer-events: none;
+    }
+}
+
+// bottone conferma aggiunta prodotti 
+.button-add-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $color-white;
+    background: linear-gradient(120deg, $color-gray-900 0%, #ef723c 100%);
+    padding: 10px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+        transform: scale(1.03);
+    }
+}
+</style>

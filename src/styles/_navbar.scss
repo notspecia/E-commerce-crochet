@@ -1,0 +1,19 @@
+// stile per i link dentro la lista della navbar
+.nav-link a {
+    color: inherit;
+    font-weight: $font-weight-normal;
+    text-decoration: none;
+    transition: color 0.1s;
+}
+
+// effetto hover sui link della navbar
+.nav-link a:hover {
+    color: $color-primary;
+}
+
+// stile per il link attivo
+.nav-link a.router-link-active {
+    font-weight: $font-weight-bold;
+    padding-bottom: 6px;
+    border-bottom: 2px solid $color-secondary;
+}

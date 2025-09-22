@@ -1,0 +1,51 @@
+{
+    "de": {
+        "fullName": "Deutsch",
+        "global": {
+            "goBack": "Geh zurück"
+        },
+        "navbar": {
+            "home": "Startseite",
+            "products": "Produkte",
+            "faq": "FAQ",
+            "contacts": "Kontakt"
+        },
+        "home": {
+            "subtitle": "Entdecke unsere liebevoll handgemachten Kuscheltiere. Perfekt als Geschenk oder zur Dekoration deines Zuhauses!",
+            "CTA": "Jetzt kaufen!"
+        },
+        "products": {
+            "title": "Produkte"
+        },
+        "detailProduct": {
+            "price": "Preis",
+            "addToCart": "In den Warenkorb"
+        },
+        "FAQ": {
+            "title": "FAQ",
+            "shipping": [
+                "Bestellungen werden innerhalb von 3–5 Werktagen versandt. Nach dem Versand erhalten Sie eine E-Mail mit den Sendungsverfolgungsinformationen.",
+                "Alle Zollgebühren, Abgaben oder Steuern gehen zu Lasten des Käufers.",
+                "<strong>Es werden keine Rücksendungen oder Rückerstattungen akzeptiert.</strong>",
+                "Sobald das Plüschtier versendet wurde, <strong>übernehmen wir keine Verantwortung mehr für das Paket, einschließlich eventueller Verzögerungen oder Zollprobleme.</strong>"
+            ],
+            "items": [
+                {
+                    "question": "Wie kann ich ein Produkt bestellen?",
+                    "answer": "Um ein Produkt zu bestellen, wähle einfach den gewünschten Artikel aus unserem Schaufenster aus, lege ihn in den Warenkorb und folge dem geführten Bestellprozess. Du erhältst eine Bestätigungs-E-Mail mit allen Bestelldetails und kannst den Versandstatus direkt über dein Konto verfolgen."
+                },
+                {
+                    "question": "Wie lange dauert der Versand?",
+                    "answer": "Die Versanddauer beträgt in der Regel 3 bis 5 Werktage innerhalb Italiens, gerechnet ab der Bestellbestätigung. Bei personalisierten Produkten oder besonderen Wünschen kann sich die Lieferzeit etwas verlängern. Du erhältst eine Benachrichtigung, sobald dein Paket versendet wurde, inklusive Sendungsverfolgungsnummer."
+                },
+                {
+                    "question": "Kann ich ein personalisiertes Produkt anfragen?",
+                    "answer": "Natürlich! Wir fertigen gerne individuelle Kreationen nach deinen Wünschen an. Kontaktiere uns einfach über die Kontaktseite und teile uns deine Wünsche, Farben oder besondere Details mit. Wir melden uns schnellstmöglich bei dir, um das Projekt und die Fertigungszeit gemeinsam zu besprechen."
+                }
+            ]
+        },
+        "contacts": {
+            "title": "Kontakt"
+        }
+    }
+}
