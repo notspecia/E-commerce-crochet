@@ -8,6 +8,7 @@ import FAQ from '@/views/FAQ/FAQ.vue';
 import Contacts from '@/views/Contacts/Contacts.vue';
 import Login from '@/views/Login/Login.vue';
 import Register from '@/views/Register/Register.vue';
+import PrivacyPolicy from '@/views/PrivacyPolicy/PrivacyPolicy.vue';
 
 // define the routes for the application + components to render
 const routes = [
@@ -45,6 +46,11 @@ const routes = [
         path: '/register',
         name: 'register',
         component: Register
+    },
+    {
+        path: '/privacy-policy',
+        name: 'privacy-policy',
+        component: PrivacyPolicy
     }
 
 ]

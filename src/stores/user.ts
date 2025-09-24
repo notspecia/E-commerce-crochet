@@ -2,9 +2,13 @@ import { defineStore } from "pinia";
 import { reactive, computed } from "vue";
 import { API_BASE_URL } from "../utils/costants";
 import { authUser } from "../apis/auth.api";
+import { useRouter } from "vue-router";
+import { toast, type ToastOptions } from 'vue3-toastify';
 import type Login from "../models/Login.model";
 import type Register from "../models/Register.model";
 import type User from "../models/User.model";
+
+
 
 
 export const useUserStore = defineStore("user", () => {
@@ -20,6 +24,9 @@ export const useUserStore = defineStore("user", () => {
 
     // computed reattiva al cambiamento dei dati user e jwt controllo in real time
     const isLoggedIn = computed(() => !!stateUser.bearerToken && !!stateUser.user);
+
+    // useRouter per i redirect dopo login/register/logout
+    const router = useRouter();
 
 
     /* ACTIONS */
@@ -41,6 +48,8 @@ export const useUserStore = defineStore("user", () => {
             // settaggio dei dati utente + JWT in entrambi i casi nel local storage
             stateUser.bearerToken = res.jwt;
             stateUser.user = res.user;
+            router.push("/"); // redirect alla home page
+            toast.success(isRegister ? "Registrazione avvenuta con successo!" : "Login avvenuto con successo!");
         } catch (err: any) {
             stateUser.error = err.message || "Errore autenticazione";
         } finally {

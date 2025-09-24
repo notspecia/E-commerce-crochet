@@ -50,8 +50,8 @@ onMounted(() => {
             <div class="cart-products-list">
                 <!-- column header -->
                 <div class="d-flex justify-content-between align-items-end border-bottom">
-                    <p class="">PRODUCT</p>
-                    <p class="">PRICE</p>
+                    <p>PRODUCT</p>
+                    <p>PRICE</p>
                 </div>
                 <!-- TODO FIX REVIEW + SCSS STYLES -->
                 <div v-for="product in cartStore.productsCart" :key="product.id" class="cart-product">
@@ -75,7 +75,7 @@ onMounted(() => {
                     <!-- column flex total + remove product button -->
                     <div class="d-flex flex-column justify-content-between">
                         <p class="fs-5 fw-bold">{{ (product.price * product.quantity).toFixed(2) }}€</p>
-                        <button class="btn btn-sm btn-outline-danger ms-3"
+                        <button class="btn btn-sm btn-danger ms-3"
                             @click="cartStore.removeFromCart(product.documentId)">
                             <i class="bi bi-trash"></i>
                         </button>
