@@ -39,7 +39,7 @@ const submitRegister = async () => {
 
 <template>
     <div class="d-flex flex-column justify-content-center align-items-center vh-100">
-        <div class="card py-4 px-5">
+        <form class="card py-4 px-5" @submit.prevent="submitRegister">
             <h2 class="text-center mb-4">Register</h2>
             <!-- Username -->
             <div class="my-3">
@@ -70,22 +70,19 @@ const submitRegister = async () => {
                     anyone else.
                 </div>
             </div>
-
             <!-- Pulsante -->
-            <button @click="submitRegister" class="btn d-inline-block mx-auto mt-5 w-75 fs-5">
+            <button type="submit" class="btn d-inline-block mx-auto mt-5 w-75 fs-5">
                 Registrati
             </button>
-
             <!-- Errore -->
             <p v-if="userStore.stateUser.error" class="text-danger mt-3 text-center fs-6">
                 {{ userStore.stateUser.error }}
             </p>
-
             <!-- Redirect sehai gia account + pulizia errori -->
-            <p class="link-login mt-4" @click="() => { router.push('/login'); userStore.stateUser.error = '' }">Hai Già
-                un
-                account? accedi!</p>
-        </div>
+            <p class="link-login mt-4" @click="() => { router.push('/login'); userStore.stateUser.error = '' }">
+                Hai Già un account? accedi!
+            </p>
+        </form>
     </div>
 </template>
 

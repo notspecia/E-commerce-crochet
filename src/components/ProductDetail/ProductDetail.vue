@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useCartStore } from '../../stores/cart';
-import MarkdownIt from 'markdown-it';
+import { goTopPage } from '../../utils/utils';
 import { API_BASE_URL } from '../../utils/costants';
+import MarkdownIt from 'markdown-it';
 import Reviews from '../Reviews/Reviews.vue';
 import type Product from '../../models/Product.model';
-import { goTopPage } from '../../utils/utils';
 
 
 /* PROPS TS */
@@ -68,7 +68,7 @@ const handleAddToCart = (): void => {
         <!-- COLONNA DESTRA: DETTAGLI -->
         <div class="col-12 col-md-6">
             <h2 class="my-1">{{ props.product.title }}</h2>
-            <p class="fs-4 my-4"> {{ $t('detailProduct.price') }}: {{ props.product.price.toFixed(2) }}€</p>
+            <p class="fs-4 my-4"> {{ props.product.price.toFixed(2) }}€</p>
             <!-- bottone per modificare quantita del prodotto da aggiungere al carrello -->
             <div class="button-quantity mb-3">
                 <i class="bi bi-dash" @click="quantity--" :class="{ disabled: quantity === 1 }"></i>
@@ -144,7 +144,7 @@ h2 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 35%;
+    width: 50%;
     font-size: 1.4rem;
     background-color: $color-gray-100;
     color: $color-black;
@@ -168,11 +168,11 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75%;
+    width: 90%;
     font-size: 1.2rem;
     font-weight: bold;
     color: $color-white;
-    background: linear-gradient(120deg, $color-gray-900 0%, #ef723c 100%);
+    background-color: #fe8551;
     padding: 10px 10px;
     border-radius: 20px;
     cursor: pointer;

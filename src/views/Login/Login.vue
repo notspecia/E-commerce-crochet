@@ -30,7 +30,7 @@ const submitLogin = async () => {
 
 <template>
     <div class="d-flex flex-column justify-content-center align-items-center vh-100">
-        <div class="card py-4 px-5">
+        <form class="card py-4 px-5" @submit.prevent="submitLogin">
             <h2 class="text-center mb-4">Login</h2>
             <div class="my-3">
                 <label class="form-label" for="emailOrUsername">Email or Username</label>
@@ -49,17 +49,17 @@ const submitLogin = async () => {
                     anyone else.
                 </div>
             </div>
-            <button @click="submitLogin" class="btn d-inline-block mx-auto mt-5 w-75 fs-5">Accedi</button>
+            <button type="submit" class="btn d-inline-block mx-auto mt-5 w-75 fs-5">Accedi</button>
             <p v-if="userStore.stateUser.error" class="text-danger mt-1 text-center fs-6">{{ userStore.stateUser.error
                 }}</p>
-        </div>
+        </form>
     </div>
 </template>
 
 
 
 <style scoped lang="scss">
-.card {
+form.card {
     width: 600px; // width assouluta con px > sm
     font-size: 1.1rem;
     color: $color-black;

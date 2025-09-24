@@ -2,7 +2,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useReviewsStore } from '../../stores/review';
 import Loader from '../Loader/Loader.vue';
-import type Review from '../../models/Review.model';
+
 
 
 /* PROPS */
@@ -60,10 +60,9 @@ onMounted(() => {
 
 
 
-
 <template>
     <div class="reviews-container mt-5">
-        <h3 class="mb-4 fs-3 text-center">Recensioni</h3>
+        <h3 class="mb-4 fs-3 text-center">Customer Reviews</h3>
 
         <!-- Loading delle recensioni -->
         <Loader v-if="reviewsStore.stateReviews.isLoading" />
@@ -104,12 +103,11 @@ onMounted(() => {
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
     max-height: 300px; // altezza fissa, scrollabile
-    color: $color-black;
+    color: $color-white;
     overflow-y: auto;
     padding: 20px;
-    border: 2px solid $color-gray-800;
+    border: 2px solid $color-gray-200;
     border-radius: 8px;
-    background-color: $color-gray-100;
 
     .review-item {
 

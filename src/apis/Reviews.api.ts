@@ -36,15 +36,7 @@ export const GetReviews = async (path: string, productId: string): Promise<Revie
  * @returns {Promise<Review>} - La recensione creata.
  * @throws {Error} - Se la richiesta HTTP fallisce.
  */
-export const PostReview = async (
-    path: string,
-    review: {
-        contenuto: string;
-        voto: number;
-        utente: string;
-        prodotto: number;
-    }
-): Promise<Review> => {
+export const PostReview = async (path: string, review: Review): Promise<Review> => {
     const response = await fetch(path, {
         method: "POST",
         headers: {
@@ -62,15 +54,3 @@ export const PostReview = async (
     const jsonResponse = await response.json();
     return jsonResponse.data;
 };
-
-
-/* COME USARLA
-
-await PostReview("/api/recensioni", {
-  contenuto: "Prodotto fantastico!",
-  voto: 5,
-  utente: "Mario Rossi",
-  prodotto: 123, // ID prodotto preso dal dettaglio
-});
-
-*/
