@@ -4,6 +4,7 @@ import { RouterLink, useRouter, useRoute } from 'vue-router';
 import { useCartStore } from '../../stores/cart';
 import { useUserStore } from '../../stores/user';
 import { useI18n } from 'vue-i18n';
+import { languages } from '../../utils/costants';
 import { toast, type ToastOptions } from 'vue3-toastify';
 import MobileNavbar from './MobileNavbar.vue';
 import DropdownLanguages from '../../components/DropdownLanguages/DropdownLanguages.vue';
@@ -32,6 +33,11 @@ const menuIsOpen = ref<boolean>(false); // stato per gestire l'apertura/chiusura
 const showNavbar = computed(() => {
     return !['/login', '/register'].includes(route.path);
 });
+
+// computed per ottenere l'oggetto lingua selezionata in base al codice lingua (locale)
+const selectedLang = computed(() =>
+    languages.find(lang => lang.code === locale.value)
+);
 
 
 /* FUNCTIONS */
@@ -89,7 +95,8 @@ watchEffect(() => {
         -->
         <i class="bi bi-list fs-1 hamburger" @click="toggleMenu" />
         <transition name="slide-left">
-            <MobileNavbar v-if="menuIsOpen" @close="toggleMenu" @setLanguage="setLanguage" />
+            <MobileNavbar v-if="menuIsOpen" @close="toggleMenu" @setLanguage="setLanguage"
+                :selectedLang="selectedLang" />
         </transition>
         <!-- immagine logo con click render alla HOME "/" + linka voci del sito 2 sezione -->
         <nav class="nav-left">
@@ -115,10 +122,11 @@ watchEffect(() => {
         <!-- sezione a destra per gestione dei prodotti con carrello e select con lingua differente -->
         <div class="nav-right">
             <div class="nav-item dropdown">
-                <img :src="`images/flags/${locale}.svg`" alt="lingua attiva" class="flag me-1" />
+                <img v-if="selectedLang" :src="`/images/${selectedLang.flag}`" :alt="selectedLang.label"
+                    class="flag me-1" :key="selectedLang.code" />
                 <a class="nav-link dropdown-toggle d-inline-block" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    {{ $t('fullName') }}
+                    {{ selectedLang?.label }}
                 </a>
                 <!-- dropdown menu per settare la lingua del sito -->
                 <DropdownLanguages @setLanguage="setLanguage" />

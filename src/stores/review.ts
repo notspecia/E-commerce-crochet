@@ -5,6 +5,7 @@ import { GetReviews } from '../apis/Reviews.api';
 import type Review from '../models/Review.model';
 
 
+
 export const useReviewsStore = defineStore('reviews', () => {
 
     /* STATE */
@@ -17,6 +18,7 @@ export const useReviewsStore = defineStore('reviews', () => {
 
 
     /* FUNCTIONS */
+    // function to fetch reviews by productDocumentId of a product
     const fetchReviews = async (idDocument: string): Promise<void> => {
         try {
             stateReviews.isLoading = true; // Imposta isLoading a true prima di iniziare il recupero
@@ -25,9 +27,7 @@ export const useReviewsStore = defineStore('reviews', () => {
         } catch (error: any) {
             stateReviews.error = `${error}`;
         } finally {
-            setTimeout(() => {
-                stateReviews.isLoading = false;
-            }, 1000);
+            stateReviews.isLoading = false;
         };
     }
 

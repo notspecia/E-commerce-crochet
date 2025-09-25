@@ -61,6 +61,8 @@ export const useProductsStore = defineStore('products', () => {
   // Watch per il cambio della lingua, ricarica i prodotti quando cambia la lingua su tutta l'applicazione
   watch(locale, (): void => {
     console.log(`Lingua cambiata a: ${locale.value}, ricarico i prodotti...`);
+    stateProducts.error = null; // reset error
+
     if (stateProducts.currentProduct) {
       fetchProduct(stateProducts.currentProduct.documentId);
     } else {

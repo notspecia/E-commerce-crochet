@@ -66,10 +66,8 @@ onMounted(() => {
 
         <!-- Loading delle recensioni -->
         <Loader v-if="reviewsStore.stateReviews.isLoading" />
-
         <!-- in caso non esistano recensioni sul prodotto [] vuoto -->
         <p v-else-if="reviewsStore.stateReviews.reviews.length === 0">Nessuna recensione presente</p>
-
         <!-- errore caricamento recensioni -->
         <p v-else-if="reviewsStore.stateReviews.error" class="text-danger">{{ reviewsStore.stateReviews.error }}</p>
 
@@ -103,6 +101,8 @@ onMounted(() => {
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
     max-height: 300px; // altezza fissa, scrollabile
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
     color: $color-white;
     overflow-y: auto;
     padding: 20px;

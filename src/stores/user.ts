@@ -10,7 +10,6 @@ import type User from "../models/User.model";
 
 
 
-
 export const useUserStore = defineStore("user", () => {
 
     /* STATE */

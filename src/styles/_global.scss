@@ -2,6 +2,14 @@
 html {
     box-sizing: border-box;
     font-size: 16px; // base font-size adjusted whit rem em
+
+    @media screen and (max-width: $breakpoint-lg) {
+        font-size: 15px;
+    }
+
+    @media screen and (max-width:$breakpoint-sm) {
+        font-size: 14px;
+    }
 }
 
 *,

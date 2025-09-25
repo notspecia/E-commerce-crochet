@@ -5,6 +5,12 @@ import { useI18n } from 'vue-i18n';
 import DropdownLanguages from '../../components/DropdownLanguages/DropdownLanguages.vue';
 
 
+/* PROPS */
+defineProps<{
+    selectedLang: { code: string; label: string; flag: string } | undefined
+}>()
+
+
 /* I18N LANG */
 const { locale } = useI18n(); // rendiamolo reattivo per il cambio lingua
 
@@ -36,10 +42,11 @@ const emit = defineEmits(['close', 'setLanguage']);
             </li>
         </ul>
         <div class="nav-item dropdown">
-            <img :src="`images/flags/${locale}.svg`" alt="lingua attiva" class="flag me-1" />
+            <img v-if="selectedLang" :src="`/images/${selectedLang.flag}`" :alt="selectedLang.label" class="flag me-1"
+                :key="selectedLang.code" />
             <a class="nav-link dropdown-toggle d-inline-block" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                {{ $t('fullName') }}
+                {{ selectedLang?.label }}
             </a>
             <!-- dropdown menu per settare la lingua del sito -->
             <DropdownLanguages @setLanguage="lang => emit('setLanguage', lang)" />
