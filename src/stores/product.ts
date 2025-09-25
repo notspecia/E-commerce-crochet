@@ -13,7 +13,7 @@ export const useProductsStore = defineStore('products', () => {
   const { locale } = useI18n(); // rendiamolo reattivo per il cambio lingua cambiando la lingua dei prodotti in tutta l'applicazione
 
 
-  /* STATE */
+  /* --------------STATE---------------- */
   // state reactive of the object whit array of products + bool loading and string error
   const stateProducts = reactive({
     products: [] as Product[],
@@ -23,7 +23,7 @@ export const useProductsStore = defineStore('products', () => {
   });
 
 
-  /* FUNCTIONS */
+  /* ------------ACTIONS------------- */
   // funzione per fetchare l array dei products[] con tutti i prodotti 
   const fetchProducts = async (): Promise<void> => {
     try {

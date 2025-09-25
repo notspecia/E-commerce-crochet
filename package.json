@@ -9,14 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^7.9.0",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
     "markdown-it": "^14.1.0",
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.4.1",
+    "vee-validate": "^4.15.1",
     "vue": "^3.5.17",
     "vue-i18n": "^11.1.11",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",

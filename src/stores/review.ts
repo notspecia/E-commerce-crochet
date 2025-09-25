@@ -8,7 +8,7 @@ import type Review from '../models/Review.model';
 
 export const useReviewsStore = defineStore('reviews', () => {
 
-    /* STATE */
+    /* --------------STATE---------------- */
     // state reactive of the object whit array of reviews + bool loading and string error
     const stateReviews = reactive({
         reviews: [] as Review[],
@@ -17,7 +17,7 @@ export const useReviewsStore = defineStore('reviews', () => {
     });
 
 
-    /* FUNCTIONS */
+    /* ------------ACTIONS------------- */
     // function to fetch reviews by productDocumentId of a product
     const fetchReviews = async (idDocument: string): Promise<void> => {
         try {

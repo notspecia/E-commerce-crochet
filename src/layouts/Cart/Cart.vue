@@ -87,11 +87,7 @@ onMounted(() => {
             <div class="cart-summary border-top pt-4">
                 <div class="d-flex justify-content-between align-items-center fs-4 mb-3">
                     <strong>Estimated total:</strong>
-                    <span>
-                        {{
-                            cartStore.productsCart.reduce((acc, p) => acc + p.price * p.quantity, 0).toFixed(2)
-                        }} €
-                    </span>
+                    <span>{{ cartStore.cartTotal }}€</span>
                 </div>
                 <button class="btn">Check out</button>
             </div>

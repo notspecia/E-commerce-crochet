@@ -33,16 +33,14 @@ export const useCartStore = defineStore('cart', () => {
     const { stateProducts } = productsStore; // ora stateProducts è reattivo e puoi usarlo nei computed
 
 
-    /* STATE */
-    // stato booleano per gestire l'apertura/chiusura del carrello
-    const cartIsOpen = ref<boolean>(false);
-
-    // stato array di prodotti nel carrello (solo id e la quantità di quel prodotto object)
-    const productsSelected = ref<ProductSelected[]>([]);
+    /* --------------STATE---------------- */
+    const cartIsOpen = ref<boolean>(false); // stato booleano per gestire l'apertura/chiusura del carrello
+    const productsSelected = ref<ProductSelected[]>([]); // stato array di prodotti nel carrello (solo documentId prodtto e la quantità)
 
     // computed per trasformare i prodotti selezionati in un array di prodotti completi da renderizzare nel cart con quantità
     const productsCart = computed((): ProductCart[] => {
         return productsSelected.value.map(cartItem => {
+            console.log(productsSelected.value);
             const product = stateProducts.products.find(p => p.documentId === cartItem.documentId);
             if (product) {
                 return { ...product, quantity: cartItem.quantity };
@@ -56,8 +54,13 @@ export const useCartStore = defineStore('cart', () => {
         return productsSelected.value.reduce((total, item) => total + item.quantity, 0);
     });
 
+    // computed per calcolare il totale di prezzo del carrello
+    const cartTotal = computed<number>((): number => {
+        return productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0);
+    });
 
-    /* FUNCTIONS */
+
+    /* ------------ACTIONS------------- */
     // funzione per gestire la visibilità della sidebar del carrello
     const toggleCart = (): void => {
         goTopPage();
@@ -104,6 +107,7 @@ export const useCartStore = defineStore('cart', () => {
         toggleCart,
         productsSelected,
         cartCount,
+        cartTotal,
         productsCart,
         addToCart,
         removeFromCart,

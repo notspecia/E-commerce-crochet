@@ -11,7 +11,7 @@ import type User from "../models/User.model";
 
 export const useUserStore = defineStore("user", () => {
 
-    /* STATE */
+    /* --------------STATE---------------- */
     // stato reactive contenete il TOKEN preso in caso dal localStorage, user credenziali, e flag di caricamento errore
     const stateUser = reactive({
         bearerToken: "", // legge il JWT dal local storage (se presente)
@@ -27,7 +27,7 @@ export const useUserStore = defineStore("user", () => {
     const router = useRouter();
 
 
-    /* ACTIONS */
+    /* ------------ACTIONS------------- */
     // funzione di fetch user sia per il LOGIN che REGISTER
     const fetchAuthUser = async (isRegister: boolean, credentials: Login | Register): Promise<void> => {
 

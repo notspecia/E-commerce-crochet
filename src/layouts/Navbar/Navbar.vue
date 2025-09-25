@@ -32,7 +32,7 @@ const showModalLogout = ref<boolean>(false); // stato per gestire l'apertura/chi
 /* COMPUTED */
 // computed per mostrare/nascondere la navbar
 const showNavbar = computed(() => {
-    return !['login', 'register', 'privacy-policy'].includes(route.name as string);
+    return !['checkout', 'login', 'register', 'privacy-policy'].includes(route.name as string);
 });
 
 // computed per ottenere l'oggetto lingua selezionata in base al codice lingua (locale)
