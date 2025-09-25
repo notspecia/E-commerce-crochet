@@ -58,3 +58,13 @@ li {
     object-fit: cover;
     border-radius: 2px;
 }
+
+// classe per i link di redirect tra login e register
+.link-account {
+    display: inline-block;
+    width: fit-content;
+    color: $color-primary;
+    text-decoration: underline;
+    margin: 0 auto;
+    cursor: pointer;
+}

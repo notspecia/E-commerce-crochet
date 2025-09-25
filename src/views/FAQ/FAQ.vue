@@ -58,9 +58,7 @@ p {
         color: $color-primary;
         font-weight: $font-weight-bold;
     }
-
 }
-
 
 .accordion {
     margin-top: 90px;
@@ -72,9 +70,12 @@ p {
     --bs-accordion-bg: white; // sfondo default
     --bs-accordion-btn-focus-box-shadow: none;
 
+    // accordion header contenuto qui e modificato
     .accordion-button {
-        gap: 10px;
+        font-family: $font-family-base; // Cambia font
+        font-size: 1rem; // Cambia dimensione
         font-weight: $font-weight-bold;
+        letter-spacing: 0.05rem;
         border: 1px solid $color-black;
     }
 

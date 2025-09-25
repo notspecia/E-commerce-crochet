@@ -8,10 +8,8 @@ import GoBack from '../../components/GoBack/GoBack.vue';
 /* USEROUTER */
 const router = useRouter();
 
-
 /* PINIA STORE USER */
 const userStore = useUserStore();
-
 
 /* REACTIVE */
 const credentials = reactive({
@@ -20,16 +18,13 @@ const credentials = reactive({
     password: '',
 });
 
-
 /* FUNCTIONS */
 const submitRegister = async () => {
-
     // validazione minima lato frontend se errata blocca submit e fetch
     if (!credentials.username || !credentials.email || !credentials.password) {
         userStore.stateUser.error = "Inserisci i campi!";
         return;
     }
-
     // chiama lo store per tentare il register con le credenziali nuove passate
     await userStore.fetchAuthUser(true, credentials);
 };
@@ -79,7 +74,7 @@ const submitRegister = async () => {
                 {{ userStore.stateUser.error }}
             </p>
             <!-- Redirect sehai gia account + pulizia errori -->
-            <p class="link-login mt-4" @click="() => { router.push('/login'); userStore.stateUser.error = '' }">
+            <p class="link-account mt-4" @click="() => { router.push('/login'); userStore.stateUser.error = '' }">
                 Hai Già un account? accedi!
             </p>
         </form>
@@ -118,15 +113,6 @@ const submitRegister = async () => {
             transform: scale(1.03);
             color: $color-white;
         }
-    }
-
-    .link-login {
-        display: inline-block;
-        width: fit-content;
-        color: $color-primary;
-        text-decoration: underline;
-        margin: 0 auto;
-        cursor: pointer;
     }
 }
 </style>

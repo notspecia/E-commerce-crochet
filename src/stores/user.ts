@@ -3,7 +3,6 @@ import { reactive, computed } from "vue";
 import { API_BASE_URL } from "../utils/costants";
 import { authUser } from "../apis/auth.api";
 import { useRouter } from "vue-router";
-import { toast, type ToastOptions } from 'vue3-toastify';
 import type Login from "../models/Login.model";
 import type Register from "../models/Register.model";
 import type User from "../models/User.model";
@@ -48,7 +47,6 @@ export const useUserStore = defineStore("user", () => {
             stateUser.bearerToken = res.jwt;
             stateUser.user = res.user;
             router.push("/"); // redirect alla home page
-            toast.success(isRegister ? "Registrazione avvenuta con successo!" : "Login avvenuto con successo!");
         } catch (err: any) {
             stateUser.error = err.message || "Errore autenticazione";
         } finally {

@@ -5,9 +5,9 @@ import { useCartStore } from '../../stores/cart';
 import { useUserStore } from '../../stores/user';
 import { useI18n } from 'vue-i18n';
 import { languages } from '../../utils/costants';
-import { toast, type ToastOptions } from 'vue3-toastify';
 import MobileNavbar from './MobileNavbar.vue';
 import DropdownLanguages from '../../components/DropdownLanguages/DropdownLanguages.vue';
+import ModalConfirm from '../../components/ModalConfirm/ModalConfirm.vue';
 
 
 /* I18N LANG */
@@ -26,18 +26,17 @@ const userStore = useUserStore();
 
 /* REF */
 const menuIsOpen = ref<boolean>(false); // stato per gestire l'apertura/chiusura del menu mobile (se dispositivo mobile) 
+const showModalLogout = ref<boolean>(false); // stato per gestire l'apertura/chiusura del modal di conferma logout
 
 
 /* COMPUTED */
 // computed per mostrare/nascondere la navbar
 const showNavbar = computed(() => {
-    return !['/login', '/register'].includes(route.path);
+    return !['login', 'register', 'privacy-policy'].includes(route.name as string);
 });
 
 // computed per ottenere l'oggetto lingua selezionata in base al codice lingua (locale)
-const selectedLang = computed(() =>
-    languages.find(lang => lang.code === locale.value)
-);
+const selectedLang = computed(() => languages.find(lang => lang.code === locale.value));
 
 
 /* FUNCTIONS */
@@ -54,17 +53,25 @@ const toggleMenu = (): void => {
 // funzione per chiudere il menu mobile e il carrello quando si clicca sullo sfondo nero (overlay)
 const handleOverlayClick = (): void => {
     if (cartStore.cartIsOpen) {
-        cartStore.toggleCart();  // chiude il carrello
+        cartStore.toggleCart(); // chiude il carrello
     } else {
         toggleMenu();  // chiude il menu mobile
     }
 }
 
+// funzioni per gestire il logout dell'utente tramite il modal di conferma (da passare come @emits al componente ModalConfirm)
+const confirmLogout = (): void => {
+    userStore.logoutUser();
+    showModalLogout.value = false;
+}
+const closeModal = (): void => {
+    showModalLogout.value = false;
+}
+
 // handle user function in base alla computed se è loggato (esci) se non lo è (redirect a register)
 const handleUser = (): void => {
     if (userStore.isLoggedIn) {
-        toast.info('Disconnessione dal account');
-        userStore.logoutUser();
+        showModalLogout.value = true;
     } else {
         router.push(`/register`);
     }
@@ -74,7 +81,7 @@ const handleUser = (): void => {
 /* WATCH */
 // watch effect di controllo per il menu mobile e il carrello, per aggiungere/rimuovere la classe no-scroll al body sull overlay
 watchEffect(() => {
-    if (menuIsOpen.value || cartStore.cartIsOpen) {
+    if (menuIsOpen.value || cartStore.cartIsOpen || showModalLogout.value) {
         document.body.classList.add('no-scroll');
     } else {
         document.body.classList.remove('no-scroll');
@@ -98,6 +105,7 @@ watchEffect(() => {
             <MobileNavbar v-if="menuIsOpen" @close="toggleMenu" @setLanguage="setLanguage"
                 :selectedLang="selectedLang" />
         </transition>
+
         <!-- immagine logo con click render alla HOME "/" + linka voci del sito 2 sezione -->
         <nav class="nav-left">
             <RouterLink to="/">
@@ -119,6 +127,7 @@ watchEffect(() => {
                 </li>
             </ul>
         </nav>
+
         <!-- sezione a destra per gestione dei prodotti con carrello e select con lingua differente -->
         <div class="nav-right">
             <div class="nav-item dropdown">
@@ -131,16 +140,32 @@ watchEffect(() => {
                 <!-- dropdown menu per settare la lingua del sito -->
                 <DropdownLanguages @setLanguage="setLanguage" />
             </div>
+
             <!-- toggle icon per utente che porta alla registrazione / se loggato icona con esci dall'account -->
             <div class="position-relative" @click="handleUser">
                 <i class="bi fs-3 user" :class="userStore.isLoggedIn ? 'bi-box-arrow-right' : 'bi-person'"></i>
             </div>
+            <!-- Modale di conferma per logout passati slot tempaltes della modale -->
+            <ModalConfirm :show="showModalLogout" @close="closeModal">
+                <template #header>
+                    <h5 class="modal-title">Vuoi davvero uscire?</h5>
+                </template>
+                <template #default>
+                    <p>Sei sicuro di voler disconnetterti dal tuo account?</p>
+                </template>
+                <template #footer>
+                    <button type="button" class="btn btn-secondary" @click="closeModal">Chiudi</button>
+                    <button type="button" class="btn btn-custom-primary" @click="confirmLogout">Conferma</button>
+                </template>
+            </ModalConfirm>
+
             <!-- toggle icon per aprire carrello dal padre navbar + 
             componente cart con i prodotti dell'utente con animazione slide -->
             <div class="position-relative" @click="cartStore.toggleCart">
                 <span v-if="cartStore.cartCount > 0" class="cart-items">{{ cartStore.cartCount }}</span>
                 <i class="bi bi-cart fs-3 cart"></i>
             </div>
+
         </div>
     </header>
 </template>
@@ -213,6 +238,15 @@ i.user {
     &:hover {
         color: $color-primary ;
         animation: shake 0.4s ease-in-out;
+    }
+}
+
+.btn-custom-primary {
+    background-color: $color-primary;
+    border: none;
+
+    &:hover {
+        background-color: darken($color-primary, 10%);
     }
 }
 

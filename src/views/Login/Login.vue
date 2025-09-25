@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import { useUserStore } from '../../stores/user';
+import { useRouter } from 'vue-router';
 import GoBack from '../../components/GoBack/GoBack.vue';
+
 
 /* PINIA STORE USER */
 const userStore = useUserStore();
+
+/* USEROUTER */
+const router = useRouter();
 
 /* REACTIVE */
 const credentials = reactive({
@@ -50,8 +55,14 @@ const submitLogin = async () => {
                 </div>
             </div>
             <button type="submit" class="btn d-inline-block mx-auto mt-5 w-75 fs-5">Accedi</button>
-            <p v-if="userStore.stateUser.error" class="text-danger mt-1 text-center fs-6">{{ userStore.stateUser.error
-                }}</p>
+            <!-- Errore -->
+            <p v-if="userStore.stateUser.error" class="text-danger mt-1 text-center fs-6">
+                {{ userStore.stateUser.error }}
+            </p>
+            <!-- Redirect se non hai ancora un account + pulizia errori -->
+            <p class="link-account mt-4" @click="() => { router.push('/register'); userStore.stateUser.error = '' }">
+                Non hai un account? Registrati subito!
+            </p>
         </form>
     </div>
 </template>
