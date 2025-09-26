@@ -36,14 +36,12 @@ export const GetProducts = async (path: string): Promise<Product[]> => {
  * Effettua una richiesta HTTP GET all'URL fornito e restituisce un oggetto Product.
  * 
  * @param {string} path - URL dell'endpoint API per il recupero del prodotto.
- * @param {string} documentId - ID del prodotto da recuperare.
- * @param {Locale} lang - Lingua da utilizzare per la richiesta (es: 'it', 'en').
  * @returns {Promise<Product>} - Promessa che risolve con il prodotto richiesto.
  * @throws {Error} - Se la richiesta fallisce (status non OK).
  */
-export const GetProduct = async (path: string, documentId: string, lang: Locale): Promise<Product> => {
+export const GetProduct = async (path: string): Promise<Product> => {
 
-    const response = await fetch(`${path}/${documentId}?locale=${lang}`, {
+    const response = await fetch(path, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',

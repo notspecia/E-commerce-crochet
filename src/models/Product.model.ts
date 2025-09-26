@@ -14,7 +14,7 @@ export default interface Product {
     images: {
         documentId: string,
         url: string,
-        alternativeText: string,
+        alternativeText: string | null,
         formats: {
             thumbnail: {
             }

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { reactive } from 'vue';
 import { API_BASE_URL } from '../utils/costants';
 import { GetReviews } from '../apis/Reviews.api';
+import qs from 'qs';
 import type Review from '../models/Review.model';
 
 
@@ -22,8 +23,13 @@ export const useReviewsStore = defineStore('reviews', () => {
     const fetchReviews = async (idDocument: string): Promise<void> => {
         try {
             stateReviews.isLoading = true; // Imposta isLoading a true prima di iniziare il recupero
-            const response = await GetReviews(`${API_BASE_URL}/api/reviews?filters[productDocumentId]`, idDocument);
-            stateReviews.reviews = response.filter(review => review.approved === true); // filtraggio solo recensioni approvate nel backoffice
+            // costruzione query string per filtrare le recensioni per productDocumentId
+            const queryString = qs.stringify({
+                'filters[productDocumentId][$eq]': idDocument, // filtro per recuperare recensioni del prodotto specifico
+                'filters[approved][$eq]': true, // filtro per mostrare solo recensioni approvate
+            });
+            const response = await GetReviews(`${API_BASE_URL}/api/reviews?${queryString}`);
+            stateReviews.reviews = response;
         } catch (error: any) {
             stateReviews.error = `${error}`;
         } finally {

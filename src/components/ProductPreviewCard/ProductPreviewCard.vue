@@ -17,10 +17,10 @@ const props = defineProps<{
 
 
 <template>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 g-5">
+    <div class="col-12 col-sm-6 col-md-4 g-5 mb-4">
         <!-- contenitore card in colonne -->
         <div class="card" @click="() => router.push(`/products/${props.product.documentId}`)">
-            <!-- immagine preview della card prodotto -->
+            <!-- immagine preview della card prodotto (le immagini HANNO URL ASSOLUTO!!) -->
             <img :src="`${API_BASE_URL}${props.product.images[0].url}`"
                 :alt="`${props.product.images[0].alternativeText}`">
             <div class="card-body">

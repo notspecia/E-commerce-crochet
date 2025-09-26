@@ -35,12 +35,12 @@ export const useUserStore = defineStore("user", () => {
         stateUser.isLoading = true;
         stateUser.error = null;
 
-        try {
-            // definizione del path endpoint (login || register)
-            const endpoint = isRegister
-                ? `${API_BASE_URL}/api/auth/local/register`
-                : `${API_BASE_URL}/api/auth/local`;
+        // definizione del path endpoint (login || register)
+        const endpoint = isRegister
+            ? `${API_BASE_URL}/api/auth/local/register`
+            : `${API_BASE_URL}/api/auth/local`;
 
+        try {
             const res = await authUser(endpoint, credentials);
 
             // settaggio dei dati utente + JWT in entrambi i casi nel local storage

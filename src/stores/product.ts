@@ -32,7 +32,6 @@ export const useProductsStore = defineStore('products', () => {
       stateProducts.products = response; // assegna i prodotti DATA recuperati alla ref 
     } catch (error) {
       stateProducts.error = `${error}`;
-      console.log(error)
     } finally {
       setTimeout(() => {
         stateProducts.isLoading = false;
@@ -44,11 +43,10 @@ export const useProductsStore = defineStore('products', () => {
   const fetchProduct = async (documentId: string): Promise<void> => {
     try {
       stateProducts.isLoading = true; // Imposta isLoading a true prima di iniziare il recupero
-      const response = await GetProduct(`${API_BASE_URL}/api/products`, documentId, locale.value);
+      const response = await GetProduct(`${API_BASE_URL}/api/products/${documentId}?locale=${locale.value}`);
       stateProducts.currentProduct = response;
     } catch (error: any) {
       stateProducts.error = error.message;
-      console.error(error);
     } finally {
       setTimeout(() => {
         stateProducts.isLoading = false;

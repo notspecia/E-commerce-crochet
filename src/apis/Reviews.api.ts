@@ -4,14 +4,13 @@ import type Review from "../models/Review.model";
 /**
  * Recupera tutte le recensioni di un prodotto dal backend Strapi.
  *
- * @param {string} path - URL base dell'endpoint API (es: /api/recensioni).
- * @param {string} productId - ID del prodotto per filtrare le recensioni.
+ * @param {string} path - URL dell'endpoint API per il recupero delle recensioni.
  * @returns {Promise<Review[]>} - Lista delle recensioni associate al prodotto.
  * @throws {Error} - Se la richiesta HTTP fallisce.
  */
-export const GetReviews = async (path: string, productId: string): Promise<Review[]> => {
+export const GetReviews = async (path: string): Promise<Review[]> => {
 
-    const response = await fetch(`${path}=${productId}`, {
+    const response = await fetch(path, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -36,21 +35,21 @@ export const GetReviews = async (path: string, productId: string): Promise<Revie
  * @returns {Promise<Review>} - La recensione creata.
  * @throws {Error} - Se la richiesta HTTP fallisce.
  */
-export const PostReview = async (path: string, review: Review): Promise<Review> => {
-    const response = await fetch(path, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            data: review, // Strapi 5 vuole sempre data: {}
-        }),
-    });
+// export const PostReview = async (path: string, review: Review): Promise<Review> => {
+//     const response = await fetch(path, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//             data: review, // Strapi 5 vuole sempre data: {}
+//         }),
+//     });
 
-    if (!response.ok) {
-        throw new Error("Errore nell'invio della recensione, riprova più tardi :(");
-    }
+//     if (!response.ok) {
+//         throw new Error("Errore nell'invio della recensione, riprova più tardi :(");
+//     }
 
-    const jsonResponse = await response.json();
-    return jsonResponse.data;
-};
+//     const jsonResponse = await response.json();
+//     return jsonResponse.data;
+// };
