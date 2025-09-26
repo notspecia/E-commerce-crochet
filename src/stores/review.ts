@@ -25,8 +25,10 @@ export const useReviewsStore = defineStore('reviews', () => {
             stateReviews.isLoading = true; // Imposta isLoading a true prima di iniziare il recupero
             // costruzione query string per filtrare le recensioni per productDocumentId
             const queryString = qs.stringify({
-                'filters[productDocumentId][$eq]': idDocument, // filtro per recuperare recensioni del prodotto specifico
-                'filters[approved][$eq]': true, // filtro per mostrare solo recensioni approvate
+                filters: {
+                    productDocumentId: { $eq: idDocument },
+                    approved: { $eq: true }
+                }
             });
             const response = await GetReviews(`${API_BASE_URL}/api/reviews?${queryString}`);
             stateReviews.reviews = response;
