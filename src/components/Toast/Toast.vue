@@ -25,7 +25,7 @@ onMounted(() => {
 
 <template>
     <div v-if="visible" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
-        <div class="toast align-items-center border-0 show" :class="`text-bg-${type}`" role="alert">
+        <div class="toast align-items-center fs-6 border-0 show" :class="`text-bg-${type}`" role="alert">
             <div class="d-flex">
                 <div class="toast-body">
                     <slot name="body">Messaggio di default</slot>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 import { useUserStore } from '../../stores/user';
 import { useToastStore } from '../../stores/toast';
 import { useRouter } from 'vue-router';
@@ -38,6 +38,14 @@ const submitLogin = async () => {
         toastStore.addToast("light", "Login effettuato con successo!");
     }
 };
+
+
+/* ONMOUNTED */
+onMounted(() => {
+    if (userStore.isLoggedIn) {
+        router.push('/');
+    }
+}); 
 </script>
 
 

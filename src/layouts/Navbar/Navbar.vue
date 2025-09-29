@@ -30,7 +30,7 @@ const showModalLogout = ref<boolean>(false); // stato per gestire l'apertura/chi
 
 
 /* COMPUTED */
-// computed per mostrare/nascondere la navbar
+// computed per mostrare/nascondere la navbar in diverse route.name
 const showNavbar = computed(() => {
     return !['checkout', 'login', 'register', 'privacy-policy'].includes(route.name as string);
 });
@@ -71,9 +71,9 @@ const closeModal = (): void => {
 // handle user function in base alla computed se è loggato (esci) se non lo è (redirect a register)
 const handleUser = (): void => {
     if (userStore.isLoggedIn) {
-        showModalLogout.value = true;
+        showModalLogout.value = true; // mostra il modal di conferma logout
     } else {
-        router.push(`/register`);
+        router.push(`/login`); // redirect a login
     }
 }
 

@@ -11,6 +11,9 @@ import type User from "../models/User.model";
 
 export const useUserStore = defineStore("user", () => {
 
+    // useRouter per i redirect dopo login/register/logout
+    const router = useRouter();
+
     /* --------------STATE---------------- */
     // stato reactive contenete il TOKEN preso in caso dal localStorage, user credenziali, e flag di caricamento errore
     const stateUser = reactive({
@@ -22,9 +25,6 @@ export const useUserStore = defineStore("user", () => {
 
     // computed reattiva al cambiamento dei dati user e jwt controllo in real time
     const isLoggedIn = computed(() => !!stateUser.bearerToken && !!stateUser.user);
-
-    // useRouter per i redirect dopo login/register/logout
-    const router = useRouter();
 
 
     /* ------------ACTIONS------------- */
@@ -61,7 +61,6 @@ export const useUserStore = defineStore("user", () => {
         stateUser.user = null;
         router.push("/login");
     };
-
 
     return {
         stateUser,
