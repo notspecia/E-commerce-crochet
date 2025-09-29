@@ -17,7 +17,6 @@ const items = computed(() => tm('FAQ.items')); // TODO Prende array items accord
 
 
 
-<!-- TODO agigungere contenuto e le vere FAQ sostituendo i placeholder -->
 <template>
     <section class="w-75 mx-auto">
         <h2 class="header text-center mb-5">FAQ & Shipping</h2>
@@ -75,7 +74,6 @@ p {
         font-family: $font-family-base; // Cambia font
         font-size: 1rem; // Cambia dimensione
         font-weight: $font-weight-bold;
-        letter-spacing: 0.05rem;
         border: 1px solid $color-black;
     }
 

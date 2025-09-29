@@ -39,10 +39,12 @@ onMounted(() => {
             {{ productsStore.stateProducts.error }}
         </p>
         <!--  empty cart, bottone con il tasto vai ai prodotti! -->
-        <p v-else-if="!cartStore.productsCart.length" class="text-center my-4">
-            Il tuo carrello è vuoto, vai ai <span class="text-decoration-underline text-success"
-                @click="() => { router.push(`/products`); cartStore.cartIsOpen = false }">PRODOTTI</span>
-        </p>
+        <div v-else-if="!cartStore.productsCart.length" class="text-center py-5">
+            <p class="fs-5 mb-4">Il tuo carrello è vuoto</p>
+            <button class="btn cta-btn" @click="() => { router.push(`/products`); cartStore.cartIsOpen = false }">
+                Visualizza i prodotti
+            </button>
+        </div>
         <!-- products in cart -->
         <template v-else>
             <div class="cart-products-list">

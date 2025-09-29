@@ -43,23 +43,6 @@ h2 {
   text-align: center;
 }
 
-// CTA button
-.cta-btn {
-  background-color: #fe8551;
-  color: $color-white;
-  font-family: $font-family-base;
-  font-weight: $font-weight-bold;
-  font-size: 1.2rem;
-  padding: 0.9rem 2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: $color-primary;
-    transform: scale(1.05);
-  }
-}
-
 // video sotto il button CTA
 .hero-video {
   display: block;
