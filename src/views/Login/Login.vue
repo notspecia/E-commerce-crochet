@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import { useUserStore } from '../../stores/user';
+import { useToastStore } from '../../stores/toast';
 import { useRouter } from 'vue-router';
-import GoBack from '../../components/GoBack/GoBack.vue';
+import type Login from '../../models/Login.model';
 
 
-/* PINIA STORE USER */
+/* PINIA STORE USER AND TOAST */
 const userStore = useUserStore();
+const toastStore = useToastStore();
 
 /* USEROUTER */
 const router = useRouter();
 
+
 /* REACTIVE */
-const credentials = reactive({
+const credentials = reactive<Login>({
     identifier: '',
     password: '',
 });
+
 
 /* FUNCTIONS */
 const submitLogin = async () => {
@@ -28,6 +32,11 @@ const submitLogin = async () => {
 
     // chiama lo store per tentare il login con le credenziali passate
     await userStore.fetchAuthUser(false, credentials);
+
+    // render toast di successo al completamento del login
+    if (!userStore.stateUser.error) {
+        toastStore.addToast("light", "Login effettuato con successo!");
+    }
 };
 </script>
 
@@ -35,32 +44,35 @@ const submitLogin = async () => {
 
 <template>
     <div class="d-flex flex-column justify-content-center align-items-center vh-100">
-        <form class="card py-4 px-5" @submit.prevent="submitLogin">
-            <h2 class="text-center mb-4">Login</h2>
-            <div class="my-3">
-                <label class="form-label" for="emailOrUsername">Email or Username</label>
-                <input type="text" id="emailOrUsername" name="identifier" v-model="credentials.identifier"
-                    class="form-control" placeholder="Inserisci la tua email"
-                    aria-label="email or username input field" />
-                <div id="emailOrUsernameHelp" class="form-text hint">We'll never share your email or username
-                    with anyone
-                    else.</div>
+        <form class="card card-form py-4 px-5" @submit.prevent="submitLogin">
+            <div class="mb-4">
+                <img src="/images/logos/giogi-mascotte-logo.png" alt="logo sito" class="logo"></img>
+                <h2 class="text-center">Login</h2>
             </div>
-            <div class="my-3">
-                <label class="form-label" for="password">Password</label>
+            <!-- Username or email -->
+            <div class="form-floating mb-4">
+                <input type="text" id="username" name="username" v-model="credentials.identifier" class="form-control"
+                    placeholder="" aria-label="username or email input field" />
+                <label for="username">Username or Email</label>
+            </div>
+            <!-- Password -->
+            <div class="form-floating mb-3">
                 <input type="password" id="password" name="password" v-model="credentials.password" class="form-control"
-                    placeholder="Inserisci la password" aria-label="password input field" />
-                <div id="passwordHelp" class="form-text hint">We'll never share your passowrd with
-                    anyone else.
-                </div>
+                    placeholder="" aria-label="password input field" autocomplete="new-password" />
+                <label for="password">Password</label>
             </div>
-            <button type="submit" class="btn d-inline-block mx-auto mt-5 w-75 fs-5">Accedi</button>
             <!-- Errore -->
-            <p v-if="userStore.stateUser.error" class="text-danger mt-1 text-center fs-6">
+            <p v-if="userStore.stateUser.error" class="text-danger mb-4 text-center fs-6">
                 {{ userStore.stateUser.error }}
             </p>
-            <!-- Redirect se non hai ancora un account + pulizia errori -->
-            <p class="link-account mt-4" @click="() => { router.push('/register'); userStore.stateUser.error = '' }">
+            <!-- Disclaimer unico -->
+            <div id="privacyHint" class="form-text hint mb-2 text-center">
+                I tuoi dati sono protetti e non saranno condivisi con nessuno.
+            </div>
+            <!-- Disclaimer unico -->
+            <button type="submit" class="btn d-inline-block mx-auto w-100 fs-5">Accedi</button>
+            <!-- redirect a register -->
+            <p class="link-account mt-2" @click="() => { router.push('/register'); userStore.stateUser.error = '' }">
                 Non hai un account? Registrati subito!
             </p>
         </form>
@@ -69,36 +81,4 @@ const submitLogin = async () => {
 
 
 
-<style scoped lang="scss">
-form.card {
-    width: 600px; // width assouluta con px > sm
-    font-size: 1.1rem;
-    color: $color-black;
-    border-radius: 12px;
-    background-color: $color-gray-100;
-    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
-
-    @media (max-width: $breakpoint-sm) {
-        width: 80%; // width in % sotto il brk < sm
-    }
-
-    input {
-        background-color: $color-gray-200;
-        color: $color-black;
-    }
-
-    .hint {
-        color: $color-gray-700 ;
-    }
-
-    button {
-        background: $gradient-secondary;
-        transition: all 0.3 ease-in-out;
-
-        &:hover {
-            transform: scale(1.03);
-            color: $color-white;
-        }
-    }
-}
-</style>
+<style scoped lang="scss"></style>

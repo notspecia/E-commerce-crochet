@@ -49,7 +49,7 @@ const handleAddToCart = (): void => {
 
 
 <template>
-    <div class="row g-5">
+    <div class="row g-5 pb-5">
 
         <!-- COLONNA SINISTRA: IMMAGINI -->
         <div class="col-12 col-md-6">

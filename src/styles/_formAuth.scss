@@ -1,0 +1,48 @@
+.card-form {
+    width: 600px;
+    font-size: 1.1rem;
+    color: $color-black;
+    border-radius: 12px;
+    background-color: $color-gray-100;
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: $breakpoint-sm) {
+        width: 95%; // width in % sotto il brk < sm
+    }
+
+    img.logo {
+        width: 80px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* INPUT E FLOATING LABEL */
+    .form-floating {
+        .form-control {
+            background-color: $color-gray-200;
+            color: $color-black;
+
+            &::placeholder {
+                color: transparent; // necessario per floating label
+            }
+        }
+
+        label {
+            color: $color-gray-700; // colore leggibile sopra il grigio
+        }
+    }
+
+    .hint {
+        color: $color-gray-700;
+    }
+
+    button {
+        background: $gradient-secondary;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.03);
+            color: $color-white;
+        }
+    }
+}

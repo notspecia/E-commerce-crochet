@@ -10,10 +10,8 @@ import Loader from '../../components/Loader/Loader.vue';
 /* USEROUTER */
 const router = useRouter();
 
-
 /* CART PINIA STATE */
 const cartStore = useCartStore();
-
 
 /* PRODUCTS PINIA STATE */
 const productsStore = useProductsStore();
@@ -40,7 +38,7 @@ onMounted(() => {
         <p v-else-if="productsStore.stateProducts.error" class="text-danger">
             {{ productsStore.stateProducts.error }}
         </p>
-        <!-- TODO - empty cart, fare un bottone con il tasto vai ai prodotti! -->
+        <!--  empty cart, bottone con il tasto vai ai prodotti! -->
         <p v-else-if="!cartStore.productsCart.length" class="text-center my-4">
             Il tuo carrello è vuoto, vai ai <span class="text-decoration-underline text-success"
                 @click="() => { router.push(`/products`); cartStore.cartIsOpen = false }">PRODOTTI</span>
@@ -57,9 +55,9 @@ onMounted(() => {
                 <div v-for="product in cartStore.productsCart" :key="product.id" class="cart-product">
                     <!-- immagine di copertina principale -->
                     <img :src="`${API_BASE_URL}${product.images[0].url}`" :alt="`${product.images[0].alternativeText}`"
-                        class="cart-product-img me-3">
-                    <!-- info -->
-                    <div class="flex-grow-1">
+                        class="cart-product-img me-3" @click="() => router.push(`/products`)" />
+                    <!--info -->
+                    <div class=" flex-grow-1">
                         <h5 class="mb-1">{{ product.title }}</h5>
                         <p class="mb-1">{{ product.price.toFixed(2) }} €</p>
                         <!-- quantità -->
@@ -89,7 +87,8 @@ onMounted(() => {
                     <strong>Estimated total:</strong>
                     <span>{{ cartStore.cartTotal }}€</span>
                 </div>
-                <button class="btn">Check out</button>
+                <button class="btn" @click="() => { router.push(`/checkout`); cartStore.cartIsOpen = false }">Check
+                    out</button>
             </div>
         </template>
     </aside>

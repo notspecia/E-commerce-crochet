@@ -56,7 +56,7 @@ export const useCartStore = defineStore('cart', () => {
 
     // computed per calcolare il totale di prezzo del carrello
     const cartTotal = computed<number>((): number => {
-        return productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0);
+        return productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2) as unknown as number;
     });
 
 
@@ -87,7 +87,7 @@ export const useCartStore = defineStore('cart', () => {
         console.log(`Carrello aggiornato: ${JSON.stringify(productsSelected.value)}`);
     };
 
-    // TODO - REVIEW funzione per aggiornare la quantità di un prodotto dal carrello
+    // funzione per aggiornare la quantità di un prodotto dal carrello
     const updateCartItemQuantity = (productId: string, quantity: number): void => {
         const item = productsSelected.value.find(item => item.documentId === productId);
         if (item) {

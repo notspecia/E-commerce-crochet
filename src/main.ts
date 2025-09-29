@@ -12,6 +12,7 @@ import '@/styles/main.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+
 // activate the Vue app (router + app container main)
 const app = createApp(App);
 const pinia = createPinia();

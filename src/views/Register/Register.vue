@@ -1,22 +1,27 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
 import { useUserStore } from '../../stores/user';
-import GoBack from '../../components/GoBack/GoBack.vue';
+import { useToastStore } from '../../stores/toast';
+import { useRouter } from 'vue-router';
+import type Register from '../../models/Register.model';
 
+
+
+/* PINIA STORE USER */
+const userStore = useUserStore();
+const toastStore = useToastStore();
 
 /* USEROUTER */
 const router = useRouter();
 
-/* PINIA STORE USER */
-const userStore = useUserStore();
 
 /* REACTIVE */
-const credentials = reactive({
+const credentials = reactive<Register>({
     username: '',
     email: '',
     password: '',
 });
+
 
 /* FUNCTIONS */
 const submitRegister = async () => {
@@ -27,92 +32,59 @@ const submitRegister = async () => {
     }
     // chiama lo store per tentare il register con le credenziali nuove passate
     await userStore.fetchAuthUser(true, credentials);
+
+    // render toast di successo al completamento del register
+    if (!userStore.stateUser.error) {
+        toastStore.addToast("light", "Registrazione effettuata con successo!");
+    }
 };
 </script>
 
 
-
 <template>
     <div class="d-flex flex-column justify-content-center align-items-center vh-100">
-        <form class="card py-4 px-5" @submit.prevent="submitRegister">
-            <h2 class="text-center mb-4">Register</h2>
+        <form class="card card-form py-4 px-5" @submit.prevent="submitRegister">
+            <div class="mb-4">
+                <img src="/images/logos/giogi-mascotte-logo.png" alt="logo sito" class="logo"></img>
+                <h2 class="text-center">Register a new account!</h2>
+            </div>
             <!-- Username -->
-            <div class="my-3">
-                <label class="form-label" for="username">Username</label>
+            <div class="form-floating mb-4">
                 <input type="text" id="username" name="username" v-model="credentials.username" class="form-control"
-                    placeholder="Inserisci il tuo username" aria-label="username input field" />
-                <div id="usernameHelp" class="form-text hint">We'll never share your username with
-                    anyone else.
-                </div>
+                    placeholder=" " aria-label="username input field" />
+                <label for="username">Username</label>
             </div>
-
             <!-- Email -->
-            <div class="my-3">
-                <label class="form-label" for="email">Email</label>
+            <div class="form-floating mb-4">
                 <input type="email" id="email" name="email" v-model="credentials.email" class="form-control"
-                    placeholder="Inserisci la tua email" aria-label="email input field" />
-                <div id="emailHelp" class="form-text hint">We'll never share your email with
-                    anyone else.
-                </div>
+                    placeholder=" " aria-label="email input field" />
+                <label for="email">Email</label>
             </div>
-
             <!-- Password -->
-            <div class="my-3">
-                <label class="form-label" for="password">Password</label>
+            <div class="form-floating mb-3">
                 <input type="password" id="password" name="password" v-model="credentials.password" class="form-control"
-                    placeholder="Inserisci la password" aria-label="password input field" />
-                <div id="passwordHelp" class="form-text hint">We'll never share your passowrd with
-                    anyone else.
-                </div>
+                    placeholder=" " aria-label="password input field" autocomplete="new-password" />
+                <label for="password">Password</label>
             </div>
-            <!-- Pulsante -->
-            <button type="submit" class="btn d-inline-block mx-auto mt-5 w-75 fs-5">
-                Registrati
-            </button>
             <!-- Errore -->
-            <p v-if="userStore.stateUser.error" class="text-danger mt-3 text-center fs-6">
+            <p v-if="userStore.stateUser.error" class="text-danger mb-4 text-center fs-6">
                 {{ userStore.stateUser.error }}
             </p>
-            <!-- Redirect sehai gia account + pulizia errori -->
-            <p class="link-account mt-4" @click="() => { router.push('/login'); userStore.stateUser.error = '' }">
-                Hai Già un account? accedi!
+            <!-- Disclaimer unico -->
+            <div id="privacyHint" class="form-text hint mb-2 text-center">
+                I tuoi dati sono protetti e non saranno condivisi con nessuno.
+            </div>
+            <!-- Pulsante -->
+            <button type="submit" class="btn d-inline-block mx-auto w-100 fs-5">
+                Registrati
+            </button>
+            <!-- Redirect a login -->
+            <p class="link-account mt-2" @click="() => { router.push('/login'); userStore.stateUser.error = '' }">
+                Hai già un account? Accedi!
             </p>
         </form>
     </div>
 </template>
 
 
-
-<style scoped lang="scss">
-.card {
-    width: 600px; // width assouluta con px > sm
-    font-size: 1.1rem;
-    color: $color-black;
-    border-radius: 12px;
-    background-color: $color-gray-100;
-    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
-
-    @media (max-width: $breakpoint-sm) {
-        width: 80%; // width in % sotto il brk < sm
-    }
-
-    input {
-        background-color: $color-gray-200;
-        color: $color-black;
-    }
-
-    .hint {
-        color: $color-gray-700 ;
-    }
-
-    button {
-        background: $gradient-secondary;
-        transition: all 0.3 ease-in-out;
-
-        &:hover {
-            transform: scale(1.03);
-            color: $color-white;
-        }
-    }
-}
-</style>
+<style scoped lang="scss"></style>

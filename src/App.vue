@@ -6,6 +6,7 @@ import { RouterView } from 'vue-router';
 import Navbar from './layouts/Navbar/Navbar.vue';
 import Cart from './layouts/Cart/Cart.vue';
 import Footer from './layouts/Footer/Footer.vue';
+import ToastContainer from './layouts/ToastContainer/ToastContainer.vue';
 
 
 /* PRODUCTS PINIA STATE */
@@ -28,7 +29,7 @@ onMounted(() => {
 <template>
   <!-- overlay sfondo nero sopra bg-autunm body -->
   <div className="app-bg" />
-  <main class="container px-2 pt-3 pb-5">
+  <main class="container">
     <!-- Navbar per la navigazione tra le rotte -->
     <Navbar />
     <!-- Cart dei prodotti dell'utente -->
@@ -39,6 +40,9 @@ onMounted(() => {
     <RouterView />
   </main>
   <Footer />
+  <ToastContainer>
+    <!-- Toast container per contenere tutti i messaggi di notifica -->
+  </ToastContainer>
 </template>
 
 
