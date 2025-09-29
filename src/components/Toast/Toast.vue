@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { ref, onMounted, defineProps } from 'vue';
 
-interface Props {
-    type?: 'success' | 'danger' | 'info' | 'warning';
-    duration?: number; // ms
-}
+/* PROPS */
+const props = defineProps<{
+    type: string;
+    duration?: number;
+}>();
 
-const props = defineProps<Props>();
+/* REF */
+const visible = ref<boolean>(true);
 
-const visible = ref(true);
-
-const closeToast = () => {
+/* FUNCTIONS */
+const closeToast = (): void => {
     visible.value = false;
 };
 
+/* ONMOUNTED */
+// se è stata passata una durata come props chiudo il toast dopo quel tempo
 onMounted(() => {
     if (props.duration) {
         setTimeout(() => (visible.value = false), props.duration);
@@ -25,7 +28,7 @@ onMounted(() => {
 
 <template>
     <div v-if="visible" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
-        <div class="toast align-items-center fs-6 border-0 show" :class="`text-bg-${type}`" role="alert">
+        <div class="toast align-items-center fs-5 p-2 border-0 show" :class="`text-bg-${type}`" role="alert">
             <div class="d-flex">
                 <div class="toast-body">
                     <slot name="body">Messaggio di default</slot>
