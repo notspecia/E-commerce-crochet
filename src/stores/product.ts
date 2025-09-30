@@ -40,6 +40,7 @@ export const useProductStore = defineStore('product', () => {
     /* WATCH */
     // Watch per il cambio della lingua, ricarica il prodotto quando cambia la lingua su tutta l'applicazione
     watch(locale, (): void => {
+        stateProduct.error = null; // reset error
         if (stateProduct.product) {
             fetchProduct(stateProduct.product.documentId);
         }

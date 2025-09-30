@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import { useCartStore } from '../../stores/cart';
 import { useRouter } from 'vue-router';
-
 
 /* USEROUTER */
 const router = useRouter();
-
-
-/* CART PINIA STATE */
-const cartStore = useCartStore();
 </script>
-
 
 
 <template>
@@ -26,7 +19,6 @@ const cartStore = useCartStore();
     Il tuo browser non supporta il video.
   </video>
 </template>
-
 
 
 <style scoped lang="scss">

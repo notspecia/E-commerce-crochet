@@ -25,6 +25,7 @@ import type ProductSelected from "../models/ProductSelected.model";
 import type ProductCart from "../models/ProductCart.model";
 
 
+// TODO - integrare parte cart user loggato con DB (vedi user.ts store)
 export const useCartStore = defineStore('cart', () => {
 
     /* IMPORTS PINIA AND REACTIVE PRODUCTS */

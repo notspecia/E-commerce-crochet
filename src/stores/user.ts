@@ -9,6 +9,7 @@ import type User from "../models/User.model";
 
 
 
+
 export const useUserStore = defineStore("user", () => {
 
     // useRouter per i redirect dopo login/register/logout
@@ -28,7 +29,7 @@ export const useUserStore = defineStore("user", () => {
 
 
     /* ------------ACTIONS------------- */
-    // funzione di fetch user sia per il LOGIN che REGISTER
+    // funzione di fetch user sia per il LOGIN che REGISTER da salvare nel DB degli user strapi
     const fetchAuthUser = async (isRegister: boolean, credentials: Login | Register): Promise<void> => {
 
         // AVVIO loading e reset errori precedenti
@@ -48,6 +49,7 @@ export const useUserStore = defineStore("user", () => {
             stateUser.user = res.user;
             router.push("/"); // redirect alla home page
         } catch (err: any) {
+            console.log(err)
             stateUser.error = err.message || "Errore autenticazione";
         } finally {
             stateUser.isLoading = false;

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useCartStore } from '../../stores/cart';
+import { useUserStore } from '../../stores/user';
 import { goTopPage } from '../../utils/utils';
 import { API_BASE_URL } from '../../utils/costants';
 import MarkdownIt from 'markdown-it';
@@ -14,8 +15,9 @@ const props = defineProps<{
 }>();
 
 
-/* CART PINIA STATE */
+/* CART e USER PINIA STATE */
 const cartStore = useCartStore();
+const userStore = useUserStore();
 
 
 /* MARKDOWNS CONVERTER */
@@ -37,12 +39,18 @@ const setMainImage = (url: string) => {
     mainImage.value = url;
 };
 
-// funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
+// TODO - REVIEW funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
 const handleAddToCart = (): void => {
     goTopPage();
-    cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
-    quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
-    cartStore.cartIsOpen = true; // apro il carrello dopo l'aggiunta del prodotto
+
+    // check se aggiungere prodotto al carello db dell'user se loggato o nel local storage
+    if (userStore.isLoggedIn) {
+
+    } else {
+        cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
+        quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
+        cartStore.cartIsOpen = true; // apro il carrello dopo l'aggiunta del prodotto
+    }
 }
 </script>
 
@@ -172,9 +180,10 @@ h2 {
     font-size: 1.2rem;
     font-weight: bold;
     color: $color-white;
-    background-color: #fe8551;
+    background: $gradient-secondary;
     padding: 10px 10px;
-    border-radius: 20px;
+    border: 1px solid $color-white;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 

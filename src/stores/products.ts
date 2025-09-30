@@ -34,7 +34,7 @@ export const useProductsStore = defineStore('products', () => {
     } finally {
       setTimeout(() => {
         stateProducts.isLoading = false;
-      }, 1000);
+      }, 500);
     };
   }
 

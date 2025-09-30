@@ -10,11 +10,10 @@ import Loader from '../../components/Loader/Loader.vue';
 /* USEROUTER */
 const router = useRouter();
 
-/* CART PINIA STATE */
+/* CART and PRODUCTS PINIA STATE */
 const cartStore = useCartStore();
-
-/* PRODUCTS PINIA STATE */
 const productsStore = useProductsStore();
+
 
 // log console per debugging
 onMounted(() => {
