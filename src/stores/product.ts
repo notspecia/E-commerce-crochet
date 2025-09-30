@@ -1,73 +1,50 @@
-import { defineStore } from 'pinia';
-import { useI18n } from 'vue-i18n';
-import { reactive, watch } from 'vue';
-import { API_BASE_URL } from '../utils/costants';
-import { GetProduct, GetProducts } from '../apis/Products.api';
-import type Product from '../models/Product.model';
+import { defineStore } from "pinia";
+import { reactive, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import { GetProduct } from "../apis/Products.api";
+import { API_BASE_URL } from "../utils/costants";
+import type Product from "../models/Product.model";
 
 
 
-export const useProductsStore = defineStore('products', () => {
+export const useProductStore = defineStore('product', () => {
 
-  /* I18N LANG */
-  const { locale } = useI18n(); // rendiamolo reattivo per il cambio lingua cambiando la lingua dei prodotti in tutta l'applicazione
-
-
-  /* --------------STATE---------------- */
-  // state reactive of the object whit array of products + bool loading and string error
-  const stateProducts = reactive({
-    products: [] as Product[],
-    currentProduct: null as Product | null,
-    isLoading: false as boolean,
-    error: null as null | string
-  });
+    /* I18N LANG */
+    const { locale } = useI18n(); // rendiamolo reattivo per il cambio lingua cambiando la lingua dei prodotti in tutta l'applicazione
 
 
-  /* ------------ACTIONS------------- */
-  // funzione per fetchare l array dei products[] con tutti i prodotti 
-  const fetchProducts = async (): Promise<void> => {
-    try {
-      stateProducts.isLoading = true; // Imposta isLoading a true prima di iniziare il recupero
-      const response = await GetProducts(`${API_BASE_URL}/api/products?locale=${locale.value}`);
-      stateProducts.products = response; // assegna i prodotti DATA recuperati alla ref 
-    } catch (error) {
-      stateProducts.error = `${error}`;
-    } finally {
-      setTimeout(() => {
-        stateProducts.isLoading = false;
-      }, 1000);
+    /* --------------STATE---------------- */
+    // state reactive of the object whit array of products + bool loading and string error
+    const stateProduct = reactive({
+        product: null as Product | null,
+        isLoading: false,
+        error: null as string | null
+    });
+
+
+    /* ------------ACTIONS------------- */
+    // function for fetch single product (api consumed in the product detail)
+    const fetchProduct = async (documentId: string) => {
+        try {
+            stateProduct.isLoading = true;
+            const response = await GetProduct(`${API_BASE_URL}/api/products/${documentId}?locale=${locale.value}`);
+            stateProduct.product = response;
+        } catch (err: any) {
+            stateProduct.error = err.message;
+        } finally {
+            stateProduct.isLoading = false;
+        }
     };
-  }
-
-  // funzione per fetchare prodotto singolo (api consumata nel dettaglio prodotto)
-  const fetchProduct = async (documentId: string): Promise<void> => {
-    try {
-      stateProducts.isLoading = true; // Imposta isLoading a true prima di iniziare il recupero
-      const response = await GetProduct(`${API_BASE_URL}/api/products/${documentId}?locale=${locale.value}`);
-      stateProducts.currentProduct = response;
-    } catch (error: any) {
-      stateProducts.error = error.message;
-    } finally {
-      setTimeout(() => {
-        stateProducts.isLoading = false;
-      }, 1000);
-    }
-  };
 
 
-  /* WATCH */
-  // Watch per il cambio della lingua, ricarica i prodotti quando cambia la lingua su tutta l'applicazione
-  watch(locale, (): void => {
-    console.log(`Lingua cambiata a: ${locale.value}, ricarico i prodotti...`);
-    stateProducts.error = null; // reset error
-
-    if (stateProducts.currentProduct) {
-      fetchProduct(stateProducts.currentProduct.documentId);
-    } else {
-      fetchProducts();
-    }
-  });
+    /* WATCH */
+    // Watch per il cambio della lingua, ricarica il prodotto quando cambia la lingua su tutta l'applicazione
+    watch(locale, (): void => {
+        if (stateProduct.product) {
+            fetchProduct(stateProduct.product.documentId);
+        }
+    });
 
 
-  return { stateProducts, fetchProducts, fetchProduct };
+    return { stateProduct, fetchProduct };
 });

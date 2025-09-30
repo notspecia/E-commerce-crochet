@@ -19,11 +19,10 @@
  */
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { useProductsStore } from "./product";
+import { useProductsStore } from "./products";
 import { goTopPage } from "../utils/utils";
 import type ProductSelected from "../models/ProductSelected.model";
 import type ProductCart from "../models/ProductCart.model";
-
 
 
 export const useCartStore = defineStore('cart', () => {
@@ -32,10 +31,9 @@ export const useCartStore = defineStore('cart', () => {
     const productsStore = useProductsStore();
     const { stateProducts } = productsStore; // ora stateProducts è reattivo e puoi usarlo nei computed
 
-
     /* --------------STATE---------------- */
     const cartIsOpen = ref<boolean>(false); // stato booleano per gestire l'apertura/chiusura del carrello
-    const productsSelected = ref<ProductSelected[]>([]); // stato array di prodotti nel carrello (solo documentId prodtto e la quantità)
+    const productsSelected = ref<ProductSelected[]>([]); //* stato array di prodotti nel carrello (solo documentId prodtto e la quantità) PERSISTE NEL LOCALSTORAGE
 
     // computed per trasformare i prodotti selezionati in un array di prodotti completi da renderizzare nel cart con quantità
     const productsCart = computed((): ProductCart[] => {

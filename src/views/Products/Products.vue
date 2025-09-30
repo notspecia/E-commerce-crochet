@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useProductsStore } from '../../stores/product';
+import { useProductsStore } from '../../stores/products';
 import ProductPreviewCard from '../../components/ProductPreviewCard/ProductPreviewCard.vue';
 import Loader from '../../components/Loader/Loader.vue';
 

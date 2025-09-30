@@ -3,7 +3,7 @@ import { onMounted } from 'vue';
 import { API_BASE_URL } from '../../utils/costants';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '../../stores/cart';
-import { useProductsStore } from '../../stores/product';
+import { useProductsStore } from '../../stores/products';
 import Loader from '../../components/Loader/Loader.vue';
 
 
@@ -32,19 +32,24 @@ onMounted(() => {
             <h2>Your Cart</h2>
             <i class="bi bi-x-lg fs-2 text-end" @click="cartStore.toggleCart" />
         </div>
+
         <!-- loader -->
         <Loader v-if="productsStore.stateProducts.isLoading" />
+
         <!-- errore generico in caso errore dei prodotti da gestire per ogni lang -->
         <p v-else-if="productsStore.stateProducts.error" class="text-danger">
             {{ productsStore.stateProducts.error }}
         </p>
-        <!--  empty cart, bottone con il tasto vai ai prodotti! -->
+
+        <!-- empty cart, bottone con il tasto vai ai prodotti! -->
         <div v-else-if="!cartStore.productsCart.length" class="text-center py-5">
             <p class="fs-5 mb-4">Il tuo carrello è vuoto</p>
-            <button class="btn cta-btn" @click="() => { router.push(`/products`); cartStore.cartIsOpen = false }">
+            <button class="btn cta-btn text-white"
+                @click="() => { router.push(`/products`); cartStore.cartIsOpen = false }">
                 Visualizza i prodotti
             </button>
         </div>
+
         <!-- products in cart -->
         <template v-else>
             <div class="cart-products-list">
@@ -82,7 +87,6 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
-
             <!-- checkout summary container -->
             <div class="cart-summary border-top pt-4">
                 <div class="d-flex justify-content-between align-items-center fs-4 mb-3">
@@ -93,6 +97,7 @@ onMounted(() => {
                     out</button>
             </div>
         </template>
+
     </aside>
 </template>
 

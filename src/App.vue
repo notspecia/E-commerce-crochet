@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { useProductsStore } from './stores/product';
+import { useProductsStore } from './stores/products';
 import { useCartStore } from './stores/cart';
 import { RouterView } from 'vue-router';
 import Navbar from './layouts/Navbar/Navbar.vue';
