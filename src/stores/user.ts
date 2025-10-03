@@ -8,8 +8,6 @@ import type Register from "../models/Register.model";
 import type User from "../models/User.model";
 
 
-
-
 export const useUserStore = defineStore("user", () => {
 
     // useRouter per i redirect dopo login/register/logout
@@ -25,7 +23,7 @@ export const useUserStore = defineStore("user", () => {
     });
 
     // computed reattiva al cambiamento dei dati user e jwt controllo in real time
-    const isLoggedIn = computed(() => !!stateUser.bearerToken && !!stateUser.user);
+    const isLoggedIn = computed<boolean>(() => !!stateUser.bearerToken && !!stateUser.user);
 
 
     /* ------------ACTIONS------------- */

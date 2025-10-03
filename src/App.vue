@@ -41,9 +41,8 @@ onMounted(() => {
     <RouterView />
   </main>
   <Footer />
-  <ToastContainer>
-    <!-- Toast container per contenere tutti i messaggi di notifica -->
-  </ToastContainer>
+  <!-- Toast container per contenere tutti i messaggi di notifica -->
+  <ToastContainer />
 </template>
 
 

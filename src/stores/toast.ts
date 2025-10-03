@@ -17,7 +17,6 @@ export const useToastStore = defineStore("toast", () => {
     const addToast = (type: Toast["type"], message: string, duration = 4000) => {
         const id = ++idCounter;
         toasts.value.push({ id, type, message, duration });
-
         // auto-remove after duration passed (ms) from the ref array of toasts
         setTimeout(() => removeToast(id), duration);
     };

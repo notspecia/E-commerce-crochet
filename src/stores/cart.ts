@@ -1,12 +1,13 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { API_BASE_URL } from "../utils/costants";
+import { useRouter } from "vue-router";
 import { useProductsStore } from "./products";
 import { useUserStore } from "./user";
+import { goTopPage } from "../utils/utils";
+import { API_BASE_URL } from "../utils/costants";
 import type ProductSelected from "../models/ProductSelected.model";
 import type ProductCart from "../models/ProductCart.model";
-import { goTopPage } from "../utils/utils";
-import { useRoute, useRouter } from "vue-router";
+
 
 
 
@@ -14,7 +15,6 @@ export const useCartStore = defineStore("cart", () => {
 
     /* USEROUTER + USEROUTE */
     const router = useRouter();
-    const route = useRoute();
 
     /* IMPORTS PINIA AND REACTIVE PRODUCTS */
     const productsStore = useProductsStore();
@@ -42,14 +42,10 @@ export const useCartStore = defineStore("cart", () => {
     });
 
     // computed per calcolare il numero totale di prodotti nel carrello
-    const cartCount = computed(() =>
-        productsSelected.value.reduce((total, item) => total + item.quantity, 0)
-    );
+    const cartCount = computed<number>(() => productsSelected.value.reduce((total, item) => total + item.quantity, 0));
 
     // computed per calcolare il totale di prezzo del carrello
-    const cartTotal = computed(() =>
-        productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2) as unknown as number
-    );
+    const cartTotal = computed<number>(() => productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2) as unknown as number);
 
 
     /* ------------ACTIONS------------- */
@@ -78,7 +74,6 @@ export const useCartStore = defineStore("cart", () => {
         }
     };
 
-
     // funzione per aggiungere un prodotto al carrello (se non presente lo aggiunge, se presente aumenta la quantità) e richiama il syncCart        
     const addToCart = async (productId: string, quantity = 1) => {
         const existing = productsSelected.value.find(
@@ -86,7 +81,6 @@ export const useCartStore = defineStore("cart", () => {
         );
         if (existing) existing.quantity += quantity;
         else productsSelected.value.push({ documentId: productId, quantity });
-
         await syncCart();
     };
 

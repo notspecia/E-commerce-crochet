@@ -2,14 +2,12 @@
 </script>
 
 
-
 <template>
     <!-- BOTTONE per tornare indietro alla pagina prodotti -->
     <span class="btn-back mb-5" @click="$router.back()">
         ← {{ $t('global.goBack') }}
     </span>
 </template>
-
 
 
 <style lang="scss">
