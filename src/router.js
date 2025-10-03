@@ -58,7 +58,6 @@ const routes = [
         name: 'privacy-policy',
         component: PrivacyPolicy
     }
-
 ]
 
 // export the router instance with the defined routes and history mode into the main.ts to use it in the application

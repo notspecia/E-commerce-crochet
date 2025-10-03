@@ -45,7 +45,9 @@ const handleAddToCart = (): void => {
 
     // check se aggiungere prodotto al carello db dell'user se loggato o nel local storage
     if (userStore.isLoggedIn) {
-
+        cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
+        quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
+        cartStore.cartIsOpen = true; // apro il carrello dopo l'aggiunta del prodotto
     } else {
         cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
         quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello

@@ -34,12 +34,11 @@ export const useCartStore = defineStore('cart', () => {
 
     /* --------------STATE---------------- */
     const cartIsOpen = ref<boolean>(false); // stato booleano per gestire l'apertura/chiusura del carrello
-    const productsSelected = ref<ProductSelected[]>([]); //* stato array di prodotti nel carrello (solo documentId prodtto e la quantità) PERSISTE NEL LOCALSTORAGE
+    const productsSelected = ref<ProductSelected[]>([]); //* stato array di prodotti nel carrello (solo documentId prodtto e la quantità)
 
     // computed per trasformare i prodotti selezionati in un array di prodotti completi da renderizzare nel cart con quantità
     const productsCart = computed((): ProductCart[] => {
         return productsSelected.value.map(cartItem => {
-            console.log(productsSelected.value);
             const product = stateProducts.products.find(p => p.documentId === cartItem.documentId);
             if (product) {
                 return { ...product, quantity: cartItem.quantity };
@@ -49,7 +48,7 @@ export const useCartStore = defineStore('cart', () => {
     });
 
     // computed per calcolare il numero totale di prodotti nel carrello 
-    const cartCount = computed<number>((): number => {
+    const cartCount = computed((): number => {
         return productsSelected.value.reduce((total, item) => total + item.quantity, 0);
     });
 
@@ -103,11 +102,11 @@ export const useCartStore = defineStore('cart', () => {
 
     return {
         cartIsOpen,
-        toggleCart,
         productsSelected,
         cartCount,
         cartTotal,
         productsCart,
+        toggleCart,
         addToCart,
         removeFromCart,
         updateCartItemQuantity,

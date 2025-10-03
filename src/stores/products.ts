@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useI18n } from 'vue-i18n';
 import { reactive, watch } from 'vue';
 import { API_BASE_URL } from '../utils/costants';
-import { GetProduct, GetProducts } from '../apis/Products.api';
+import { GetProducts } from '../apis/Products.api';
 import type Product from '../models/Product.model';
 
 
