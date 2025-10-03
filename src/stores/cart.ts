@@ -8,6 +8,8 @@ import type ProductCart from "../models/ProductCart.model";
 import { goTopPage } from "../utils/utils";
 import { useRoute, useRouter } from "vue-router";
 
+
+
 export const useCartStore = defineStore("cart", () => {
 
     /* USEROUTER + USEROUTE */
@@ -25,7 +27,7 @@ export const useCartStore = defineStore("cart", () => {
     /* --------------STATE---------------- */
     const cartIsOpen = ref<boolean>(false); // stato booleano per gestire l'apertura/chiusura del carrello
     const productsSelected = ref<ProductSelected[]>([]); //* stato array di prodotti nel carrello (solo documentId prodtto e la quantità) REMOTE
-    const cartId = ref<string | null>(null);
+    const cartId = ref<string | null>(null); // stato per salvare il cartId del carrello remoto (documentId del carrello nel DB)
 
     // computed per trasformare i prodotti selezionati in un array di prodotti completi da renderizzare nel cart COMPONENTE + con quantità 
     const productsCart = computed((): ProductCart[] => {
@@ -46,12 +48,11 @@ export const useCartStore = defineStore("cart", () => {
 
     // computed per calcolare il totale di prezzo del carrello
     const cartTotal = computed(() =>
-        productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0)
+        productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2) as unknown as number
     );
 
 
     /* ------------ACTIONS------------- */
-
     // funzione per gestire la visibilità della sidebar del carrello
     const toggleCart = (): void => {
         goTopPage();
@@ -130,7 +131,7 @@ export const useCartStore = defineStore("cart", () => {
             // controllo se esiste un carrello per l'utente loggato (in base alla lunghezza dell'array data items)
             if (data.data.length > 0) {
                 const cart = data.data[0];
-                cartId.value = cart.documentId;
+                cartId.value = cart.documentId; // settaggio del cartId per future modifiche (documentId del carrello)
                 productsSelected.value = cart.items || [];
             } else {
                 // crea nuovo carrello se non esiste

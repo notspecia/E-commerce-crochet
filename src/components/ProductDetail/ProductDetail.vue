@@ -2,11 +2,14 @@
 import { computed, ref } from 'vue';
 import { useCartStore } from '../../stores/cart';
 import { useUserStore } from '../../stores/user';
+import { useToastStore } from '../../stores/toast';
 import { goTopPage } from '../../utils/utils';
 import { API_BASE_URL } from '../../utils/costants';
+import { useRouter } from 'vue-router';
 import MarkdownIt from 'markdown-it';
 import Reviews from '../Reviews/Reviews.vue';
 import type Product from '../../models/Product.model';
+
 
 
 /* PROPS TS */
@@ -15,9 +18,14 @@ const props = defineProps<{
 }>();
 
 
-/* CART e USER PINIA STATE */
+/* USEROUTER */
+const router = useRouter();
+
+
+/* CART e USER e TOAST PINIA STATE */
 const cartStore = useCartStore();
 const userStore = useUserStore();
+const toastStore = useToastStore();
 
 
 /* MARKDOWNS CONVERTER */
@@ -41,17 +49,13 @@ const setMainImage = (url: string) => {
 
 // TODO - REVIEW funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
 const handleAddToCart = (): void => {
-    goTopPage();
-
-    // check se aggiungere prodotto al carello db dell'user se loggato o nel local storage
-    if (userStore.isLoggedIn) {
-        cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
-        quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
-        cartStore.cartIsOpen = true; // apro il carrello dopo l'aggiunta del prodotto
+    if (!userStore.isLoggedIn) {
+        router.push('/login'); // se non loggato reindirizzo alla pagina di login
+        toastStore.addToast("light", "Devi essere loggato per aggiungere prodotti al carrello!");
     } else {
         cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
         quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
-        cartStore.cartIsOpen = true; // apro il carrello dopo l'aggiunta del prodotto
+        cartStore.toggleCart() // apro il carrello dopo l'aggiunta del prodotto
     }
 }
 </script>
