@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue';
 import { useUserStore } from '../../stores/user';
-import { useToastStore } from '../../stores/toast';
 import { useRouter } from 'vue-router';
 import type Register from '../../models/Register.model';
 
@@ -9,11 +8,9 @@ import type Register from '../../models/Register.model';
 
 /* PINIA STORE USER */
 const userStore = useUserStore();
-const toastStore = useToastStore();
 
 /* USEROUTER */
 const router = useRouter();
-
 
 /* REACTIVE */
 const credentials = reactive<Register>({
@@ -22,23 +19,11 @@ const credentials = reactive<Register>({
     password: '',
 });
 
-
 /* FUNCTIONS */
 const submitRegister = async () => {
-    // validazione minima lato frontend se errata blocca submit e fetch
-    if (!credentials.username || !credentials.email || !credentials.password) {
-        userStore.stateUser.error = "Inserisci i campi!";
-        return;
-    }
     // chiama lo store per tentare il register con le credenziali nuove passate
     await userStore.fetchAuthUser(true, credentials);
-
-    // render toast di successo al completamento del register
-    if (!userStore.stateUser.error) {
-        toastStore.addToast("light", "Registrazione effettuata con successo!");
-    }
 };
-
 
 /* ONMOUNTED */
 onMounted(() => {

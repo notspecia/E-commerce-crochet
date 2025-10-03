@@ -25,9 +25,8 @@ onMounted(() => {
 </script>
 
 
-
 <template>
-    <div v-if="visible" class="position-fixed bottom-0 end-0 p-2" style="z-index: 1050;">
+    <div v-if="visible" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
         <div class="toast align-items-center fs-6 p-1 border-0 show" :class="`text-bg-${type}`" role="alert">
             <div class="d-flex">
                 <div class="toast-body">
@@ -40,10 +39,10 @@ onMounted(() => {
 </template>
 
 
-
 <style lang="scss" scoped>
 .toast {
     min-width: 300px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+    font-family: $font-family-base;
+    box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.1);
 }
 </style>

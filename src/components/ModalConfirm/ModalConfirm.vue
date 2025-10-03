@@ -11,7 +11,6 @@ const emit = defineEmits(['close']);
 const onClose = (): void => {
     emit('close');
 }
-
 </script>
 
 

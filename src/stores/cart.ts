@@ -102,7 +102,7 @@ export const useCartStore = defineStore("cart", () => {
         await syncCart();
     };
 
-    // funzione per svuotare il carrello e richiama il syncCart
+    // funzione per svuotare LO STATO LOCALE del cartrello e richiama il syncCart
     const clearCart = async () => {
         productsSelected.value = [];
         await syncCart();

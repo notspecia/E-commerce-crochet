@@ -11,16 +11,13 @@ import Reviews from '../Reviews/Reviews.vue';
 import type Product from '../../models/Product.model';
 
 
-
 /* PROPS TS */
 const props = defineProps<{
     product: Product;
 }>();
 
-
 /* USEROUTER */
 const router = useRouter();
-
 
 /* CART e USER e TOAST PINIA STATE */
 const cartStore = useCartStore();
@@ -55,7 +52,7 @@ const handleAddToCart = (): void => {
     } else {
         cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
         quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
-        cartStore.toggleCart() // apro il carrello dopo l'aggiunta del prodotto
+        cartStore.toggleCart(); // apro il carrello dopo l'aggiunta del prodotto
     }
 }
 </script>
@@ -64,7 +61,6 @@ const handleAddToCart = (): void => {
 
 <template>
     <div class="row g-5 pb-5">
-
         <!-- COLONNA SINISTRA: IMMAGINI -->
         <div class="col-12 col-md-6">
             <!-- immagine principale selezionata -->

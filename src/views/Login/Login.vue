@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue';
 import { useUserStore } from '../../stores/user';
-import { useToastStore } from '../../stores/toast';
 import { useRouter } from 'vue-router';
 import type Login from '../../models/Login.model';
 
 
-/* PINIA STORE USER AND TOAST */
+/* PINIA STORE USER and CART and TOAST */
 const userStore = useUserStore();
-const toastStore = useToastStore();
 
 /* USEROUTER */
 const router = useRouter();
-
 
 /* REACTIVE */
 const credentials = reactive<Login>({
@@ -20,25 +17,11 @@ const credentials = reactive<Login>({
     password: '',
 });
 
-
 /* FUNCTIONS */
 const submitLogin = async () => {
-
-    // validazione minima lato frontend se errata blocca submit e fetch
-    if (!credentials.identifier || !credentials.password) {
-        userStore.stateUser.error = "Credenziali errate riprova!";
-        return;
-    }
-
     // chiama lo store per tentare il login con le credenziali passate
     await userStore.fetchAuthUser(false, credentials);
-
-    // render toast di successo al completamento del login
-    if (!userStore.stateUser.error) {
-        toastStore.addToast("light", "Login effettuato con successo!");
-    }
 };
-
 
 /* ONMOUNTED */
 onMounted(() => {
