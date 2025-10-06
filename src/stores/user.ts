@@ -51,7 +51,7 @@ export const useUserStore = defineStore("user", () => {
             // settaggio dei dati utente + JWT in entrambi i casi nel local storage
             stateUser.bearerToken = res.jwt;
             stateUser.user = res.user;
-            // toast + re-load of the cart user if login was successful
+            // toast + re-load of the cart user if login or register was successful
             if (isRegister) {
                 toastStore.addToast("light", "Registrazione effetuata con successo!");
             } else {
@@ -61,7 +61,6 @@ export const useUserStore = defineStore("user", () => {
             // redirect to home page
             router.push("/");
         } catch (err: any) {
-            console.log(err)
             stateUser.error = err.message || "Errore autenticazione";
         } finally {
             stateUser.isLoading = false;
@@ -74,7 +73,6 @@ export const useUserStore = defineStore("user", () => {
         stateUser.bearerToken = '';
         stateUser.user = null;
         // svuota anche il carrello subito
-        const cartStore = useCartStore();
         cartStore.clearCart();
         cartStore.cartIsOpen = false;
         // redirect to login page

@@ -87,7 +87,7 @@ const handleAddToCart = (): void => {
             </div>
             <!-- bottone per aggiungere il prodotto al carrello -->
             <div class="button-add-product" @click="handleAddToCart">
-                <span> {{ $t('detailProduct.addToCart') }}</span>
+                <span>{{ $t('detailProduct.addToCart') }}</span> <i class="bi bi-cart fs-5 ms-2"></i>
             </div>
             <!-- descrizioni aggiuntive sul prodotto  usando markdown-it converter con v-html -->
             <p class="fs-5 mt-4" v-html="descriptionMarkdown"></p>
