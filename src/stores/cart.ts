@@ -62,7 +62,7 @@ export const useCartStore = defineStore("cart", () => {
 
     // funzione handler con check se l'url dell'update cart sia valido ed esista prima di sincronizzare il cart
     const syncCart = async () => {
-        if (!cartSyncUrl.value) return;
+        if (!cartSyncUrl.value) return; // evitiamo di mandare path null|undefind
         await syncUserCart(
             cartSyncUrl.value,
             userStore.stateUser.bearerToken,

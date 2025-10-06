@@ -6,7 +6,7 @@ import type ProductSelected from "../models/ProductSelected.model";
  Sincronizza il carrello dell'utente con il server.
  funzione per sincronizzare il carrello locale con il carrello remoto nel DB quando effettuate modifiche all array productsSelected
  */
-export const syncUserCart = async (path: string | null, token: string, items: ProductSelected[]) => {
+export const syncUserCart = async (path: string, token: string, items: ProductSelected[]) => {
 
     const userStore = useUserStore();
     if (!userStore.isLoggedIn) return; // Se l'utente non è loggato, esci dalla funzione
