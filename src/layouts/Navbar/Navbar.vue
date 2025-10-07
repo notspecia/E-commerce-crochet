@@ -8,6 +8,7 @@ import { languages } from '../../utils/costants';
 import MobileNavbar from './MobileNavbar.vue';
 import DropdownLanguages from '../../components/DropdownLanguages/DropdownLanguages.vue';
 import ModalConfirm from '../../components/ModalConfirm/ModalConfirm.vue';
+import DropdownUser from '../../components/DropdownUser/DropdownUser.vue';
 
 
 /* I18N LANG */
@@ -147,24 +148,7 @@ watchEffect(() => {
                 <i v-if="!userStore.isLoggedIn" class="bi bi-person-add fs-3 user" @click="handleUser"
                     title="Accedi o registrati"></i>
                 <!-- Utente loggato -->
-                <div v-else class="dropdown-center">
-                    <i class="bi bi-person fs-3 dropdown-toggle user" id="userMenu" data-bs-toggle="dropdown"
-                        aria-expanded="false" title="Account"></i>
-                    <ul class="dropdown-menu" aria-labelledby="userMenu">
-                        <li>
-                            <RouterLink class="dropdown-item" to="/profile">Profilo</RouterLink>
-                        </li>
-                        <li>
-                            <RouterLink class="dropdown-item" to="/orders">I miei ordini</RouterLink>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                            <button class="dropdown-item text-danger" @click="handleUser">
-                                Esci
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+                <DropdownUser v-else @handleUser="handleUser" />
             </div>
 
             <!-- Modale di conferma per logout passati slot tempaltes della modale -->
