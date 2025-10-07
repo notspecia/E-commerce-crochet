@@ -20,7 +20,7 @@ export const useCartStore = defineStore("cart", () => {
     const userStore = useUserStore();
 
 
-    /* --------------STATE---------------- */
+    /* -------------- STATE ---------------- */
     /* -- REF -- */
     const cartIsOpen = ref<boolean>(false); // stato booleano per gestire l'apertura/chiusura del carrello
     const productsSelected = ref<ProductSelected[]>([]); // stato array di prodotti nel carrello (solo documentId prodtto e la quantità) REMOTE
@@ -53,7 +53,7 @@ export const useCartStore = defineStore("cart", () => {
 
 
 
-    /* ------------ACTIONS------------- */
+    /* ------------ ACTIONS ------------- */
     // funzione per gestire la visibilità della sidebar del carrello
     const toggleCart = (): void => {
         goTopPage();
@@ -111,7 +111,6 @@ export const useCartStore = defineStore("cart", () => {
 
     // check iniziale se l'utente è loggato e carico il carrello dal DB, altrimenti creo una nuova istanza carrello vuota da mandare al DB
     const loadCart = async () => {
-
         if (!userStore.isLoggedIn) return; // Se l'utente non è loggato, esci dalla funzione
 
         try {

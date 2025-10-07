@@ -184,7 +184,6 @@ h2 {
     color: $color-white;
     background: $gradient-secondary;
     padding: 10px 10px;
-    border: 1px solid $color-white;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.5s ease-in-out;

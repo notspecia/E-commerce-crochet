@@ -130,7 +130,7 @@ watchEffect(() => {
 
         <!-- sezione a destra per gestione dei prodotti con carrello e select con lingua differente -->
         <div class="nav-right">
-            <div class="nav-item dropdown">
+            <div class="nav-item dropdown dropdown-center">
                 <img v-if="selectedLang" :src="`/images/${selectedLang.flag}`" :alt="selectedLang.label"
                     class="flag me-1" :key="selectedLang.code" />
                 <a class="nav-link dropdown-toggle d-inline-block" role="button" data-bs-toggle="dropdown"
@@ -141,10 +141,32 @@ watchEffect(() => {
                 <DropdownLanguages @setLanguage="setLanguage" />
             </div>
 
-            <!-- toggle icon per utente che porta alla registrazione / se loggato icona con esci dall'account -->
-            <div class="position-relative" @click="handleUser">
-                <i class="bi fs-3 user" :class="userStore.isLoggedIn ? 'bi-box-arrow-right' : 'bi-person'"></i>
+            <!-- Gestione utente -->
+            <div class="position-relative">
+                <!-- Utente non loggato -->
+                <i v-if="!userStore.isLoggedIn" class="bi bi-person-add fs-3 user" @click="handleUser"
+                    title="Accedi o registrati"></i>
+                <!-- Utente loggato -->
+                <div v-else class="dropdown-center">
+                    <i class="bi bi-person fs-3 dropdown-toggle user" id="userMenu" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Account"></i>
+                    <ul class="dropdown-menu" aria-labelledby="userMenu">
+                        <li>
+                            <RouterLink class="dropdown-item" to="/profile">Profilo</RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink class="dropdown-item" to="/orders">I miei ordini</RouterLink>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                            <button class="dropdown-item text-danger" @click="handleUser">
+                                Esci
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
             <!-- Modale di conferma per logout passati slot tempaltes della modale -->
             <ModalConfirm :show="showModalLogout" @close="closeModal">
                 <template #header>
