@@ -14,7 +14,6 @@ const setLanguage = (lang: string): void => {
 </script>
 
 
-
 <template>
     <ul class="dropdown-menu mt-3">
         <li v-for="lang in languages" :key="lang.code" class="dropdown-item" @click="setLanguage(lang.code)">
@@ -23,7 +22,6 @@ const setLanguage = (lang: string): void => {
         </li>
     </ul>
 </template>
-
 
 
 <style scoped lang="scss">

@@ -7,13 +7,11 @@ import type Product from '../../models/Product.model';
 /* USEROUTER */
 const router = useRouter();
 
-
 /* PROPS TS */
 const props = defineProps<{
     product: Product;
 }>();
 </script>
-
 
 
 <template>
@@ -32,7 +30,6 @@ const props = defineProps<{
         </div>
     </div>
 </template>
-
 
 
 <style scoped lang="scss">

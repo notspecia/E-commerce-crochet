@@ -41,15 +41,16 @@ export const GetProducts = async (path: string): Promise<Product[]> => {
  */
 export const GetProduct = async (path: string): Promise<Product> => {
 
-    const response = await fetch(path, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+    const response = await fetch(path,
+        {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
     if (!response.ok) {
-        throw new Error("Errore nel recupero del prodotto, riprova più tardi :(");
+        throw new Error("Errore nel recupero del prodotto");
     }
 
     // restituisce i dati in formato risposta JSON dalla chiamata HTTP GET

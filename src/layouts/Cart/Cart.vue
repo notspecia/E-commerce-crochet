@@ -13,13 +13,6 @@ const router = useRouter();
 /* CART and PRODUCTS PINIA STATE */
 const cartStore = useCartStore();
 const productsStore = useProductsStore();
-
-
-// log console per debugging
-onMounted(() => {
-    console.log(productsStore.stateProducts.products);
-    console.log(cartStore.productsCart);
-});
 </script>
 
 
@@ -92,11 +85,11 @@ onMounted(() => {
                     <strong>Estimated total:</strong>
                     <span>{{ cartStore.cartTotal }}€</span>
                 </div>
-                <button class="btn" @click="() => { router.push(`/checkout`); cartStore.cartIsOpen = false }">Check
-                    out</button>
+                <button class="btn" @click="() => { router.push(`/checkout`); cartStore.cartIsOpen = false }">
+                    Check out
+                </button>
             </div>
         </template>
-
     </aside>
 </template>
 
