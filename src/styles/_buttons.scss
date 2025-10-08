@@ -1,6 +1,6 @@
 // CTA BUTTON used in Home and Cart section (if cart is empty)
-.cta-btn {
-    background-color: #fe8551;
+.btn-one {
+    background-color: #f7a380;
     color: $color-white;
     font-family: $font-family-base;
     font-weight: $font-weight-bold;
@@ -11,6 +11,6 @@
 
     &:hover {
         background-color: $color-primary;
-        transform: scale(1.05);
+        transform: scale(1.01);
     }
 }

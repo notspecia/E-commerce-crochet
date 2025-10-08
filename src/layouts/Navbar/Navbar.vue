@@ -242,7 +242,7 @@ i.user {
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        color: $color-primary ;
+        color: $color-primary;
         animation: shake 0.4s ease-in-out;
     }
 }

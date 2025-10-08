@@ -50,18 +50,17 @@ const productsStore = useProductsStore();
                     <p>PRODUCT</p>
                     <p>PRICE</p>
                 </div>
-                <!-- TODO FIX REVIEW + SCSS STYLES -->
                 <div v-for="product in cartStore.productsCart" :key="product.id" class="cart-product">
                     <!-- immagine di copertina principale -->
                     <img :src="`${API_BASE_URL}${product.images[0].url}`" :alt="`${product.images[0].alternativeText}`"
                         class="cart-product-img me-3" @click="() => router.push(`/products`)" />
                     <!--info -->
-                    <div class=" flex-grow-1">
+                    <div class="flex-grow-1">
                         <h5 class="mb-1">{{ product.title }}</h5>
                         <p class="mb-1">{{ product.price.toFixed(2) }} €</p>
                         <!-- quantità -->
                         <div class="d-flex align-items-center gap-2">
-                            <button class="btn btn-sm quantity-button"
+                            <button class="btn btn-sm quantity-button" :class="product.quantity <= 1 ? 'disabled' : ''"
                                 @click="cartStore.updateCartItemQuantity(product.documentId, product.quantity - 1)"
                                 :disabled="product.quantity <= 1">-</button>
                             <span>{{ product.quantity }}</span>
@@ -70,12 +69,10 @@ const productsStore = useProductsStore();
                         </div>
                     </div>
                     <!-- column flex total + remove product button -->
-                    <div class="d-flex flex-column justify-content-between">
-                        <p class="fs-5 fw-bold">{{ (product.price * product.quantity).toFixed(2) }}€</p>
-                        <button class="btn btn-sm btn-danger ms-3"
-                            @click="cartStore.removeFromCart(product.documentId)">
-                            <i class="bi bi-trash"></i>
-                        </button>
+                    <div class="d-flex flex-column align-items-end">
+                        <p class="fs-5 mb-1">{{ (product.price * product.quantity).toFixed(2) }}€</p>
+                        <i class="bi bi-trash trash text-danger"
+                            @click="cartStore.removeFromCart(product.documentId)"></i>
                     </div>
                 </div>
             </div>
@@ -85,7 +82,8 @@ const productsStore = useProductsStore();
                     <strong>Estimated total:</strong>
                     <span>{{ cartStore.cartTotal }}€</span>
                 </div>
-                <button class="btn" @click="() => { router.push(`/checkout`); cartStore.cartIsOpen = false }">
+                <button class="btn btn-one text-light w-100"
+                    @click="() => { router.push(`/checkout`); cartStore.cartIsOpen = false }">
                     Check out
                 </button>
             </div>
@@ -129,47 +127,40 @@ const productsStore = useProductsStore();
     height: 100%;
     overflow-y: auto;
     padding-right: 15px;
-}
 
-/* thumbnail immagine prodotto */
-.cart-product-img {
-    width: 120px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 8px;
-}
+    /* ogni riga prodotto */
+    .cart-product {
+        display: flex;
+        align-items: center;
+        margin: 30px 0;
 
-/* ogni riga prodotto */
-.cart-product {
-    display: flex;
-    align-items: center;
-    margin: 30px 0;
-
-    .quantity-button {
-        color: $color-black;
-        border: 1px solid $color-primary;
-
-        &:hover {
-            background-color: $color-secondary;
+        /* thumbnail immagine prodotto */
+        .cart-product-img {
+            width: 120px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
         }
-    }
-}
 
-/* summary checkout carrello */
-.cart-summary {
-    button {
-        width: 100%;
-        font-size: 1.3rem;
-        background: $gradient-primary;
-        color: $color-gray-900;
-        padding: 10px 0;
-        border: none;
-        transition: all 0.2s ease;
+        .quantity-button {
+            color: $color-black;
+            border: 1px solid $color-primary;
 
-        &:hover {
-            color: $color-white;
-            background: $gradient-secondary;
-            transform: scale(1.02);
+            &:hover {
+                background-color: $color-secondary;
+            }
+        }
+
+        .quantity-button.disabled {
+            opacity: 0.2;
+        }
+
+        i.trash {
+            cursor: pointer;
+
+            &:hover {
+                animation: shake 0.4s ease-in-out;
+            }
         }
     }
 }

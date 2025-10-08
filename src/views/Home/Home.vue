@@ -10,7 +10,7 @@ const router = useRouter();
   <h1 class="mb-3">soft crochet by giogi</h1>
   <h2>{{ $t('home.subtitle') }}</h2>
   <div class="text-center mt-5">
-    <button class="cta-btn btn" @click="() => router.push(`/products`)">{{ $t('home.CTA') }}</button>
+    <button class="btn btn-one" @click="() => router.push(`/products`)">{{ $t('home.CTA') }}</button>
   </div>
   <!-- video crochet creazione di giogis -->
   <video class="hero-video" autoplay="true" controls loop poster="/images/logos/giogi-mascotte-logo.png" muted>

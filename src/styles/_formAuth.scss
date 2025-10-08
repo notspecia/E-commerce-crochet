@@ -1,3 +1,4 @@
+// style for the card forms in auth pages (login, register)
 .card-form {
     width: 600px;
     font-size: 1.1rem;
@@ -16,26 +17,6 @@
         margin: 0 auto;
     }
 
-    /* INPUT E FLOATING LABEL */
-    .form-floating {
-        .form-control {
-            background-color: $color-gray-200;
-            color: $color-black;
-
-            &::placeholder {
-                color: transparent; // necessario per floating label
-            }
-        }
-
-        label {
-            color: $color-gray-700; // colore leggibile sopra il grigio
-        }
-    }
-
-    .hint {
-        color: $color-gray-700;
-    }
-
     button {
         background: $gradient-secondary;
         transition: all 0.3s ease-in-out;
@@ -45,4 +26,26 @@
             color: $color-white;
         }
     }
+}
+
+
+/* INPUT E FLOATING LABEL (using on login register and checkout forms) */
+.form-floating {
+    .form-control {
+        background-color: $color-gray-200;
+        color: $color-black;
+        border: 1px solid $color-gray-700;
+
+        &::placeholder {
+            color: transparent; // necessario per floating label
+        }
+    }
+
+    label {
+        color: $color-gray-700; // colore leggibile sopra il grigio
+    }
+}
+
+.hint {
+    color: $color-gray-700;
 }

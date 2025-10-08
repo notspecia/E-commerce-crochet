@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useCartStore } from '../../stores/cart';
-// import { useOrderStore } from '../../stores/order';
-import { useForm, useField } from 'vee-validate';
 import * as yup from 'yup';
+import { useForm, useField } from 'vee-validate';
 
 
 /* CART STORE PINIA STATES */
@@ -10,14 +9,29 @@ const cartStore = useCartStore();
 // const orderStore = useOrderStore();
 
 
-/* SCHEMA YUP VALIDATION */
+/* SCHEMA YUP VALIDATION, using function util for custom require message */
 const schema = yup.object({
-    name: yup.string().required('Nome obbligatorio'),
-    email: yup.string().email('Email non valida').required('Email obbligatoria'),
-    address: yup.string().required('Indirizzo obbligatorio'),
-    city: yup.string().required('Città obbligatoria'),
-    zip: yup.string().required('CAP obbligatorio'),
-    country: yup.string().required('Paese obbligatorio'),
+    name: yup.string()
+        .trim()
+        .required('Nome obbligatorio'),
+    surname: yup.string()
+        .trim()
+        .required('Cognome obbligatorio'),
+    address: yup.string()
+        .trim()
+        .required('Indirizzo obbligatorio'),
+    zip: yup.string()
+        .trim()
+        .required('CAP obbligatorio'),
+    city: yup.string()
+        .trim()
+        .required('Città obbligatoria'),
+    province: yup.string()
+        .trim()
+        .required('Provincia obbligatoria'),
+    phone: yup.string()
+        .trim()
+        .required('Telefono obbligatorio'),
 });
 
 
@@ -28,11 +42,12 @@ const { handleSubmit, errors } = useForm(
     }
 );
 const { value: name } = useField('name');
-const { value: email } = useField('email');
 const { value: address } = useField('address');
 const { value: city } = useField('city');
 const { value: zip } = useField('zip');
-const { value: country } = useField('country');
+const { value: surname } = useField('surname');
+const { value: province } = useField('province');
+const { value: phone } = useField('phone');
 
 
 // Submit ordine
@@ -49,62 +64,131 @@ const onSubmit = handleSubmit(values => {
 });
 </script>
 
-<template>
-    <section class="checkout w-75 mx-auto">
-        <h2 class="header text-center mb-4">Checkout</h2>
 
-        <div class="mb-4">
-            <h4>Riepilogo prodotti</h4>
-            <ul>
-                <li v-for="prod in cartStore.productsCart" :key="prod.id">
-                    {{ prod.title }} x{{ prod.quantity }} - €{{ prod.price * prod.quantity }}
-                </li>
-            </ul>
-            <div class="fw-bold mt-2">Totale: €{{ cartStore.cartTotal }}</div>
+<template>
+    <section class="checkout">
+        <!-- banner top 100% width -->
+        <h2 class="banner-checkout text-center py-3">Checkout</h2>
+        <h3 class="fs-1 fw-bold mt-5">Dati spedizione</h3>
+        <!-- Disclaimer unico -->
+        <div id="privacyHint" class="form-text hint mb-3">
+            I tuoi dati sono protetti e non saranno condivisi con nessuno.
         </div>
 
-        <form @submit.prevent="onSubmit" class="checkout-form">
-            <h4 class="mb-3">Dati spedizione</h4>
-            <div class="mb-2">
-                <label>Nome</label>
-                <input v-model="name" type="text" class="form-control" />
-                <span class="text-danger">{{ errors.name }}</span>
+        <div class="row g-5">
+            <!-- LEFT COL: shipping datas -->
+            <div class="col-lg-8">
+                <form class="w-100 px-1" @submit.prevent="onSubmit">
+                    <!-- Nome + Cognome -->
+                    <div class=" row gx-2 gy-2 mb-4">
+                        <div class="col-lg-6 form-floating">
+                            <input type="text" id="name" v-model="name" class="form-control custom-input"
+                                placeholder="Nome" />
+                            <label for="name">Nome</label>
+                            <span class="text-danger">{{ errors.name }}</span>
+                        </div>
+                        <div class="col-lg-6 form-floating">
+                            <input type="text" id="surname" v-model="surname" class="form-control"
+                                placeholder="Cognome" />
+                            <label for="surname">Cognome</label>
+                            <span class="text-danger">{{ errors.surname }}</span>
+                        </div>
+                    </div>
+                    <!-- Città + Provincia -->
+                    <div class="row gx-2 gy-2 mb-4">
+                        <div class="col-lg-6 form-floating">
+                            <input type="text" id="city" v-model="city" class="form-control" placeholder="Città" />
+                            <label for="city">Città</label>
+                            <span class="text-danger">{{ errors.city }}</span>
+                        </div>
+                        <div class="col-lg-6 form-floating">
+                            <input type="text" id="province" v-model="province" class="form-control"
+                                placeholder="Provincia" />
+                            <label for="province">Provincia</label>
+                            <span class="text-danger">{{ errors.province }}</span>
+                        </div>
+                    </div>
+                    <!-- CAP + Telefono -->
+                    <div class="row gx-2 gy-2 mb-4">
+                        <div class="col-lg-6 form-floating">
+                            <input type="text" id="zip" v-model="zip" class="form-control" placeholder="CAP" />
+                            <label for="zip">CAP</label>
+                            <span class="text-danger">{{ errors.zip }}</span>
+                        </div>
+                        <div class="col-lg-6 form-floating">
+                            <input type="tel" id="phone" v-model="phone" class="form-control" placeholder="Telefono" />
+                            <label for="phone">Telefono</label>
+                            <span class="text-danger">{{ errors.phone }}</span>
+                        </div>
+                    </div>
+                    <!-- Indirizzo -->
+                    <div class="form-floating">
+                        <input type="text" id="address" v-model="address" class="form-control"
+                            placeholder="Indirizzo" />
+                        <label for="address">Indirizzo</label>
+                        <span class="text-danger">{{ errors.address }}</span>
+                    </div>
+                </form>
             </div>
-            <div class="mb-2">
-                <label>Email</label>
-                <input v-model="email" type="email" class="form-control" />
-                <span class="text-danger">{{ errors.email }}</span>
+
+            <!-- RIGHT COL: review order -->
+            <div class="col-lg-4">
+                <div class="cart-summary">
+                    <h4>Riepilogo ordine ({{ cartStore.cartCount }})</h4>
+                    <ul class="list-group mb-3">
+                        <li v-for="prod in cartStore.productsCart" :key="prod.id"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ prod.title }} x{{ prod.quantity }}</span>
+                            <strong>€{{ prod.price * prod.quantity }}</strong>
+                        </li>
+                    </ul>
+                    <div class="summary-totals">
+                        <div>Subtotale: €{{ cartStore.cartSubtotal }}</div>
+                        <div>Spedizione: €{{ cartStore.shippingCost }}</div>
+                        <div>IVA (9%): €{{ cartStore.tax }}</div>
+                        <div class="fw-bold mt-2">Totale: €{{ cartStore.cartTotal }}</div>
+                    </div>
+                    <button class="btn btn-success mt-3 w-100">Pagamento</button>
+                </div>
             </div>
-            <div class="mb-2">
-                <label>Indirizzo</label>
-                <input v-model="address" type="text" class="form-control" />
-                <span class="text-danger">{{ errors.address }}</span>
-            </div>
-            <div class="mb-2">
-                <label>Città</label>
-                <input v-model="city" type="text" class="form-control" />
-                <span class="text-danger">{{ errors.city }}</span>
-            </div>
-            <div class="mb-2">
-                <label>CAP</label>
-                <input v-model="zip" type="text" class="form-control" />
-                <span class="text-danger">{{ errors.zip }}</span>
-            </div>
-            <div class="mb-2">
-                <label>Paese</label>
-                <input v-model="country" type="text" class="form-control" />
-                <span class="text-danger">{{ errors.country }}</span>
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Conferma ordine</button>
-        </form>
+        </div>
+
     </section>
 </template>
 
 
 
 <style scoped lang="scss">
-.checkout-form {
-    max-width: 500px;
-    margin: 0 auto;
+// render the banner checkout full width instead of container width boostrap
+.banner-checkout {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    background-color: $color-primary;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid white;
+    border-top: none;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+.hint {
+    font-size: 1rem;
+    color: $color-gray-500;
+}
+
+.cart-summary {
+    padding: 1rem;
+    color: $color-black;
+    background-color: $color-gray-100;
+    border-radius: 10px;
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
 }
 </style>
