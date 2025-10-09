@@ -261,12 +261,12 @@ i.user {
     position: absolute;
     top: -2px;
     right: -12px;
-    font-family: $font-family-base;
-    font-size: 0.8rem;
-    font-weight: $font-weight-bold;
     background-color: $color-primary;
-    color: $color-black;
-    padding: 0px 5px;
+    color: $color-white;
+    font-size: 0.8rem;
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    padding: 1px 7px;
     border-radius: 100%;
 }
 </style>
