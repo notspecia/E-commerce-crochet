@@ -74,8 +74,9 @@ onMounted(() => {
         <!-- render con successo delle recensioni -->
         <div v-else class="reviews-list">
             <div v-for="(review, index) in reviewsStore.stateReviews.reviews" :key="index" class="review-item mb-4">
-                <p class="review-user mb-1">{{ review.email }} -
-                    <span v-for="star in review.rating" :key="star">⭐</span>
+                <p class="review-user mb-1">{{ review.email }}
+                    -
+                    <img v-for="star in review.rating" src="/images/star-rate.png" :key="star" />
                 </p>
                 <p class="review-content mb-1"> {{ review.comment }}</p>
                 <p class="review-date">{{ new Date(review.publishedAt).toLocaleDateString() }}</p>
@@ -106,13 +107,17 @@ onMounted(() => {
     color: $color-white;
     overflow-y: auto;
     padding: 20px;
-    border: 2px solid $color-gray-200;
-    border-radius: 8px;
+    border-radius: 5px;
 
     .review-item {
 
         .review-user {
             font-weight: bold;
+
+            img {
+                width: 20px;
+                height: 20px;
+            }
         }
 
         .review-content {}

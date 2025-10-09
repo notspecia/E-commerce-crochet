@@ -85,6 +85,8 @@ onMounted(() => {
         <div class="col-12 col-md-6">
             <h2 class="my-1">{{ props.product.title }}</h2>
             <p class="fs-4 my-4"> {{ props.product.price.toFixed(2) }}€</p>
+            <!-- descrizioni aggiuntive sul prodotto  usando markdown-it converter con v-html -->
+            <p class="fs-5 mt-4" v-html="descriptionMarkdown"></p>
             <!-- bottone per modificare quantita del prodotto da aggiungere al carrello -->
             <div class="button-quantity mb-3">
                 <i class="bi bi-dash" @click="quantity--" :class="{ disabled: quantity === 1 }"></i>
@@ -95,13 +97,11 @@ onMounted(() => {
             <div class="button-add-product" @click="handleAddToCart">
                 <span>{{ $t('detailProduct.addToCart') }}</span> <i class="bi bi-cart fs-5 ms-2"></i>
             </div>
-            <!-- descrizioni aggiuntive sul prodotto  usando markdown-it converter con v-html -->
-            <p class="fs-5 mt-4" v-html="descriptionMarkdown"></p>
             <!-- width height data -->
-            <p class="fs-6 mt-1">
+            <!-- <p class="fs-6 mt-1">
                 larghezza: {{ props.product.width }} cm <br />
                 altezza: {{ props.product.height }} cm
-            </p>
+            </p> -->
             <!-- Component con recensione del prodotto dettaglio -->
             <Reviews :productId="props.product.documentId" />
         </div>
@@ -117,7 +117,7 @@ onMounted(() => {
 
     .main-image {
         max-height: 500px;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 }
 
@@ -160,13 +160,17 @@ h2 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 50%;
+    width: 30%;
     font-size: 1.4rem;
     background-color: $color-gray-100;
     color: $color-black;
     padding: 8px 10px;
     border: 1px solid $color-gray-900;
     border-radius: 5px;
+
+    @media (max-width: $breakpoint-md) {
+        width: 40%;
+    }
 
     i {
         cursor: pointer;
