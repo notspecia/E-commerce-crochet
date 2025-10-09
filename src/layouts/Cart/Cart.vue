@@ -36,7 +36,7 @@ const productsStore = useProductsStore();
         <!-- empty cart, bottone con il tasto vai ai prodotti! -->
         <div v-else-if="!cartStore.productsCart.length" class="text-center py-5">
             <p class="fs-5 mb-4">Il tuo carrello è vuoto</p>
-            <button class="btn cta-btn text-white"
+            <button class="btn btn-one text-white"
                 @click="() => { router.push(`/products`); cartStore.cartIsOpen = false }">
                 Visualizza i prodotti
             </button>

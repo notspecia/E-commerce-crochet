@@ -50,7 +50,7 @@ const handleAddToCart = (): void => {
         router.push('/login'); // se non loggato reindirizzo alla pagina di login
         toastStore.addToast("light", "Devi essere loggato per aggiungere prodotti al carrello!");
     } else {
-        cartStore.addToCart(props.product.documentId, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
+        cartStore.addToCart(props.product, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
         quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello
         cartStore.toggleCart(); // apro il carrello dopo l'aggiunta del prodotto
     }

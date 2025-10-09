@@ -7,6 +7,7 @@ import { createUserCart, fetchUserCart, syncUserCart } from "../apis/Cart.api";
 import { API_BASE_URL } from "../utils/costants";
 import type ProductSelected from "../models/ProductSelected.model";
 import type ProductCart from "../models/ProductCart.model";
+import type Product from "../models/Product.model";
 
 
 
@@ -72,12 +73,16 @@ export const useCartStore = defineStore("cart", () => {
 
 
     // funzione per aggiungere un prodotto al carrello (se non presente lo aggiunge, se presente aumenta la quantità) e richiama il syncCart        
-    const addToCart = async (productId: string, quantity = 1) => {
+    const addToCart = async (product: Product, quantity: number = 1) => {
         const existing = productsSelected.value.find(
-            (i) => i.documentId === productId
+            (i) => i.documentId === product.documentId
         );
-        if (existing) existing.quantity += quantity;
-        else productsSelected.value.push({ documentId: productId, quantity });
+        // if product already in cart, increase quantity || else add new product to cart
+        if (existing) {
+            existing.quantity += quantity;
+        } else {
+            productsSelected.value.push({ productName: product.title, documentId: product.documentId, quantity });
+        }
         await syncCart();
     };
 

@@ -34,7 +34,6 @@
     .form-control {
         background-color: $color-gray-200;
         color: $color-black;
-        border: 1px solid $color-gray-700;
 
         &::placeholder {
             color: transparent; // necessario per floating label
