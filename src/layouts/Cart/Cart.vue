@@ -82,7 +82,7 @@ const productsStore = useProductsStore();
                     <strong>Estimated total:</strong>
                     <span>{{ cartStore.cartTotal }}€</span>
                 </div>
-                <button class="btn btn-one text-light w-100"
+                <button class="btn btn-one w-100"
                     @click="() => { router.push(`/checkout`); cartStore.cartIsOpen = false }">
                     Check out
                 </button>

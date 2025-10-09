@@ -10,6 +10,7 @@
     transition: all 0.3s ease;
 
     &:hover {
+        color: $color-white;
         background-color: $color-primary;
         transform: scale(1.01);
     }

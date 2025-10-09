@@ -8,3 +8,6 @@ export const goTopPage = (): void => {
         behavior: 'smooth'
     });
 };
+
+// function used for format required fields in forms
+export const requiredField = (field: string): string => `${field} obbligatorio`;

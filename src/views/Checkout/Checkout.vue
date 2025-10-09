@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { requiredField } from '../../utils/utils';
+import { RouterLink } from 'vue-router';
 import { useCartStore } from '../../stores/cart';
 import * as yup from 'yup';
 import { useForm, useField } from 'vee-validate';
@@ -13,25 +15,25 @@ const cartStore = useCartStore();
 const schema = yup.object({
     name: yup.string()
         .trim()
-        .required('Nome obbligatorio'),
+        .required(requiredField('nome')),
     surname: yup.string()
         .trim()
-        .required('Cognome obbligatorio'),
+        .required(requiredField('cognome')),
     address: yup.string()
         .trim()
-        .required('Indirizzo obbligatorio'),
+        .required(requiredField('indirizzo')),
     zip: yup.string()
         .trim()
-        .required('CAP obbligatorio'),
+        .required(requiredField('CAP')),
     city: yup.string()
         .trim()
-        .required('Città obbligatoria'),
+        .required(requiredField('città')),
     province: yup.string()
         .trim()
-        .required('Provincia obbligatoria'),
+        .required(requiredField('provincia')),
     phone: yup.string()
         .trim()
-        .required('Telefono obbligatorio'),
+        .required(requiredField('telefono')),
 });
 
 
@@ -68,20 +70,25 @@ const onSubmit = handleSubmit(values => {
 <template>
     <section class="checkout">
         <!-- banner top 100% width -->
-        <h2 class="banner-checkout text-center py-3">Checkout</h2>
-        <h3 class="fs-1 fw-bold mt-5">Dati spedizione</h3>
-        <!-- Disclaimer unico -->
-        <div id="privacyHint" class="form-text hint mb-3">
-            I tuoi dati sono protetti e non saranno condivisi con nessuno.
-        </div>
+        <h2 class="banner-checkout text-center py-2">
+            Checkout
+            <RouterLink to="/">
+                <img src="/images/logos/giogi-mascotte-logo.png" alt="logo sito" class="logo">
+            </RouterLink>
+        </h2>
 
         <div class="row g-5">
             <!-- LEFT COL: shipping datas -->
             <div class="col-lg-8">
+                <h3 class="fs-1 fw-bold">Dati spedizione</h3>
+                <!-- Disclaimer unico -->
+                <div id="privacyHint" class="form-text hint mb-3">
+                    I tuoi dati sono protetti e non saranno condivisi con nessuno.
+                </div>
                 <form class="w-100 px-1" @submit.prevent="onSubmit">
                     <!-- Nome + Cognome -->
                     <div class=" row gx-2 gy-2 mb-4">
-                        <div class="col-lg-6 form-floating">
+                        <div class="col-lg-6 custom-floating form-floating">
                             <input type="text" id="name" v-model="name" class="form-control custom-input"
                                 placeholder="Nome" />
                             <label for="name">Nome</label>
@@ -148,7 +155,7 @@ const onSubmit = handleSubmit(values => {
                         <div>IVA (9%): €{{ cartStore.tax }}</div>
                         <div class="fw-bold mt-2">Totale: €{{ cartStore.cartTotal }}</div>
                     </div>
-                    <button class="btn btn-success mt-3 w-100">Pagamento</button>
+                    <button class="btn btn-one mt-3 w-100" @click="onSubmit">Pagamento</button>
                 </div>
             </div>
         </div>
@@ -173,10 +180,14 @@ const onSubmit = handleSubmit(values => {
     font-size: 1.5rem;
     text-align: center;
     padding: 1rem;
-    border: 1px solid white;
     border-top: none;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
+    margin-bottom: 7rem;
+
+    img {
+        width: 60px;
+    }
 }
 
 .hint {

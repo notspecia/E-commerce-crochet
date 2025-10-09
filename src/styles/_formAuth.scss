@@ -31,17 +31,27 @@
 
 /* INPUT E FLOATING LABEL (using on login register and checkout forms) */
 .form-floating {
+    font-family: $font-family-base;
+
     .form-control {
         background-color: $color-gray-200;
         color: $color-black;
 
+
         &::placeholder {
-            color: transparent; // necessario per floating label
+            color: transparent;
+        }
+
+        &:focus {
+            background-color: $color-white;
+            border: 1px solid $color-primary;
+            box-shadow: 0 0 0 0.15rem rgba($color-secondary, 0.25);
         }
     }
 
     label {
-        color: $color-gray-700; // colore leggibile sopra il grigio
+        color: $color-gray-700;
+        font-size: 0.95rem;
     }
 }
 
