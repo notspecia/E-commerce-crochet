@@ -100,7 +100,7 @@ const onSubmit = handleSubmit(values => {
             <div class="col-lg-8">
                 <form class="w-100 px-1" @submit.prevent="onSubmit">
                     <!-- Contacts -->
-                    <h3 class="fs-2 mb-4 fw-bold">1. Contatti</h3>
+                    <h3 class="fs-2 mb-4 fw-bold">Contact Information</h3>
                     <div class="form-floating mb-4">
                         <input type="email" id="email" v-model="email" class="form-control" placeholder="Email"
                             required />
@@ -109,16 +109,15 @@ const onSubmit = handleSubmit(values => {
                     </div>
 
                     <!-- Shipping datas -->
-                    <h3 class="fs-2 fw-bold mb-4 mt-5">2. Dati di spedizione</h3>
-                    <!-- Nome + Cognome -->
-                    <div class=" row gx-2 gy-2 mb-4">
-                        <div class="col-lg-6 custom-floating form-floating">
-                            <input type="text" id="name" v-model="name" class="form-control custom-input"
-                                placeholder="Nome" />
+                    <h3 class="fs-2 fw-bold mb-4 mt-5">Where's this order going?</h3>
+                    <!-- Nome + Cognome (using flex for spacing the fields) -->
+                    <div class="d-flex gap-2 gap-lg-4 mb-4">
+                        <div class="flex-fill form-floating">
+                            <input type="text" id="name" v-model="name" class="form-control" placeholder="Nome" />
                             <label for="name">Nome</label>
                             <span class="text-danger">{{ errors.name }}</span>
                         </div>
-                        <div class="col-lg-6 form-floating">
+                        <div class="flex-fill form-floating">
                             <input type="text" id="surname" v-model="surname" class="form-control"
                                 placeholder="Cognome" />
                             <label for="surname">Cognome</label>
@@ -133,18 +132,18 @@ const onSubmit = handleSubmit(values => {
                         <span class="text-danger">{{ errors.address }}</span>
                     </div>
                     <!-- CITY + CAP + PROVINCE -->
-                    <div class="row gx-2 gy-2 mb-4">
-                        <div class="col-lg-4 form-floating">
+                    <div class="d-flex gap-2 gap-lg-5 mb-4">
+                        <div class="flex-fill form-floating">
                             <input type="text" id="city" v-model="city" class="form-control" placeholder="Città" />
                             <label for="city">Città</label>
                             <span class="text-danger">{{ errors.city }}</span>
                         </div>
-                        <div class="col-lg-4 form-floating">
+                        <div class="flex-fill form-floating">
                             <input type="number" id="zip" v-model="zip" class="form-control" placeholder="CAP" />
                             <label for="zip">CAP</label>
                             <span class="text-danger">{{ errors.zip }}</span>
                         </div>
-                        <div class="col-lg-4 form-floating">
+                        <div class="flex-fill form-floating">
                             <input type="text" id="province" v-model="province" class="form-control"
                                 placeholder="Provincia" />
                             <label for="province">Provincia</label>
@@ -156,12 +155,14 @@ const onSubmit = handleSubmit(values => {
                         <input type="tel" id="phone" v-model="phone" class="form-control" placeholder="Telefono"
                             aria-describedby="phoneHelpBlock" />
                         <label for="phone">Telefono</label>
+                        <span class="text-danger">{{ errors.phone }}</span>
                         <div id="phoneHelpBlock" class="form-text w-75">
                             Il numero di telefono è necessario per eventuali comunicazioni riguardanti la consegna.
                             Assicurati che sia corretto e raggiungibile.
                         </div>
-                        <span class="text-danger">{{ errors.phone }}</span>
                     </div>
+
+                    <!-- Gift option checkbox -->
                 </form>
             </div>
 
@@ -230,6 +231,7 @@ const onSubmit = handleSubmit(values => {
     padding: 1rem;
     color: $color-black;
     background-color: $color-gray-100;
+    border: 2px solid $color-gray-800;
     border-radius: 10px;
     box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
 }

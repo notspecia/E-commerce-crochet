@@ -21,7 +21,7 @@ const handleUser = (): void => {
         <i class="bi bi-person fs-3 dropdown-toggle" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false"
             title="Account"></i>
         <ul class="dropdown-menu" aria-labelledby="userMenu">
-            <li class="mb-3 d-flex flex-column gap-1 dropdown-item fw-bold">
+            <li class="dropdown-item disabled mb-3 d-flex flex-column gap-1 fw-bold">
                 <span class="username">{{ userStore.stateUser.user?.username }} <i class="bi bi-person"></i> </span>
                 <span class="email">{{ userStore.stateUser.user?.email }}</span>
             </li>
