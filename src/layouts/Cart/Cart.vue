@@ -103,7 +103,7 @@ const productsStore = useProductsStore();
     justify-content: space-between;
     gap: 20px;
     width: 40%;
-    height: 100vh;
+    height: 100%;
     background: $body-bg;
     color: $color-gray-900;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);

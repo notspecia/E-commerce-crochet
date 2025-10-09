@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useCartStore } from '../../stores/cart';
 import { useUserStore } from '../../stores/user';
 import { useToastStore } from '../../stores/toast';
@@ -55,6 +55,12 @@ const handleAddToCart = (): void => {
         cartStore.toggleCart(); // apro il carrello dopo l'aggiunta del prodotto
     }
 }
+
+
+/* ONMOUNTED */
+onMounted(() => {
+    goTopPage();
+}); 
 </script>
 
 

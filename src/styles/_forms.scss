@@ -45,7 +45,7 @@
         &:focus {
             background-color: $color-white;
             border: 1px solid $color-primary;
-            box-shadow: 0 0 0 0.15rem rgba($color-secondary, 0.25);
+            box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.75);
         }
     }
 

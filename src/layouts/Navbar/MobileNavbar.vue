@@ -66,7 +66,7 @@ const emit = defineEmits(['close', 'setLanguage']);
     flex-direction: column;
     justify-content: space-between;
     width: 260px;
-    height: 100vh;
+    height: 100%;
     color: $color-gray-900;
     background: $body-bg;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);

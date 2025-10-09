@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { goTopPage } from '../../utils/utils';
 import { useRoute } from 'vue-router';
 import { useProductStore } from '../../stores/product';
 import ProductDetail from '../../components/ProductDetail/ProductDetail.vue';
 import Loader from '../../components/Loader/Loader.vue';
 import GoBack from '../../components/GoBack/GoBack.vue';
+
 
 
 /* STORE PINIA product */
