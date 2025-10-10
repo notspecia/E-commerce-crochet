@@ -1,4 +1,4 @@
-import type ProductCart from "../models/ProductCart.model";
+import type ProductSelected from "../models/ProductSelected.model";
 
 /**
  * Crea una sessione di pagamento Stripe e salva l'ordine nel backend Strapi.
@@ -9,7 +9,7 @@ import type ProductCart from "../models/ProductCart.model";
  * @returns {Promise<string>} - ID della sessione Stripe.
  * @throws {Error} - Se la richiesta HTTP fallisce o la sessione non viene creata.
  */
-export const CreateStripeSession = async (path: string, products: ProductCart[], token: string): Promise<string> => {
+export const CreateStripeSession = async (path: string, products: ProductSelected[], userId: number, token: string): Promise<string> => {
     const response = await fetch(path, {
         method: "POST",
         headers: {
@@ -18,7 +18,11 @@ export const CreateStripeSession = async (path: string, products: ProductCart[],
         },
         credentials: "include",
         body: JSON.stringify({
-            data: { products }
+            data: {
+                users_permissions_user: userId,
+                userId,
+                products
+            }
         }),
     });
 

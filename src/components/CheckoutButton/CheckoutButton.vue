@@ -4,6 +4,7 @@ import { useCartStore } from '../../stores/cart';
 import { useUserStore } from '../../stores/user';
 import { CreateStripeSession } from '../../apis/Order.api';
 import { API_BASE_URL } from '../../utils/costants';
+import { ref } from 'vue';
 
 
 /* CART and USER PINIA STATE */
@@ -14,36 +15,54 @@ const userStore = useUserStore();
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY); // load public key from .env
 
 
+/* REF */
+const isLoading = ref<boolean>(false);
+
+
 /* FUNCTIONS */
 const handlePayment = async () => {
     try {
+        // start loading
+        isLoading.value = true;
+        const userId = userStore.stateUser.user?.id;
+
         // check if strapi service is loaded
         const stripe = await stripePromise;
-        if (!stripe) {
-            console.error("Stripe is not loaded, retry!");
+        if (!stripe || !userId) {
+            console.error("Stripe is not loaded and connected to user correctly, retry!");
             return;
         }
 
         // usa la funzione API modulare
         const sessionId = await CreateStripeSession(
             `${API_BASE_URL}/api/orders`,
-            cartStore.productsCart,
+            cartStore.productsSelected,
+            userId,
             userStore.stateUser.bearerToken
         );
 
-        await stripe.redirectToCheckout({ sessionId }); // redirect to stripe checkout page
+        // redirect to stripe checkout page
+        await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
         console.error("Error during payment process:", error);
+    } finally {
+        isLoading.value = false;
     }
 };
 </script>
 
 
 <template>
-    <button class="btn btn-one w-100" @click="handlePayment">
-        Proceed to check out
+    <button class="btn btn-one w-100" :disabled="isLoading" @click="handlePayment">
+        <span v-if="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+        {{ isLoading ? 'Processing...' : 'Proceed to check out' }}
     </button>
 </template>
 
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+button[disabled=disabled],
+button:disabled {
+    background-color: red !important;
+}
+</style>
