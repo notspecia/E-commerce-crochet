@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import { useCartStore } from '../../stores/cart';
 import { useProductsStore } from '../../stores/products';
 import Loader from '../../components/Loader/Loader.vue';
+import CheckoutButton from '../../components/CheckoutButton/CheckoutButton.vue';
 
 
 /* USEROUTER */
@@ -82,10 +83,7 @@ const productsStore = useProductsStore();
                     <strong>Estimated total:</strong>
                     <span>{{ cartStore.cartTotal }}€</span>
                 </div>
-                <button class="btn btn-one w-100"
-                    @click="() => { router.push(`/checkout`); cartStore.cartIsOpen = false }">
-                    Check out
-                </button>
+                <CheckoutButton />
             </div>
         </template>
     </aside>
