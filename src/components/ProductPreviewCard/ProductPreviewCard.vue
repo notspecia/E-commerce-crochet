@@ -15,51 +15,43 @@ const props = defineProps<{
 
 
 <template>
-    <div class="col-12 col-sm-6 col-md-4 g-5 mb-4">
-        <!-- contenitore card in colonne -->
-        <div class="card" @click="() => router.push(`/products/${props.product.documentId}`)">
-            <!-- immagine preview della card prodotto (le immagini HANNO URL ASSOLUTO!!) -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 g-5">
+        <div @click="router.push(`/products/${props.product.documentId}`)" class="product-item">
             <img :src="`${API_BASE_URL}${props.product.images[0].url}`"
-                :alt="`${props.product.images[0].alternativeText}`">
-            <div class="card-body">
-                <!-- titolo card -->
-                <p class="card-title mb-1">{{ props.product.title }}</p>
-                <!-- prezzo prodotto -->
-                <p class="card-text">{{ props.product.price.toFixed(2) }}€</p>
-            </div>
+                :alt="`${props.product.images[0].alternativeText}`" />
+            <p class="product-title mt-3 mb-1">{{ props.product.title }}</p>
+            <p class="product-price">{{ props.product.price.toFixed(2) }}€</p>
         </div>
     </div>
 </template>
 
 
 <style scoped lang="scss">
-.card {
-    background: $gradient-secondary;
-    box-shadow: 8px 7px 7px 1px rgba(255, 255, 255, 0.1);
+.product-item {
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 
     &:hover {
-        transform: scale(1.01);
-        transition: transform 0.3s ease-in-out;
+        transform: scale(1.005);
     }
 }
 
-// immagine preview prodotto
 img {
     width: 100%;
-    height: 350px;
+    height: 270px;
     object-fit: cover;
     object-position: center;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
-p.card-title {
-    font-size: 1.8rem;
+.product-title {
+    font-size: 1.5rem;
     font-weight: $font-weight-bold;
 }
 
-p.card-text {
-    font-size: 1.1rem;
+.product-price {
+    font-size: 1.05rem;
     font-family: $font-family-base;
+    color: $color-gray-500;
 }
 </style>

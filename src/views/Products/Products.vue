@@ -18,7 +18,7 @@ const productsStore = useProductsStore();
     -->
     <Loader v-if="productsStore.stateProducts.isLoading" />
     <p v-else-if="productsStore.stateProducts.error" class="text-danger">{{ productsStore.stateProducts.error }}</p>
-    <div v-else class="row">
+    <div v-else class="row pb-5">
         <ProductPreviewCard v-for="(product, index) in productsStore.stateProducts.products" :key="index"
             :product="product" />
     </div>

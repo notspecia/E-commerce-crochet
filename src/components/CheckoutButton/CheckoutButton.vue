@@ -63,6 +63,7 @@ const handlePayment = async () => {
 <style scoped lang="scss">
 button[disabled=disabled],
 button:disabled {
-    background-color: red !important;
+    color: $color-white;
+    background-color: $color-gray-700;
 }
 </style>
