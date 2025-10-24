@@ -28,10 +28,12 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .product-item {
+    color: $color-gray-200;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 
     &:hover {
+        color: $color-secondary;
         transform: scale(1.005);
     }
 }
@@ -52,6 +54,5 @@ img {
 .product-price {
     font-size: 1.05rem;
     font-family: $font-family-base;
-    color: $color-gray-500;
 }
 </style>

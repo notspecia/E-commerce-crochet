@@ -72,9 +72,8 @@ p {
     // accordion header contenuto qui e modificato
     .accordion-button {
         font-family: $font-family-base; // Cambia font
-        font-size: 1rem; // Cambia dimensione
+        font-size: 0.95rem; // Cambia dimensione
         font-weight: $font-weight-bold;
-        border: 1px solid $color-black;
     }
 
     .accordion-item:has(.accordion-button:not(.collapsed)) {

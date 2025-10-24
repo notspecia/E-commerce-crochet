@@ -14,7 +14,7 @@ const router = useRouter();
   </div>
   <!-- video crochet creazione di giogis -->
   <video class="hero-video" autoplay="true" controls loop poster="/images/logos/giogi-mascotte-logo.png" muted>
-    <source src="https://v.ftcdn.net/05/26/28/35/700_F_526283559_3VnxNfH6ABaaaudwETDNN5dkx3o3cnsI_ST.mp4"
+    <source src="https://www.pexels.com/download/video/5899752/"
       type="video/mp4" />
     <!-- fallback testo se il video non parte errore da gestire per ogni lingua -->
     Il tuo browser non supporta il video.

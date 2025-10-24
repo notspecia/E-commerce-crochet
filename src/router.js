@@ -53,7 +53,7 @@ const routes = [
         name: 'privacy-policy',
         component: PrivacyPolicy
     },
-    // {
+    // DISABLED FOR NOW {
     //     path: '/checkout',
     //     name: 'checkout',
     //     component: Checkout

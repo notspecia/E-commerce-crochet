@@ -5,7 +5,6 @@ import { useRouter } from 'vue-router';
 import type Register from '../../models/Register.model';
 
 
-
 /* PINIA STORE USER */
 const userStore = useUserStore();
 
