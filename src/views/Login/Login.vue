@@ -63,7 +63,7 @@ onMounted(() => {
                 I tuoi dati sono protetti e non saranno condivisi con nessuno.
             </div>
             <!-- Disclaimer unico -->
-            <button type="submit" class="btn d-inline-block mx-auto w-100 fs-5">Accedi</button>
+            <button type="submit" class="btn btn-two d-inline-block mx-auto w-100 fs-5">Accedi</button>
             <!-- redirect a register -->
             <p class="link-account mt-2" @click="() => { router.push('/register'); userStore.stateUser.error = '' }">
                 Non hai un account? Registrati subito!

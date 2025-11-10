@@ -47,13 +47,5 @@
         color: $color-gray-700;
     }
 
-    button {
-        background: $gradient-secondary;
-        transition: all 0.3s ease-in-out;
-
-        &:hover {
-            transform: scale(1.03);
-            color: $color-white;
-        }
-    }
+    // UTILIZZA CON button -> btn-two!
 }

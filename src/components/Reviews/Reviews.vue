@@ -61,7 +61,7 @@ onMounted(() => {
 
 
 <template>
-    <div class="reviews-container mt-5">
+    <div class="reviews-container">
         <h3 class="mb-4 fs-3 text-center">Customer Reviews</h3>
 
         <!-- Loading delle recensioni -->
@@ -80,7 +80,6 @@ onMounted(() => {
                 </p>
                 <p class="review-content mb-1"> {{ review.comment }}</p>
                 <p class="review-date">{{ new Date(review.publishedAt).toLocaleDateString() }}</p>
-                <hr v-if="reviewsStore.stateReviews.reviews.length - 1 !== index" />
             </div>
         </div>
 
@@ -101,31 +100,63 @@ onMounted(() => {
 <style lang="scss">
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
-    max-height: 300px; // altezza fissa, scrollabile
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-    color: $color-white;
+    margin-top: 6.5rem;
+    // background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
+    // border: 1px solid rgba($color-primary, 0.1);
+    border-radius: 12px;
+    padding: 1.3rem;
+    max-height: 350px;
     overflow-y: auto;
-    padding: 20px;
-    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    h3 {
+        font-weight: $font-weight-bold;
+    }
+
+    p {
+        color: $color-gray-900;
+    }
 
     .review-item {
+        background-color: $color-white;
+        padding: 1rem 1.2rem;
+        border: 2px solid rgba($color-primary, 0.4);
+        border-radius: 10px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
 
         .review-user {
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: 600;
+            color: $color-gray-900;
 
             img {
-                width: 20px;
-                height: 20px;
+                width: 16px;
+                height: 16px;
             }
         }
 
-        .review-content {}
+        .review-content {
+            margin: 0.4rem 0;
+            line-height: 1.5;
+            font-size: 1rem;
+            color: $color-gray-800;
+        }
 
         .review-date {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: $color-gray-600;
         }
+    }
+
+    .reviews-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-danger {
+        color: red;
     }
 }
 </style>

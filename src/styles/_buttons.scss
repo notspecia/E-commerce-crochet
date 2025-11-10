@@ -15,3 +15,28 @@
         transform: scale(1.01);
     }
 }
+
+// BUTTON USED IN ProductDetail, Login, Register
+.btn-two {
+    font-weight: 600;
+    color: $color-white;
+    background: $gradient-third;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba($color-primary, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: $gradient-fourth;
+        color: $color-gray-800;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba($color-primary, 0.4);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 6px rgba($color-primary, 0.25);
+    }
+}

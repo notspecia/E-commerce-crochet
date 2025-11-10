@@ -1,0 +1,23 @@
+/* SCROLLBAR PERSONALIZZATA */
+::-webkit-scrollbar {
+    width: 10px;
+    /* larghezza barra */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba($color-primary, 0.05);
+    /* binario */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba($color-primary, 0.4);
+    /* colore della thumb */
+    border-radius: 10px;
+    border: 2px solid rgba($color-primary, 0.05);
+    /* effetto incasso */
+
+    :hover {
+        background: rgba($color-primary, 0.6);
+    }
+}

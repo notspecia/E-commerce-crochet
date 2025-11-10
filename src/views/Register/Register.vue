@@ -69,7 +69,7 @@ onMounted(() => {
                 I tuoi dati sono protetti e non saranno condivisi con nessuno.
             </div>
             <!-- Pulsante -->
-            <button type="submit" class="btn d-inline-block mx-auto w-100 fs-5">
+            <button type="submit" class="btn btn-two d-inline-block mx-auto w-100 fs-5">
                 Registrati
             </button>
             <!-- Redirect a login -->

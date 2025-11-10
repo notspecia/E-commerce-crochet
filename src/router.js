@@ -53,11 +53,11 @@ const routes = [
         name: 'privacy-policy',
         component: PrivacyPolicy
     },
-    // DISABLED FOR NOW {
-    //     path: '/checkout',
-    //     name: 'checkout',
-    //     component: Checkout
-    // },
+    {
+        path: '/checkout',
+        name: 'checkout',
+        component: Checkout
+    },
 ]
 
 // export the router instance with the defined routes and history mode into the main.ts to use it in the application

@@ -94,7 +94,7 @@ onMounted(() => {
                 <i class="bi bi-plus" @click="quantity++"></i>
             </div>
             <!-- bottone per aggiungere il prodotto al carrello -->
-            <div class="button-add-product" @click="handleAddToCart">
+            <div class="button-add-product btn-two" @click="handleAddToCart">
                 <span>{{ $t('detailProduct.addToCart') }}</span> <i class="bi bi-cart fs-5 ms-2"></i>
             </div>
             <!-- width height data -->
@@ -183,23 +183,14 @@ h2 {
     }
 }
 
-// bottone conferma aggiunta prodotti 
+// bottone aggiungi al carrello, COMBINATO CON btn-two + proprieta scss custom per questo
 .button-add-product {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
     width: 90%;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: $color-white;
-    background: $gradient-secondary;
-    padding: 10px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-
-    &:hover {
-        transform: scale(1.03);
-    }
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 </style>
