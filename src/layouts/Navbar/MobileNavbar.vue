@@ -79,7 +79,7 @@ const emit = defineEmits(['close', 'setLanguage']);
     flex-direction: column;
     gap: 20px;
     height: 500px;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     padding: 0;
 }
 

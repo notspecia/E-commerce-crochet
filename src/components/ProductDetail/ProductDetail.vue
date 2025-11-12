@@ -44,11 +44,11 @@ const setMainImage = (url: string) => {
     mainImage.value = url;
 };
 
-// TODO - REVIEW funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
+// funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
 const handleAddToCart = (): void => {
     if (!userStore.isLoggedIn) {
-        router.push('/login'); // se non loggato reindirizzo alla pagina di login
-        toastStore.addToast("light", "Devi essere loggato per aggiungere prodotti al carrello!");
+        router.push('/register'); // se non loggato reindirizzo alla pagina di login
+        toastStore.addToast("light", "Devi essere registrato per poter effettuare un ordine!");
     } else {
         cartStore.addToCart(props.product, quantity.value); // aggiungo il prodotto al carrello con la quantità selezionata
         quantity.value = 1; // resetto la quantità a 1 dopo l'aggiunta al carrello

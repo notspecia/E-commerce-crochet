@@ -10,6 +10,7 @@ import Contacts from '@/views/Contacts/Contacts.vue';
 import Login from '@/views/Login/Login.vue';
 import Register from '@/views/Register/Register.vue';
 import PrivacyPolicy from '@/views/PrivacyPolicy/PrivacyPolicy.vue';
+import Orders from '@/views/Orders/Orders.vue';
 
 // define the routes for the application + components to render
 const routes = [
@@ -58,6 +59,12 @@ const routes = [
         name: 'checkout',
         component: Checkout
     },
+    {
+        path: '/orders',
+        name: 'orders',
+        component: Orders
+    },
+
 ]
 
 // export the router instance with the defined routes and history mode into the main.ts to use it in the application

@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCartStore } from '../../stores/cart';
 import { useUserStore } from '../../stores/user';
 import { CreateStripeSession } from '../../apis/Order.api';
 import { API_BASE_URL } from '../../utils/costants';
-import { ref } from 'vue';
 
 
 /* CART and USER PINIA STATE */

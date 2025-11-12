@@ -101,13 +101,12 @@ onMounted(() => {
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
     margin-top: 6.5rem;
-    // background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
-    // border: 1px solid rgba($color-primary, 0.1);
+    background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
+    border: 1px solid rgba($color-primary, 0.1);
     border-radius: 12px;
     padding: 1.3rem;
     max-height: 350px;
     overflow-y: auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
     h3 {
         font-weight: $font-weight-bold;
@@ -120,7 +119,7 @@ onMounted(() => {
     .review-item {
         background-color: $color-white;
         padding: 1rem 1.2rem;
-        border: 2px solid rgba($color-primary, 0.4);
+
         border-radius: 10px;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
 
