@@ -3,14 +3,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import pages routes of the application
 import Home from '@/views/Home/Home.vue';
 import Products from '@/views/Products/Products.vue';
-import Detail from '@/views/Detail/Detail.vue';
+import DetailProduct from '@/views/DetailProduct/DetailProduct.vue';
+import Orders from '@/views/Orders/Orders.vue';
+import DetailOrder from '@/views/DetailOrder/DetailOrder.vue';
 import Checkout from '@/views/Checkout/Checkout.vue';
 import FAQ from '@/views/FAQ/FAQ.vue';
 import Contacts from '@/views/Contacts/Contacts.vue';
 import Login from '@/views/Login/Login.vue';
 import Register from '@/views/Register/Register.vue';
 import PrivacyPolicy from '@/views/PrivacyPolicy/PrivacyPolicy.vue';
-import Orders from '@/views/Orders/Orders.vue';
+
 
 // define the routes for the application + components to render
 const routes = [
@@ -27,7 +29,17 @@ const routes = [
     {
         path: '/products/:documentId',
         name: 'ProductDetail',
-        component: Detail,
+        component: DetailProduct,
+    },
+    {
+        path: '/orders',
+        name: 'orders',
+        component: Orders
+    },
+    {
+        path: '/orders/:documentId',
+        name: 'OrderDetail',
+        component: DetailOrder
     },
     {
         path: '/FAQ',
@@ -54,17 +66,6 @@ const routes = [
         name: 'privacy-policy',
         component: PrivacyPolicy
     },
-    {
-        path: '/checkout',
-        name: 'checkout',
-        component: Checkout
-    },
-    {
-        path: '/orders',
-        name: 'orders',
-        component: Orders
-    },
-
 ]
 
 // export the router instance with the defined routes and history mode into the main.ts to use it in the application

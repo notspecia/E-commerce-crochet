@@ -1,63 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
+import { onMounted } from 'vue';
 import { useReviewsStore } from '../../stores/review';
 import Loader from '../Loader/Loader.vue';
-
 
 
 /* PROPS */
 const props = defineProps<{ productId: string }>();
 
-
-/* PINIA STORES reviews + user */
-// const userStore = useUserStore();
+/* PINIA STORES reviews */
 const reviewsStore = useReviewsStore();
-
-
-/* REF for POST review */
-// const newComment = ref('');
-// const newRating = ref<number | null>(null);
-
-
-/* FUNCTIONS */
-// const submitReview = async () => {
-//     if (!userStore.isLogged) {
-//         alert("Devi essere loggato per inviare una recensione");
-//         return;
-//     }
-
-//     if (!newComment.value || !newRating.value) {
-//         alert("Compila tutti i campi");
-//         return;
-//     }
-
-//     await reviewsStore.postReview({
-//         titleProduct: 'Recensione',
-//         productDocumentId: props.productId,
-//         rating: newRating.value,
-//         comment: newComment.value,
-//         originLang: 'it',
-//     }, userStore.jwt!);
-
-//     newComment.value = '';
-//     newRating.value = null;
-
-//     await reviewsStore.fetchReviews(props.productId);
-// };
 
 /* ON MOUNTED */
 onMounted(() => {
     reviewsStore.fetchReviews(props.productId);
 });
-
-/* WATCH */
-// watch(() => props.productId, (newId) => reviewsStore.fetchReviews(newId));
-
-/* Computed */
-// const reviews = reviewsStore.stateReviews.reviews;
-// const isLoading = reviewsStore.stateReviews.isLoading;
 </script>
-
 
 
 <template>
@@ -94,7 +51,6 @@ onMounted(() => {
         </div> -->
     </div>
 </template>
-
 
 
 <style lang="scss">

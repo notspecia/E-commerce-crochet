@@ -47,5 +47,8 @@ export const useProductStore = defineStore('product', () => {
     });
 
 
-    return { stateProduct, fetchProduct };
+    return {
+        stateProduct,
+        fetchProduct
+    };
 });

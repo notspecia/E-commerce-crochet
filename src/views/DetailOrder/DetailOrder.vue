@@ -1,43 +1,36 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { goTopPage } from '../../utils/utils';
 import { useRoute } from 'vue-router';
-import { useProductStore } from '../../stores/product';
-import ProductDetail from '../../components/ProductDetail/ProductDetail.vue';
+import { useOrdersStore } from '../../stores/orders';
+import Order from '../../components/Order/Order.vue';
 import Loader from '../../components/Loader/Loader.vue';
 import GoBack from '../../components/GoBack/GoBack.vue';
 
 
-
 /* STORE PINIA product */
-const productStore = useProductStore();
-
+const orderStore = useOrdersStore();
 
 /* ROUTE */
 const route = useRoute();
 const documentId = route.params.documentId as string;
 
-
 /* ONMOUNTED */
 onMounted(() => {
-    productStore.fetchProduct(documentId);
+    orderStore.fetchOrder(documentId);
 });
 </script>
 
 
-
 <template>
-
     <GoBack />
 
     <!-- loader in caso nel pinia store dei prodotti non sia ancora pronto -->
-    <Loader v-if="productStore.stateProduct.isLoading" />
+    <Loader v-if="orderStore.stateOrders.isLoading" />
     <!-- TODO - generic error, da mettere custom per ogni lingua  -->
-    <p v-else-if="productStore.stateProduct.error" class="text-danger">{{ productStore.stateProduct.error }}</p>
+    <p v-else-if="orderStore.stateOrders.error" class="text-danger">{{ orderStore.stateOrders.error }}</p>
     <!-- component con il dettaglio del prodotto da aggiungere e modificare il carrello -->
-    <ProductDetail v-else-if="productStore.stateProduct.product" :product="productStore.stateProduct.product" />
+    <Order v-else-if="orderStore.stateOrders.order" :order="orderStore.stateOrders.order" />
 </template>
-
 
 
 <style scoped lang="scss"></style>

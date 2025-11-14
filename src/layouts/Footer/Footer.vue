@@ -11,7 +11,7 @@ const route = useRoute();
 /* COMPUTED */
 // computed per mostrare/nascondere il footer in alcune route della pagina
 const showFooter = computed(() => {
-    return !['products', 'ProductDetail', 'contacts', 'login', 'register', 'privacy-policy', 'profile', 'orders'].includes(route.name as string);
+    return !['products', 'ProductDetail', 'orders', 'OrderDetail', 'contacts', 'login', 'register', 'privacy-policy', 'profile'].includes(route.name as string);
 })
 </script>
 

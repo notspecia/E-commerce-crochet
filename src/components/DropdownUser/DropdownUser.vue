@@ -26,9 +26,6 @@ const handleUser = (): void => {
                 <span class="email">{{ userStore.stateUser.user?.email }}</span>
             </li>
             <li>
-                <RouterLink class="dropdown-item" to="/profile">Profilo</RouterLink>
-            </li>
-            <li>
                 <RouterLink class="dropdown-item" to="/orders">I miei ordini</RouterLink>
             </li>
             <li>
