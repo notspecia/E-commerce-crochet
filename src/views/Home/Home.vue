@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 /* USEROUTER */
 const router = useRouter();
+// const route = useRoute();
+
+// Check for success query parameter against order completion from stripe
+// const success = route.query.success === 'true'
 </script>
 
 
 <template>
+
   <h1 class="mb-3">soft crochet by giogi</h1>
   <h2>{{ $t('home.subtitle') }}</h2>
   <div class="text-center mt-5">
@@ -14,8 +19,7 @@ const router = useRouter();
   </div>
   <!-- video crochet creazione di giogis -->
   <video class="hero-video" autoplay="true" controls loop poster="/images/logos/giogi-mascotte-logo.png" muted>
-    <source src="https://www.pexels.com/download/video/5899752/"
-      type="video/mp4" />
+    <source src="https://www.pexels.com/download/video/5899752/" type="video/mp4" />
     <!-- fallback testo se il video non parte errore da gestire per ogni lingua -->
     Il tuo browser non supporta il video.
   </video>

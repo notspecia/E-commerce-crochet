@@ -1,4 +1,4 @@
 export default interface Login {
-    identifier: string,
+    identifier: string, // can be username or email
     password: string
 }   

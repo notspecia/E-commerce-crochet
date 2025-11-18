@@ -1,54 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { loadStripe } from '@stripe/stripe-js';
-import { useCartStore } from '../../stores/cart';
-import { useUserStore } from '../../stores/user';
-import { CreateStripeSession } from '../../apis/Order.api';
-import { API_BASE_URL } from '../../utils/costants';
+import { useOrdersStore } from '../../stores/orders';
 
 
-/* CART and USER PINIA STATE */
-const cartStore = useCartStore();
-const userStore = useUserStore();
-
-// load stripe whit the public key from .env, Promise which return object stripe
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY); // load public key from .env
-
+/* PINIA STORE orders */
+const ordersStore = useOrdersStore();
 
 /* REF */
-const isLoading = ref<boolean>(false);
+const isLoading = ref(false);
 
-
-/* FUNCTIONS */
+/* FUNCTION HANDLE PAYMENT */
 const handlePayment = async () => {
-    try {
-        // start loading
-        isLoading.value = true;
-        const userId = userStore.stateUser.user?.id;
-
-        // check if strapi service is loaded
-        const stripe = await stripePromise;
-        if (!stripe || !userId) {
-            console.error("Stripe is not loaded and connected to user correctly, retry!");
-            return;
-        }
-
-        // usa la funzione API modulare
-        const sessionId = await CreateStripeSession(
-            `${API_BASE_URL}/api/orders`,
-            cartStore.productsSelected,
-            userId,
-            userStore.stateUser.bearerToken
-        );
-
-        // redirect to stripe checkout page
-        await stripe.redirectToCheckout({ sessionId });
-    } catch (error) {
-        console.error("Error during payment process:", error);
-    } finally {
-        isLoading.value = false;
-    }
-};
+    isLoading.value = true;
+    await ordersStore.createStripeCheckoutSession();
+    isLoading.value = false;
+}
 </script>
 
 

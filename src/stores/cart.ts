@@ -53,7 +53,6 @@ export const useCartStore = defineStore("cart", () => {
     const cartTotal = computed<number>(() => Number(productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)));
 
 
-
     /* ------------ ACTIONS ------------- */
     // funzione per gestire la visibilità della sidebar del carrello
     const toggleCart = (): void => {
@@ -69,6 +68,8 @@ export const useCartStore = defineStore("cart", () => {
             userStore.stateUser.bearerToken,
             productsSelected.value
         );
+        console.log(productsSelected.value);
+
     };
 
 
@@ -130,6 +131,7 @@ export const useCartStore = defineStore("cart", () => {
                 const cart = data[0];
                 cartId.value = cart.documentId;
                 productsSelected.value = cart.items || [];
+                console.log("Carrello caricato dal server:", cart.items);
             } else {
                 if (!userId) return;
                 const response = await createUserCart(`${API_BASE_URL}/api/carts`, userId, userStore.stateUser.bearerToken);
@@ -148,6 +150,7 @@ export const useCartStore = defineStore("cart", () => {
         productsCart,
         cartCount,
         cartTotal,
+        syncCart,
         toggleCart,
         addToCart,
         removeFromCart,

@@ -19,8 +19,8 @@ export const CreateStripeSession = async (path: string, products: ProductSelecte
         },
         credentials: "include",
         body: JSON.stringify({
+            // dati da inviare al backend per la creazione della sessione stripe presi dal backend come CTX.REQUEST.BODY.DATA
             data: {
-                users_permissions_user: userId,
                 userId,
                 products
             }

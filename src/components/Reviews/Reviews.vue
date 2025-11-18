@@ -57,8 +57,8 @@ onMounted(() => {
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
     margin-top: 6.5rem;
-    background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
-    border: 1px solid rgba($color-primary, 0.1);
+    // background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
+    // border: 1px solid rgba($color-primary, 0.1);
     border-radius: 12px;
     padding: 1.3rem;
     max-height: 350px;

@@ -1,15 +1,29 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '../../stores/user';
 import { useOrdersStore } from '../../stores/orders';
 import OrderPreviewCard from '../../components/OrderPreviewCard/OrderPreviewCard.vue';
 import Loader from '../../components/Loader/Loader.vue';
 
-/* PINIA STORES orders */
+
+/* ROUTER */
+const router = useRouter();
+
+/* PINIA STORES orders and user */
 const ordersStore = useOrdersStore();
+const userStore = useUserStore();
 
 /* ONMOUNTED */
 onMounted(() => {
-    ordersStore.fetchOrders();
+
+    // controllo se l'utente è loggato, altrimenti reindirizzo alla homepage
+    if (!userStore.isLoggedIn) {
+        router.push('/');
+    } else {
+        // fetch ordini utente loggato
+        ordersStore.fetchOrders();
+    }
 });
 </script>
 

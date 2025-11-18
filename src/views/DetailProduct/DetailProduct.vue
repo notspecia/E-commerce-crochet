@@ -22,7 +22,6 @@ onMounted(() => {
 
 
 <template>
-
     <GoBack />
 
     <!-- loader in caso nel pinia store dei prodotti non sia ancora pronto -->

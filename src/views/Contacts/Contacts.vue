@@ -2,9 +2,11 @@
 import { platforms } from '../../utils/costants';
 </script>
 
+
 <template>
     <section>
-        <h2 class="text text-center">Per richiedere <span>prodotti personalizzati</span> & <span>informazioni:</span>
+        <h2 class="text text-center">
+            Per richiedere <span>prodotti personalizzati</span> & <span>informazioni:</span>
         </h2>
         <!-- for of constant socials link and icon url -->
         <div class="social-row" role="navigation" aria-label="link social">
@@ -15,6 +17,7 @@ import { platforms } from '../../utils/costants';
         </div>
     </section>
 </template>
+
 
 <style scoped lang="scss">
 h2 span {
