@@ -70,26 +70,26 @@ export const fetchUserOrders = async (path: string, token: string): Promise<Orde
 
 
 /**
- * Recupera un singolo ordine tramite documentId.
+ * SOSPESA - Recupera un singolo ordine tramite documentId.
  *
  * @param {string} path - URL dell'endpoint API del singolo ordine.
  * @param {string} token - JWT per autenticazione.
  * @returns {Promise<Order>}
  */
-export const fetchUserOrder = async (path: string, token: string): Promise<Order> => {
+// export const fetchUserOrder = async (path: string, token: string): Promise<Order> => {
 
-    const response = await fetch(path, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
-    });
+//     const response = await fetch(path, {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${token}`,
+//         },
+//     });
 
-    if (!response.ok) {
-        throw new Error("Errore nel recupero del singolo ordine");
-    }
+//     if (!response.ok) {
+//         throw new Error("Errore nel recupero del singolo ordine");
+//     }
 
-    const json = await response.json(); // { data, meta }
-    return json.data;
-};
+//     const json = await response.json(); // { data, meta }
+//     return json.data;
+// };

@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 import { loadStripe } from '@stripe/stripe-js';
 import { useUserStore } from './user';
 import { useCartStore } from './cart';
-import { CreateStripeSession, fetchUserOrders, fetchUserOrder } from '../apis/Order.api';
+import { CreateStripeSession, fetchUserOrders } from '../apis/Order.api';
 import { API_BASE_URL } from '../utils/costants';
 import type Order from '../models/Order.model';
 
@@ -20,7 +20,7 @@ export const useOrdersStore = defineStore('orders', () => {
     // state reactive of the object whit array of orders + bool loading and string error
     const stateOrders = reactive({
         orders: [] as Order[],
-        order: null as Order | null,
+        // order: null as Order | null,
         isLoading: false as boolean,
         error: null as null | string
     });
@@ -73,30 +73,30 @@ export const useOrdersStore = defineStore('orders', () => {
         };
     }
 
-    // funzione per fetchare un singolo order by documentId 
-    const fetchOrder = async (documentId: string): Promise<void> => {
-        try {
-            stateOrders.isLoading = true;
-            stateOrders.order = null;
+    // SOSPESA - funzione per fetchare un singolo order by documentId 
+    // const fetchOrder = async (documentId: string): Promise<void> => {
+    //     try {
+    //         stateOrders.isLoading = true;
+    //         stateOrders.order = null;
 
-            const response = await fetchUserOrder(
-                `${API_BASE_URL}/api/orders/${documentId}`,
-                userStore.stateUser.bearerToken
-            );
+    //         const response = await fetchUserOrder(
+    //             `${API_BASE_URL}/api/orders/${documentId}`,
+    //             userStore.stateUser.bearerToken
+    //         );
 
-            stateOrders.order = response;
-        } catch (err: any) {
-            stateOrders.error = err.message;
-        } finally {
-            stateOrders.isLoading = false;
-        }
-    };
+    //         stateOrders.order = response;
+    //     } catch (err: any) {
+    //         stateOrders.error = err.message;
+    //     } finally {
+    //         stateOrders.isLoading = false;
+    //     }
+    // };
 
 
     return {
         stateOrders,
         createStripeCheckoutSession,
         fetchOrders,
-        fetchOrder
+        // fetchOrder
     };
 });

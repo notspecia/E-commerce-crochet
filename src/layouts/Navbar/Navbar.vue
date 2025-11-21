@@ -160,7 +160,7 @@ watchEffect(() => {
                     <p>Sei sicuro di voler disconnetterti dal tuo account?</p>
                 </template>
                 <template #footer>
-                    <button type="button" class="btn btn-secondary" @click="closeModal">Chiudi</button>
+                    <button type="button" class="btn btn-secondary opacity-50" @click="closeModal">Chiudi</button>
                     <button type="button" class="btn btn-custom-primary" @click="confirmLogout">Conferma</button>
                 </template>
             </ModalConfirm>

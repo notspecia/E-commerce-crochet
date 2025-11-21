@@ -20,7 +20,7 @@ const router = useRouter();
   <!-- video crochet creazione di giogis -->
   <video class="hero-video" autoplay="true" controls loop poster="/images/logos/giogi-mascotte-logo.png" muted>
     <source src="https://www.pexels.com/download/video/5899752/" type="video/mp4" />
-    <!-- fallback testo se il video non parte errore da gestire per ogni lingua -->
+    <!-- TODO fallback testo se il video non parte errore da gestire per ogni lingua -->
     Il tuo browser non supporta il video.
   </video>
 </template>

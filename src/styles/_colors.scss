@@ -21,9 +21,8 @@ $color-gray-900: #212529;
 // gradients
 $gradient-primary: linear-gradient(90deg, $color-secondary, $color-primary);
 $gradient-secondary: linear-gradient(120deg, $color-gray-900 0%, #ef723c 100%);
-$gradient-third: linear-gradient(135deg, $color-primary 0%, #dab6a8 100%);
+$gradient-third: linear-gradient(135deg, $color-primary 0%, #b17c65 100%);
 $gradient-fourth: linear-gradient(135deg, lighten($color-primary, 5%) 0%, lighten(#dab6a8, 25%)100%);
-// colors text + labels + disabled
 
 // background and text colors mains
 $body-bg: #fef1e6;

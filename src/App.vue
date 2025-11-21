@@ -9,13 +9,9 @@ import Footer from './layouts/Footer/Footer.vue';
 import ToastContainer from './layouts/ToastContainer/ToastContainer.vue';
 
 
-/* PRODUCTS PINIA STATE */
+/* PRODUCTS and CART PINIA STATE */
 const productsStore = useProductsStore();
-
-
-/* CART PINIA STATE */
 const cartStore = useCartStore();
-
 
 /* ONMOUNTED */
 // al montaggio dell'app carichiamo i prodotti tramite il metodo fetchProducts del Pinia Store

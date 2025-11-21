@@ -26,7 +26,7 @@ const items = computed(() => tm('FAQ.items')); // TODO Prende array items accord
             <p v-html="line"></p>
         </template>
 
-
+        <!-- ACCORDION ITEMS FAQ -->
         <div class="accordion" id="accordionExample">
             <div v-for="(item, index) in items" :key="index" class="accordion-item mt-4">
                 <h2 class="accordion-header">

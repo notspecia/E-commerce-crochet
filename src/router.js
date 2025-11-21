@@ -5,8 +5,8 @@ import Home from '@/views/Home/Home.vue';
 import Products from '@/views/Products/Products.vue';
 import DetailProduct from '@/views/DetailProduct/DetailProduct.vue';
 import Orders from '@/views/Orders/Orders.vue';
-import DetailOrder from '@/views/DetailOrder/DetailOrder.vue';
-import Checkout from '@/views/Checkout/Checkout.vue';
+// import DetailOrder from '@/views/DetailOrder/DetailOrder.vue';
+// import Checkout from '@/views/Checkout/Checkout.vue';
 import FAQ from '@/views/FAQ/FAQ.vue';
 import Contacts from '@/views/Contacts/Contacts.vue';
 import Login from '@/views/Login/Login.vue';
@@ -36,11 +36,11 @@ const routes = [
         name: 'orders',
         component: Orders
     },
-    {
-        path: '/orders/:documentId',
-        name: 'OrderDetail',
-        component: DetailOrder
-    },
+    // {
+    //     path: '/orders/:documentId',
+    //     name: 'OrderDetail',
+    //     component: DetailOrder
+    // },
     {
         path: '/FAQ',
         name: 'FAQ',

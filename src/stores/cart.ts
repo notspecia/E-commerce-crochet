@@ -21,7 +21,7 @@ export const useCartStore = defineStore("cart", () => {
     const userStore = useUserStore();
 
 
-    /* -------------- STATE ---------------- */
+    /* --------------------------- STATE --------------------------- */
     /* -- REF -- */
     const cartIsOpen = ref<boolean>(false); // stato booleano per gestire l'apertura/chiusura del carrello
     const productsSelected = ref<ProductSelected[]>([]); // stato array di prodotti nel carrello (solo documentId prodtto e la quantità) REMOTE
@@ -53,10 +53,11 @@ export const useCartStore = defineStore("cart", () => {
     const cartTotal = computed<number>(() => Number(productsCart.value.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)));
 
 
-    /* ------------ ACTIONS ------------- */
+    /* ------------------------ ACTIONS ---------------------- */
     // funzione per gestire la visibilità della sidebar del carrello
     const toggleCart = (): void => {
         goTopPage();
+        loadCart(); // carico il carrello ad ogni apertura (evitare incoerenze dati)
         cartIsOpen.value = !cartIsOpen.value;
     };
 
