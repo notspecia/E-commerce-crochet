@@ -57,7 +57,7 @@ export const useCartStore = defineStore("cart", () => {
     // funzione per gestire la visibilità della sidebar del carrello
     const toggleCart = (): void => {
         goTopPage();
-        loadCart(); // carico il carrello ad ogni apertura (evitare incoerenze dati)
+        // loadCart(); // carico il carrello ad ogni apertura (evitare incoerenze dati)
         cartIsOpen.value = !cartIsOpen.value;
     };
 
@@ -70,7 +70,6 @@ export const useCartStore = defineStore("cart", () => {
             productsSelected.value
         );
         console.log(productsSelected.value);
-
     };
 
 

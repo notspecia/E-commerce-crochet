@@ -66,7 +66,6 @@ export const createUserCart = async (path: string, userId: number, token: string
         },
         body: JSON.stringify({
             data: {
-                users_permissions_user: userId,
                 userId,
                 items: [],
             },
