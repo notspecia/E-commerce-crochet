@@ -3,52 +3,56 @@ import { onMounted } from 'vue';
 import { useReviewsStore } from '../../stores/review';
 import Loader from '../Loader/Loader.vue';
 
-
-/* PROPS */
 const props = defineProps<{ productId: string }>();
-
-/* PINIA STORES reviews */
 const reviewsStore = useReviewsStore();
 
-/* ON MOUNTED */
 onMounted(() => {
     reviewsStore.fetchReviews(props.productId);
 });
 </script>
 
 
+<!-- TODO DA RIFARE ASPETTARE GRAFICA DIETRO -->
 <template>
+    <h3 class="mt-5 pt-5 fs-3">Customer Reviews</h3>
+
     <div class="reviews-container">
-        <h3 class="mb-4 fs-3 text-center">Customer Reviews</h3>
 
-        <!-- Loading delle recensioni -->
+        <!-- Caricamento -->
         <Loader v-if="reviewsStore.stateReviews.isLoading" />
-        <!-- in caso non esistano recensioni sul prodotto [] vuoto -->
-        <p v-else-if="reviewsStore.stateReviews.reviews.length === 0">Nessuna recensione presente</p>
-        <!-- errore caricamento recensioni -->
-        <p v-else-if="reviewsStore.stateReviews.error" class="text-danger">{{ reviewsStore.stateReviews.error }}</p>
 
-        <!-- render con successo delle recensioni -->
+        <!-- Errore -->
+        <p v-else-if="reviewsStore.stateReviews.error" class="text-danger">
+            {{ reviewsStore.stateReviews.error }}
+        </p>
+
+        <!-- Nessuna recensione -->
+        <p v-else-if="reviewsStore.stateReviews.reviews.length === 0">
+            Nessuna recensione presente
+        </p>
+
+        <!-- Recensioni -->
         <div v-else class="reviews-list">
-            <div v-for="(review, index) in reviewsStore.stateReviews.reviews" :key="index" class="review-item mb-4">
-                <p class="review-user mb-1">{{ review.email }}
-                    -
-                    <img v-for="star in review.rating" src="/images/star-rate.png" :key="star" />
+            <div v-for="review in reviewsStore.stateReviews.reviews" :key="review.id" class="review-item mb-4">
+
+                <p class="review-user mb-1">
+                    {{ review.email }} –
+                    <img v-for="n in review.rating" :key="`star-${review.id}-${n}`" src="/images/star-rate.png" />
                 </p>
-                <p class="review-content mb-1"> {{ review.comment }}</p>
-                <p class="review-date">{{ new Date(review.publishedAt).toLocaleDateString() }}</p>
+
+                <p class="review-content">{{ review.comment }}</p>
+
+                <p class="review-date">
+                    {{ new Intl.DateTimeFormat('it-IT').format(new Date(review.publishedAt)) }}
+                </p>
             </div>
         </div>
 
-        <!-- Form nuova recensione -->
-        <!-- <div v-if="userStore.isLogged" class="new-review mt-3">
-            <textarea v-model="newComment" placeholder="Scrivi la tua recensione"></textarea>
-            <input type="number" v-model.number="newRating" min="1" max="5" placeholder="Voto da 1 a 5" />
-            <button @click="submitReview">Invia recensione</button>
-        </div>
-        <div v-else class="mt-3">
-            <p>Devi essere loggato per inviare recensioni.</p>
-        </div> -->
+        <!-- Pulsante aggiungi recensione -->
+        <button class="btn btn-primary mt-3" @click="$emit('write-review')">
+            Scrivi una recensione
+        </button>
+
     </div>
 </template>
 
@@ -56,7 +60,6 @@ onMounted(() => {
 <style lang="scss">
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
-    margin-top: 6.5rem;
     // background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
     // border: 1px solid rgba($color-primary, 0.1);
     border-radius: 12px;
@@ -72,11 +75,12 @@ onMounted(() => {
         color: $color-gray-900;
     }
 
+    // card item recensione singola
     .review-item {
         background-color: $color-white;
         padding: 1rem 1.2rem;
 
-        border-radius: 10px;
+        border-radius: 5px;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
 
         .review-user {

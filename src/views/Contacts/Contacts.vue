@@ -33,7 +33,7 @@ h2 span {
 
     // icons style
     .social-link {
-        font-size: 2.5rem;
+        font-size: 2.7rem;
         color: $color-white;
 
         &:hover {

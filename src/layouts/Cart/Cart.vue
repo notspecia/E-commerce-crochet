@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { API_BASE_URL } from '../../utils/costants';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '../../stores/cart';
@@ -58,7 +57,7 @@ const productsStore = useProductsStore();
                     <!--info -->
                     <div class="flex-grow-1">
                         <h5 class="mb-1">{{ product.title }}</h5>
-                        <p class="mb-1">{{ product.price.toFixed(2) }} €</p>
+                        <p class="mb-1 price-block">{{ product.price.toFixed(2) }} €</p>
                         <!-- quantità -->
                         <div class="d-flex align-items-center gap-2">
                             <button class="btn btn-sm quantity-button" :class="product.quantity <= 1 ? 'disabled' : ''"
@@ -71,7 +70,7 @@ const productsStore = useProductsStore();
                     </div>
                     <!-- column flex total + remove product button -->
                     <div class="d-flex flex-column align-items-end">
-                        <p class="fs-5 mb-1">{{ (product.price * product.quantity).toFixed(2) }}€</p>
+                        <p class="mb-1 price-block">{{ (product.price * product.quantity).toFixed(2) }}€</p>
                         <i class="bi bi-trash trash text-danger"
                             @click="cartStore.removeFromCart(product.documentId)"></i>
                     </div>
@@ -81,7 +80,7 @@ const productsStore = useProductsStore();
             <div class="cart-summary border-top pt-4">
                 <div class="d-flex justify-content-between align-items-center fs-4 mb-3">
                     <strong>Estimated total:</strong>
-                    <span>{{ cartStore.cartTotal }}€</span>
+                    <span class="price-block">{{ cartStore.cartTotal }}€</span>
                 </div>
                 <CheckoutButton />
             </div>
@@ -107,6 +106,10 @@ const productsStore = useProductsStore();
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px 20px;
     z-index: 3;
+
+    .price-block {
+        font-family: $font-family-base;
+    }
 
     // 65% width per brk <= 768 (tablet)
     @media (max-width: $breakpoint-lg) {

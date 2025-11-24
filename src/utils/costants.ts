@@ -6,9 +6,9 @@ export const API_BASE_URL = "http://localhost:1337"; // Base URL for the API, ch
 export const languages = [
     { code: 'it', label: 'Italiano', flag: 'flags/it.svg' },
     { code: 'en', label: 'English', flag: 'flags/en.svg' },
-    { code: 'fr', label: 'Français', flag: 'flags/fr.svg' },
-    { code: 'es', label: 'Español', flag: 'flags/es.svg' },
-    { code: 'de', label: 'Deutsch', flag: 'flags/de.svg' },
+    // { code: 'fr', label: 'Français', flag: 'flags/fr.svg' },
+    // { code: 'es', label: 'Español', flag: 'flags/es.svg' },
+    // { code: 'de', label: 'Deutsch', flag: 'flags/de.svg' },
 ];
 
 // Array of platforms social links and icons

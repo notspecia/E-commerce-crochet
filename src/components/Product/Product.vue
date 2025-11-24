@@ -66,7 +66,7 @@ onMounted(() => {
 
 
 <template>
-    <div class="row g-5 pb-5">
+    <div class="row g-5 pb-1">
         <!-- COLONNA SINISTRA: IMMAGINI -->
         <div class="col-12 col-md-6">
             <!-- immagine principale selezionata -->
@@ -84,7 +84,7 @@ onMounted(() => {
         <!-- COLONNA DESTRA: DETTAGLI -->
         <div class="col-12 col-md-6">
             <h2 class="my-1">{{ props.product.title }}</h2>
-            <p class="fs-4 my-4"> {{ props.product.price.toFixed(2) }}€</p>
+            <p class="fs-4 my-4 price-block"> {{ props.product.price.toFixed(2) }}€</p>
             <!-- descrizioni aggiuntive sul prodotto  usando markdown-it converter con v-html -->
             <p class="fs-5 mt-4" v-html="descriptionMarkdown"></p>
             <!-- bottone per modificare quantita del prodotto da aggiungere al carrello -->
@@ -102,10 +102,10 @@ onMounted(() => {
                 larghezza: {{ props.product.width }} cm <br />
                 altezza: {{ props.product.height }} cm
             </p> -->
-            <!-- Component con recensione del prodotto dettaglio -->
-            <Reviews :productId="props.product.documentId" />
         </div>
     </div>
+    <!-- Component con recensione del prodotto dettaglio -->
+    <Reviews :productId="props.product.documentId" />
 </template>
 
 
@@ -152,6 +152,10 @@ onMounted(() => {
 // style colonna descrittiva
 h2 {
     font-size: 2.7rem;
+}
+
+.price-block {
+    font-family: $font-family-base;
 }
 
 // bottone modifica quantita da aggiungere al carrello 

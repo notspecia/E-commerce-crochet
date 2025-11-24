@@ -110,7 +110,7 @@ watchEffect(() => {
         <!-- immagine logo con click render alla HOME "/" + linka voci del sito 2 sezione -->
         <nav class="nav-left">
             <RouterLink to="/">
-                <img src="/images/logos/giogi-mascotte-logo.png" alt="logo sito" class="logo">
+                <img src="/images/logos/giogi-mascotte-logo.png" alt="logo sito" class="logo" />
             </RouterLink>
             <!-- nav lista con i link, spostata in menu a tendina per i mobile -->
             <ul class="nav-list">

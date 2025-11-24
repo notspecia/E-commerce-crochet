@@ -56,7 +56,7 @@ const props = defineProps<{
         transform: scale(1.03);
 
         img {
-            border: 1px solid $color-gray-500;
+            border: 1px solid $color-gray-800;
             box-shadow: 2px 4px 10px rgba($color-black, 0.4);
         }
     }
