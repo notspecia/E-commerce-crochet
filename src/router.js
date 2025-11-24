@@ -12,6 +12,7 @@ import Contacts from '@/views/Contacts/Contacts.vue';
 import Login from '@/views/Login/Login.vue';
 import Register from '@/views/Register/Register.vue';
 import PrivacyPolicy from '@/views/PrivacyPolicy/PrivacyPolicy.vue';
+import SuccessPayment from '@/views/SuccessPayment/SuccessPayment.vue';
 
 
 // define the routes for the application + components to render
@@ -35,6 +36,11 @@ const routes = [
         path: '/orders',
         name: 'orders',
         component: Orders
+    },
+    {
+        path: '/success-payment',
+        name: 'success-payment',
+        component: SuccessPayment
     },
     // {
     //     path: '/orders/:documentId',
