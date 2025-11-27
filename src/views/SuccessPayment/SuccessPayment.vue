@@ -13,8 +13,8 @@
             Grazie per il tuo ordine. Riceverai aggiornamenti tramite email non appena l’ordine verrà elaborato.
         </p>
         <!-- Bottone per tornare alla Home -->
-        <router-link to="/" class="btn btn-one mt-4">
-            Torna alla Home
+        <router-link to="/orders" class="btn btn-one mt-4">
+            Visualizza ordine
         </router-link>
     </div>
 </template>
@@ -30,7 +30,7 @@
 
     // Immagine di successo pagamento
     .success-image {
-        width: 400px;
+        width: 20vw;
 
         @media (max-width: $breakpoint-lg) {
             width: 250px;

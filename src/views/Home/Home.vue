@@ -33,11 +33,19 @@ h1 {
   letter-spacing: 0.1rem;
   text-align: center;
   margin-top: 10vh;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: 3.5rem;
+  }
 }
 
 h2 {
   font-size: 1.7rem;
   text-align: center;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: 1.4rem;
+  }
 }
 
 // video sotto il button CTA

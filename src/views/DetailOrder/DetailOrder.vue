@@ -16,7 +16,7 @@ const documentId = route.params.documentId as string;
 
 /* ONMOUNTED */
 onMounted(() => {
-    orderStore.fetchOrder(documentId);
+    orderStore.fetchOrders();
 });
 </script>
 
