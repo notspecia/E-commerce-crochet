@@ -29,7 +29,7 @@ h2 span {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 25vh;
+    margin-top: 12vh;
 
     // icons style
     .social-link {

@@ -148,6 +148,7 @@ const goDetailProduct = (documentId: string): void => {
             height: 140px;
             object-fit: cover;
             border-radius: 8px;
+            cursor: pointer;
         }
 
         .quantity-button {
