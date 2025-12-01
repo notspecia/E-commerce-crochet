@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { useI18n } from 'vue-i18n';
 import { reactive, watch } from 'vue';
-import { API_BASE_URL } from '../utils/costants';
-import { GetProducts } from '../apis/Products.api';
-import type Product from '../models/Product.model';
+import { API_BASE_URL } from '@/utils/costants';
+import { GetProducts } from '@/apis/Products.api';
+import type Product from '@/models/Product.model';
 
 
 

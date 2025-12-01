@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
 import { reactive, computed } from "vue";
+import { useRouter } from "vue-router";
 import { useCartStore } from "./cart";
 import { useToastStore } from "./toast";
-import { API_BASE_URL } from "../utils/costants";
-import { authUser } from "../apis/Auth.api";
-import { useRouter } from "vue-router";
-import type Login from "../models/Login.model";
-import type Register from "../models/Register.model";
-import type User from "../models/User.model";
+import { API_BASE_URL } from "@/utils/costants";
+import { authUser } from "@/apis/Auth.api";
+import type Login from "@/models/Login.model";
+import type Register from "@/models/Register.model";
+import type User from "@/models/User.model";
 
 
 

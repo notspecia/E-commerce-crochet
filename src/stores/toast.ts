@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type Toast from "../models/Toast.model";
+import type Toast from "@/models/Toast.model";
 
 
 export const useToastStore = defineStore("toast", () => {

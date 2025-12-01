@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import { reactive } from 'vue';
-import { API_BASE_URL } from '../utils/costants';
-import { GetReviews } from '../apis/Reviews.api';
 import qs from 'qs';
-import type Review from '../models/Review.model';
+import { reactive } from 'vue';
+import { API_BASE_URL } from '@/utils/costants';
+import { GetReviews } from '@/apis/Reviews.api';
+import type Review from '@/models/Review.model';
 
 
 
