@@ -80,12 +80,18 @@ export const useUserStore = defineStore("user", () => {
         router.push("/login");
     };
 
+    // reset errors while touching fields of register and login
+    const clearError = (): void => {
+        stateUser.error = null;
+    }
+
 
     return {
         stateUser,
         isLoggedIn,
         fetchAuthUser,
-        logoutUser
+        logoutUser,
+        clearError
     };
 }, {
     persist: {

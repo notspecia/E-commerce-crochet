@@ -1,14 +1,14 @@
-// style for the card forms in auth pages (login, register)
+// style for the card forms in auth pages (LOGIN, REGISTER)
 .card-form {
-    width: 600px;
+    width: 700px;
     font-size: 1.1rem;
     color: $color-black;
-    border-radius: 12px;
+    border-radius: 7px;
     background-color: $color-gray-100;
     box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
 
     @media (max-width: $breakpoint-sm) {
-        width: 95%; // width in % sotto il brk < sm
+        width: 100%; // width in % sotto il brk < sm
     }
 
     img.logo {

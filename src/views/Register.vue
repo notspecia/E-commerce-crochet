@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 import type Register from '@/models/Register.model';
@@ -24,6 +24,15 @@ const submitRegister = async () => {
     await userStore.fetchAuthUser(true, credentials);
 };
 
+/* WATCH */
+// if fields get touch reset the error in pinia state user
+watch(
+    () => [credentials.username, credentials.email, credentials.password],
+    () => {
+        if (userStore.stateUser.error) userStore.clearError();
+    }
+);
+
 /* ONMOUNTED */
 onMounted(() => {
     if (userStore.isLoggedIn) {
@@ -31,6 +40,7 @@ onMounted(() => {
     }
 }); 
 </script>
+
 
 
 <template>
@@ -45,30 +55,30 @@ onMounted(() => {
             <!-- Username -->
             <div class="form-floating mb-4">
                 <input type="text" id="username" name="username" v-model="credentials.username" class="form-control"
-                    placeholder=" " aria-label="username input field" />
+                    placeholder="" aria-label="username input field" required />
                 <label for="username">Username</label>
             </div>
             <!-- Email -->
             <div class="form-floating mb-4">
                 <input type="email" id="email" name="email" v-model="credentials.email" class="form-control"
-                    placeholder=" " aria-label="email input field" />
+                    placeholder="" aria-label="email input field" required />
                 <label for="email">Email</label>
             </div>
             <!-- Password -->
             <div class="form-floating mb-3">
                 <input type="password" id="password" name="password" v-model="credentials.password" class="form-control"
-                    placeholder=" " aria-label="password input field" autocomplete="new-password" />
+                    placeholder="" aria-label="password input field" autocomplete="current-password" required />
                 <label for="password">Password</label>
             </div>
             <!-- Errore -->
             <p v-if="userStore.stateUser.error" class="text-danger mb-4 text-center fs-6">
                 {{ userStore.stateUser.error }}
             </p>
-            <!-- Disclaimer unico -->
+            <!-- DISCLAIMER -->
             <div id="privacyHint" class="form-text hint mb-2 text-center">
                 I tuoi dati sono protetti e non saranno condivisi con nessuno.
             </div>
-            <!-- Pulsante -->
+            <!-- sumbit register -->
             <button type="submit" class="btn btn-two d-inline-block mx-auto w-100 fs-5">
                 Registrati
             </button>

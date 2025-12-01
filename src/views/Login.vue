@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 import type Login from '@/models/Login.model';
@@ -23,6 +23,15 @@ const submitLogin = async () => {
     await userStore.fetchAuthUser(false, credentials);
 };
 
+/* WATCH */
+// if fields get touch reset the error in pinia state user
+watch(
+    () => [credentials.identifier, credentials.password],
+    () => {
+        if (userStore.stateUser.error) userStore.clearError();
+    }
+);
+
 /* ONMOUNTED */
 onMounted(() => {
     if (userStore.isLoggedIn) {
@@ -42,27 +51,27 @@ onMounted(() => {
                 </RouterLink>
                 <h2 class="text-center">Login</h2>
             </div>
-            <!-- Username or email -->
+            <!-- username or email -->
             <div class="form-floating mb-4">
                 <input type="text" id="username" name="username" v-model="credentials.identifier" class="form-control"
-                    placeholder="" aria-label="username or email input field" />
+                    placeholder="" aria-label="username or email input field" required />
                 <label for="username">Username or Email</label>
             </div>
-            <!-- Password -->
+            <!-- password -->
             <div class="form-floating mb-3">
                 <input type="password" id="password" name="password" v-model="credentials.password" class="form-control"
-                    placeholder="" aria-label="password input field" autocomplete="new-password" />
+                    placeholder="" aria-label="password input field" required />
                 <label for="password">Password</label>
             </div>
-            <!-- Errore -->
+            <!-- errore -->
             <p v-if="userStore.stateUser.error" class="text-danger mb-4 text-center fs-6">
                 {{ userStore.stateUser.error }}
             </p>
-            <!-- Disclaimer unico -->
+            <!-- DISCLAIMER -->
             <div id="privacyHint" class="form-text hint mb-2 text-center">
                 I tuoi dati sono protetti e non saranno condivisi con nessuno.
             </div>
-            <!-- Disclaimer unico -->
+            <!-- submit button -->
             <button type="submit" class="btn btn-two d-inline-block mx-auto w-100 fs-5">Accedi</button>
             <!-- redirect a register -->
             <p class="link-account mt-2" @click="() => { router.push('/register'); userStore.stateUser.error = '' }">

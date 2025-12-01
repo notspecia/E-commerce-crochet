@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { platforms } from '@/utils/costants';
+import FormContactsMessage from '@/components/FormContactsMessage.vue';
 </script>
 
 
@@ -15,6 +16,8 @@ import { platforms } from '@/utils/costants';
                 <i :class="['bi', p.icon]" aria-hidden="true"></i>
             </a>
         </div>
+        <!-- form for sending fast message directly -->
+        <FormContactsMessage />
     </section>
 </template>
 
