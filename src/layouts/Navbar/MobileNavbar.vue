@@ -2,7 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { defineEmits } from 'vue'
 import { useI18n } from 'vue-i18n';
-import DropdownLanguages from '../../components/DropdownLanguages/DropdownLanguages.vue';
+import DropdownLanguages from '@/components/DropdownLanguages.vue';
 
 
 /* PROPS */

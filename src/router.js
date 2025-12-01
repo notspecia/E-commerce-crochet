@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // import pages routes of the application
-import Home from '@/views/Home/Home.vue';
-import Products from '@/views/Products/Products.vue';
-import DetailProduct from '@/views/DetailProduct/DetailProduct.vue';
-import Orders from '@/views/Orders/Orders.vue';
+import Home from '@/views/Home.vue';
+import Products from '@/views/Products.vue';
+import DetailProduct from '@/views/DetailProduct.vue';
+import Orders from '@/views/Orders.vue';
 // import DetailOrder from '@/views/DetailOrder/DetailOrder.vue';
 // import Checkout from '@/views/Checkout/Checkout.vue';
-import FAQ from '@/views/FAQ/FAQ.vue';
-import Contacts from '@/views/Contacts/Contacts.vue';
-import Login from '@/views/Login/Login.vue';
-import Register from '@/views/Register/Register.vue';
-import PrivacyPolicy from '@/views/PrivacyPolicy/PrivacyPolicy.vue';
-import SuccessPayment from '@/views/SuccessPayment/SuccessPayment.vue';
+import FAQ from '@/views/FAQ.vue';
+import Contacts from '@/views/Contacts.vue';
+import Login from '@/views/Login.vue';
+import Register from '@/views/Register.vue';
+import PrivacyPolicy from '@/views/PrivacyPolicy.vue';
+import SuccessPayment from '@/views/SuccessPayment.vue';
 
 
 // define the routes for the application + components to render

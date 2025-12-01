@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue';
 import { RouterLink, useRouter, useRoute } from 'vue-router';
-import { useCartStore } from '../../stores/cart';
-import { useUserStore } from '../../stores/user';
 import { useI18n } from 'vue-i18n';
-import { languages } from '../../utils/costants';
+import { languages } from '@/utils/costants';
+import { useCartStore } from '@/stores/cart';
+import { useUserStore } from '@/stores/user';
 import MobileNavbar from './MobileNavbar.vue';
-import DropdownLanguages from '../../components/DropdownLanguages/DropdownLanguages.vue';
-import ModalConfirm from '../../components/ModalConfirm/ModalConfirm.vue';
-import DropdownUser from '../../components/DropdownUser/DropdownUser.vue';
+import DropdownLanguages from '@/components/DropdownLanguages.vue';
+import ModalConfirm from '@/components/ModalConfirm.vue';
+import DropdownUser from '@/components/DropdownUser.vue';
 
 
 /* I18N LANG */

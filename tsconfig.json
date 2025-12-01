@@ -8,6 +8,9 @@
     "node_modules"
   ],
   "compilerOptions": {
+     "paths": {
+      "@/*": ["./src/*"]
+    },
     "strict": true,
     "isolatedModules": true,
     "moduleResolution": "node",

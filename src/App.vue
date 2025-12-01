@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { useProductsStore } from './stores/products';
-import { useCartStore } from './stores/cart';
+import { useProductsStore } from '@/stores/products';
+import { useCartStore } from '@/stores/cart';
 import { RouterView } from 'vue-router';
-import Navbar from './layouts/Navbar/Navbar.vue';
-import Cart from './layouts/Cart/Cart.vue';
-import Footer from './layouts/Footer/Footer.vue';
-import ToastContainer from './layouts/ToastContainer/ToastContainer.vue';
+import Navbar from '@/layouts/Navbar/Navbar.vue';
+import Cart from '@/layouts/Cart.vue';
+import ToastContainer from '@/layouts/ToastContainer.vue';
+import Footer from '@/layouts/Footer.vue';
 
 
 /* PRODUCTS and CART PINIA STATE */
