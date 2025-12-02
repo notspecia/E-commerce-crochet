@@ -1,51 +1,54 @@
-// style for the card forms in auth pages (LOGIN, REGISTER)
-.card-form {
-    width: 700px;
-    font-size: 1.1rem;
-    color: $color-black;
-    border-radius: 7px;
-    background-color: $color-gray-100;
-    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
+ .form-control {
+     background-color: $color-gray-200;
+     color: $color-black;
+     font-family: $font-family-base;
+     padding: 10px;
 
-    @media (max-width: $breakpoint-sm) {
-        width: 100%; // width in % sotto il brk < sm
-    }
+     &::placeholder {
+         color: $color-gray-600;
+     }
 
-    img.logo {
-        width: 80px;
-        display: block;
-        margin: 0 auto;
-    }
-
-    /* INPUT E FLOATING LABEL (using on login register and checkout forms) */
-    .form-floating {
-        font-family: $font-family-base;
-
-        .form-control {
-            background-color: $color-gray-200;
-            color: $color-black;
+     &:focus {
+         color: $color-black;
+         background-color: $color-white;
+         border: 1px solid $color-primary;
+         box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.75);
+     }
+ }
 
 
-            &::placeholder {
-                color: transparent;
-            }
+ // style for the card forms in auth pages (LOGIN, REGISTER)
+ .card-form {
+     width: 650px;
+     font-size: 1.1rem;
+     color: $color-black;
+     border-radius: 7px;
+     background-color: $color-gray-100;
+     box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
 
-            &:focus {
-                background-color: $color-white;
-                border: 1px solid $color-primary;
-                box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.75);
-            }
-        }
+     @media (max-width: $breakpoint-sm) {
+         width: 100%; // width in % sotto il brk < sm
+     }
 
-        label {
-            color: $color-gray-700;
-            font-size: 0.95rem;
-        }
-    }
+     img.logo {
+         width: 80px;
+         display: block;
+         margin: 0 auto;
+     }
 
-    .hint {
-        color: $color-gray-700;
-    }
+     /* INPUT E FLOATING LABEL (using on login register and checkout forms) */
+     .form-floating {
+         font-family: $font-family-base;
 
-    // UTILIZZA CON button -> btn-two!
-}
+         label {
+             color: $color-gray-700;
+             font-size: 0.95rem;
+         }
+     }
+
+     .hint {
+         color: $color-gray-700;
+     }
+
+     // UTILIZZA CON button -> btn-two!
+ }

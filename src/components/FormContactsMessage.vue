@@ -1,73 +1,83 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive, ref, watch } from 'vue';
+import { PostMessageContact } from '@/apis/MessageContact.api';
+import { useToastStore } from '@/stores/toast';
 import type MessageContact from '@/models/MessageContact.model';
+
+
+/* STATE PINIA TOAST */
+const toastStore = useToastStore();
 
 /* STATE FORM */
 const messageContact = reactive<MessageContact>({
     name: '',
     email: '',
     message: '',
-    error: ''
 });
 
-/* SUBMIT */
-const onSubmit = () => {
-    if (!messageContact.email.trim() || !messageContact.message.trim()) {
-        messageContact.error = 'Compilare email e messaggio.';
-        return;
-    }
+const error = ref<null | string>(null);
 
-    messageContact.error = '';
+/* FUNCTIONS */
+const submitMessage = async () => {
 
-    // TODO: invio reale
-    console.log('Dati form:', {
-        name: messageContact.name.trim(),
-        email: messageContact.email.trim(),
-        message: messageContact.message.trim()
-    });
+    await PostMessageContact(messageContact);
+
+    toastStore.addToast(
+        'light',
+        `messaggio inviato con successo! ti risponderemo alla tua email: ${messageContact.email} il prima possibile!`,
+        15000
+    );
+
+    // reset datas reactive object
+    Object.assign(messageContact, { name: '', email: '', message: '' });
 };
+
+/* WATCH */
+// if fields get touch reset the error in pinia state user
+watch(
+    () => [messageContact.name, messageContact.email, messageContact.message],
+    () => {
+        if (error.value) error.value = '';
+    }
+);
 </script>
 
+
 <template>
-    <section class="contact-section">
-        <h2 class="mb-4 mt-5">Invia una richiesta rapida</h2>
+    <h2 class="mb-4">Invia una richiesta rapida</h2>
 
-        <form class="row g-3" @submit.prevent="onSubmit" novalidate>
-
-            <!-- Name -->
-            <div class="col-md-6">
-                <label for="name" class="form-label">Nome</label>
-                <input id="name" type="text" v-model="messageContact.name" class="form-control"
-                    placeholder="Inserisci il tuo nome" />
-            </div>
-
-            <!-- Email -->
-            <div class="col-md-6">
-                <label for="email" class="form-label">Email *</label>
-                <input id="email" type="email" v-model="messageContact.email" class="form-control"
-                    placeholder="nome@example.com" required />
-            </div>
-
-            <!-- Message -->
-            <div class="col-12">
-                <label for="message" class="form-label">Messaggio *</label>
-                <textarea id="message" v-model="messageContact.message" class="form-control" rows="4"
-                    placeholder="Scrivi la tua richiesta qui..." required></textarea>
-            </div>
-
-            <!-- Error -->
-            <div v-if="messageContact.error" class="col-12">
-                <p class="text-danger fw-semibold">{{ messageContact.error }}</p>
-            </div>
-
-            <!-- Submit button -->
-            <div class="col-12 mt-5">
-                <button type="submit" class="btn btn-primary w-100">
-                    Invia
-                </button>
-            </div>
-        </form>
-    </section>
+    <form class="row g-3 pb-5" @submit.prevent="submitMessage">
+        <!-- name user -->
+        <div class="col-md-6">
+            <label for="name" class="form-label">Nome</label>
+            <input id="name" type="text" v-model="messageContact.name" class="form-control"
+                placeholder="Inserisci il tuo nome" aria-label="name input field" required />
+        </div>
+        <!-- email -->
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" type="email" v-model="messageContact.email" class="form-control"
+                placeholder="nome@example.com" aria-label="email input field" required />
+        </div>
+        <!-- messaggio text area -->
+        <div class="col-12">
+            <label for="message" class="form-label">Messaggio</label>
+            <textarea id="message" v-model="messageContact.message" class="form-control" rows="4"
+                placeholder="Scrivi la tua richiesta qui..." aria-label="text area message description"
+                required></textarea>
+        </div>
+        <!-- TODO- DA GESTIRE Error -->
+        <div v-if="error" class="col-12">
+            <p class="text-danger fw-semibold">{{ error }}</p>
+        </div>
+        <!-- submit form send message -->
+        <div class="col-12 mt-5">
+            <button type="submit" class="btn btn-two w-25">
+                Invia
+            </button>
+        </div>
+    </form>
 </template>
+
 
 <style scoped lang="scss"></style>

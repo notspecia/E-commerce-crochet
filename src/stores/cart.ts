@@ -133,6 +133,7 @@ export const useCartStore = defineStore("cart", () => {
                 productsSelected.value = cart.items || [];
                 console.log("Carrello caricato dal server:", cart.items);
             } else {
+                // creazione carrello
                 if (!userId) return;
                 const response = await createUserCart(`${API_BASE_URL}/api/carts`, userId, userStore.stateUser.bearerToken);
                 cartId.value = response.documentId;

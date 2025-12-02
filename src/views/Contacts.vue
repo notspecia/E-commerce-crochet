@@ -6,7 +6,7 @@ import FormContactsMessage from '@/components/FormContactsMessage.vue';
 
 <template>
     <section>
-        <h2 class="text text-center">
+        <h2 class="text-center">
             Per richiedere <span>prodotti personalizzati</span> & <span>informazioni:</span>
         </h2>
         <!-- for of constant socials link and icon url -->
@@ -32,7 +32,7 @@ h2 span {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 12vh;
+    margin: 12vh 0 20vh;
 
     // icons style
     .social-link {
