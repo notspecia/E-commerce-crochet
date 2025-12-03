@@ -1,3 +1,5 @@
+@use '../abstracts/' as *;
+
 // stile per i link dentro la lista della navbar
 .nav-link a {
     color: inherit;

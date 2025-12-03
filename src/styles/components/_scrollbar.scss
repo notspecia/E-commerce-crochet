@@ -1,3 +1,5 @@
+@use '../abstracts/' as *;
+
 /* SCROLLBAR PERSONALIZZATA */
 ::-webkit-scrollbar {
     width: 7px;

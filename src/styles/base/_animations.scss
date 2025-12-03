@@ -1,3 +1,5 @@
+@use '../abstracts/' as *;
+
 /* Slide da sinistra verso destra */
 .slide-left-enter-active,
 .slide-left-leave-active {

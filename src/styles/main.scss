@@ -1,12 +1,18 @@
-// import of bootstrap styles
-@import "bootstrap/scss/bootstrap";
+// Bootstrap (se la tua versione supporta @use; altrimenti tieni import temporaneo)
+// @import "bootstrap/scss/bootstrap";
 
-// styles scss styles used on the project
-@import "global";
-@import "navbar";
-@import "headers";
-@import "animations";
-@import "buttons";
-@import "forms";
-@import "dropdown";
-@import "scrollbar";
+// // Espongo le variabili e i mixin come globali per semplificare il legacy:
+// @use "./abstracts/breakpoints";
+// @use "./abstracts/colors";
+// @use "./abstracts/typography";
+
+// Base e componenti (namespace o as * se vuoi)
+@use "./base/global";
+@use "./base/animations";
+@use "./components/buttons";
+@use "./components/forms";
+@use "./components/navbar";
+@use "./components/dropdown";
+@use "./components/scrollbar";
+
+// --- START CSS OUTSIDE SCSS FILES USED ---

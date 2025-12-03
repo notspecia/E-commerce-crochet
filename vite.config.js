@@ -1,6 +1,8 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import path from 'path';
+
 
 export default defineConfig({
   plugins: [vue()],
@@ -13,12 +15,12 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        // includePaths aiuta sass a risolvere import senza dover sempre mettere percorsi relativi
+        includePaths: [path.resolve(__dirname, 'src/styles')],
         additionalData: `
-        @import "@/styles/_colors.scss";
-        @import "@/styles/_typography.scss";
-        @import "@/styles/_breakpoints.scss";
-        @import "@/styles/_animations.scss";
-      `
+        @use "sass:color";
+        @use "abstracts/index" as *;
+        `
       }
     }
   }
