@@ -30,5 +30,5 @@ $gradient-primary: linear-gradient(90deg, $color-secondary, $color-primary);
 $gradient-secondary: linear-gradient(120deg, $color-gray-900 0%, #ef723c 100%);
 $gradient-third: linear-gradient(135deg, $color-primary 0%, #b17c65 100%);
 $gradient-fourth: linear-gradient(135deg,
-        color.adjust($color-primary, $lightness: 5%) 0%,
-        color.adjust(#dab6a8, $lightness: 25%) 100%);
+                color.adjust($color-primary, $lightness: 5%) 0%,
+                color.adjust(#dab6a8, $lightness: 25%) 100%);

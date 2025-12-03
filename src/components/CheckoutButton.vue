@@ -7,7 +7,7 @@ import { useOrdersStore } from '@/stores/orders';
 const ordersStore = useOrdersStore();
 
 /* REF */
-const isLoading = ref(false);
+const isLoading = ref<boolean>(false);
 
 /* FUNCTION HANDLE PAYMENT */
 const handlePayment = async () => {
@@ -26,10 +26,4 @@ const handlePayment = async () => {
 </template>
 
 
-<style scoped lang="scss">
-button[disabled=disabled],
-button:disabled {
-    color: $color-white;
-    background-color: $color-gray-700;
-}
-</style>
+<style scoped lang="scss"></style>

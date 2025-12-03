@@ -1,10 +1,5 @@
 // Bootstrap (se la tua versione supporta @use; altrimenti tieni import temporaneo)
-// @import "bootstrap/scss/bootstrap";
-
-// // Espongo le variabili e i mixin come globali per semplificare il legacy:
-// @use "./abstracts/breakpoints";
-// @use "./abstracts/colors";
-// @use "./abstracts/typography";
+@use "bootstrap/scss/bootstrap";
 
 // Base e componenti (namespace o as * se vuoi)
 @use "./base/global";

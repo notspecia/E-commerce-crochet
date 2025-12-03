@@ -43,3 +43,10 @@
         box-shadow: 0 3px 6px rgba($color-primary, 0.25);
     }
 }
+
+// BUTTON animation disable while fetching
+button[disabled=disabled],
+button:disabled {
+    color: $color-white;
+    background-color: $color-gray-700;
+}

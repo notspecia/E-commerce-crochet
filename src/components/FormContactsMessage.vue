@@ -15,19 +15,22 @@ const messageContact = reactive<MessageContact>({
     message: '',
 });
 
+/* REF */
 const error = ref<null | string>(null);
+const isLoading = ref<boolean>(false);
 
 /* FUNCTIONS */
 const submitMessage = async () => {
-
+    // start the request send message
+    isLoading.value = true;
     await PostMessageContact(messageContact);
-
+    isLoading.value = false;
+    // add to display toast success send message
     toastStore.addToast(
         'light',
         `messaggio inviato con successo! ti risponderemo alla tua email: ${messageContact.email} il prima possibile!`,
         15000
     );
-
     // reset datas reactive object
     Object.assign(messageContact, { name: '', email: '', message: '' });
 };
@@ -72,8 +75,9 @@ watch(
         </div>
         <!-- submit form send message -->
         <div class="col-12 mt-5">
-            <button type="submit" class="btn btn-two w-25">
-                Invia
+            <button type="submit" class="btn btn-one w-25" :disabled="isLoading">
+                <span v-if="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                {{ isLoading ? 'Processing...' : 'Send message' }}
             </button>
         </div>
     </form>

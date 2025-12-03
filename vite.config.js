@@ -15,12 +15,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // includePaths aiuta sass a risolvere import senza dover sempre mettere percorsi relativi
-        includePaths: [path.resolve(__dirname, 'src/styles')],
-        additionalData: `
-        @use "sass:color";
-        @use "abstracts/index" as *;
-        `
+        // Qui metti il percorso assoluto del tuo index.scss
+        additionalData: `@use "@/styles/abstracts/index.scss" as *;`
       }
     }
   }
