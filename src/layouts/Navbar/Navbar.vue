@@ -195,6 +195,12 @@ header {
     width: 120px;
     height: 120px;
     cursor: pointer;
+
+    // icona logo + piccola per brk <= 576 (mobile)
+    @media (max-width: $breakpoint-sm) {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 // hamburger icon per aprire il menu mobile

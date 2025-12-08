@@ -47,8 +47,12 @@ watch(
 
 
 <template>
-    <h2 class="mb-4">Invia una richiesta rapida</h2>
-
+    <h2 class="header mb-4">Invia una richiesta rapida</h2>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus sint in quos similique qui, eius, quod
+        ducimus repudiandae, placeat nam beatae atque exercitationem consectetur dolorum vero! Ut quidem earum deleniti?
+        Voluptatibus impedit hic excepturi ex architecto porro, explicabo accusantium placeat laborum fugit similique
+        rem quisquam aut voluptatum quod eos molestias officia atque! Quis beatae cumque officiis sunt? Doloribus, nisi
+        blanditiis.</p>
     <form class="row g-3 pb-5" @submit.prevent="submitMessage">
         <!-- name user -->
         <div class="col-md-6">
@@ -75,7 +79,7 @@ watch(
         </div>
         <!-- submit form send message -->
         <div class="col-12 mt-5">
-            <button type="submit" class="btn btn-one w-25" :disabled="isLoading">
+            <button type="submit" class="btn btn-one" :disabled="isLoading">
                 <span v-if="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
                 {{ isLoading ? 'Processing...' : 'Send message' }}
             </button>

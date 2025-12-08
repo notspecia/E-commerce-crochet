@@ -6,6 +6,7 @@ $color-secondary: #F2C6B4; // rosa cipria (delicato e accogliente)
 $color-third: #F6E9DD; // panna/beige chiaro (sfondo e spazi neutri)
 $color-fourth: #8FA087; // verde salvia tenue (per equilibrio e freschezza)
 $color-fifth: #5E6A60; // verde oliva scuro/grigio (per testi e contrasti)
+// #b2997d
 
 // scale of grays
 $color-black: #000000;
@@ -30,5 +31,5 @@ $gradient-primary: linear-gradient(90deg, $color-secondary, $color-primary);
 $gradient-secondary: linear-gradient(120deg, $color-gray-900 0%, #ef723c 100%);
 $gradient-third: linear-gradient(135deg, $color-primary 0%, #b17c65 100%);
 $gradient-fourth: linear-gradient(135deg,
-                color.adjust($color-primary, $lightness: 5%) 0%,
-                color.adjust(#dab6a8, $lightness: 25%) 100%);
+        color.adjust($color-primary) 0%,
+        color.adjust(#d09b86, $lightness: 10%) 100%);

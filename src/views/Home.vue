@@ -12,7 +12,7 @@ const router = useRouter();
 
 <template>
 
-  <h1 class="mb-3">soft crochet by giogi</h1>
+  <img src="/images/giogi-header-mobile.png" alt="header h1 sito" class="header" />
   <h2>{{ $t('home.subtitle') }}</h2>
   <div class="text-center mt-5">
     <button class="btn btn-one" @click="() => router.push(`/products`)">{{ $t('home.CTA') }}</button>
@@ -27,16 +27,23 @@ const router = useRouter();
 
 
 <style scoped lang="scss">
-h1 {
-  color: $color-primary;
-  font-size: 4.5rem;
-  letter-spacing: 0.1rem;
-  text-align: center;
-  margin-top: 10vh;
+// h1 {
+//   color: $color-primary;
+//   font-size: 4.5rem;
+//   letter-spacing: 0.1rem;
+//   text-align: center;
+//   margin-top: 10vh;
+//   text-shadow: 2px 0 6px black;
 
-  @media (max-width: $breakpoint-lg) {
-    font-size: 3.5rem;
-  }
+//   @media (max-width: $breakpoint-lg) {
+//     font-size: 3.5rem;
+//   }
+// }
+
+img.header {
+  display: block;
+  width: 80vw;
+  margin: 0 auto;
 }
 
 h2 {

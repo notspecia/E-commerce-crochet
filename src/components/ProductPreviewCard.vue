@@ -15,7 +15,7 @@ const props = defineProps<{
 
 
 <template>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 g-5">
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 g-5">
         <div @click="router.push(`/products/${props.product.documentId}`)" class="product-item">
             <img :src="`${API_BASE_URL}${props.product.images[0].url}`"
                 :alt="`${props.product.images[0].alternativeText}`" />

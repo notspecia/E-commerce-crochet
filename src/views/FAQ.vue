@@ -69,16 +69,17 @@ p {
     --bs-accordion-bg: white; // sfondo default
     --bs-accordion-btn-focus-box-shadow: none;
 
-    // accordion header contenuto qui e modificato
-    .accordion-button {
-        font-family: $font-family-base; // Cambia font
-        font-size: 0.95rem; // Cambia dimensione
-        font-weight: $font-weight-bold;
-    }
-
     .accordion-item:has(.accordion-button:not(.collapsed)) {
         border: 2px solid $color-black;
-        box-shadow: 2px 5px 7px #ffffff;
+        box-shadow: 6px 2px 12px 0 #ffffff;
+    }
+
+
+    // accordion header contenuto qui e modificato
+    .accordion-header {
+        font-family: $font-family-base; // Cambia font
+        font-size: 1rem; // Cambia dimensione
+        padding: 5px 0;
     }
 
     .accordion-button:not(.collapsed) {

@@ -5,8 +5,8 @@ import FormContactsMessage from '@/components/FormContactsMessage.vue';
 
 
 <template>
-    <section>
-        <h2 class="text-center">
+    <section class="pt-4">
+        <h2 class="header text-center">
             Per richiedere <span>prodotti personalizzati</span> & <span>informazioni:</span>
         </h2>
         <!-- for of constant socials link and icon url -->
