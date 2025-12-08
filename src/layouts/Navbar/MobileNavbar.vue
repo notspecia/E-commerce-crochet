@@ -67,8 +67,8 @@ const emit = defineEmits(['close', 'setLanguage']);
     justify-content: space-between;
     width: 260px;
     height: 100%;
+    background: $bg-sidebar;
     color: $color-gray-900;
-    background: $body-bg;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }

@@ -37,10 +37,10 @@ h2 span {
     // icons style
     .social-link {
         font-size: 2.7rem;
-        color: $color-white;
+        color: $color-gray-900;
 
         &:hover {
-            color: $color-primary;
+            color: $color-gray-800;
             animation: shake 0.4s ease-in-out;
         }
     }

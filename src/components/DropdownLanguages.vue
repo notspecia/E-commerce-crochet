@@ -27,8 +27,10 @@ const setLanguage = (lang: string): void => {
 <style scoped lang="scss">
 .dropdown-item {
     display: flex;
-    gap: 8px;
-    color: $color-gray-900;
     align-items: center;
+    gap: 10px;
+    color: $color-gray-900;
+    margin: 5px 0;
+
 }
 </style>

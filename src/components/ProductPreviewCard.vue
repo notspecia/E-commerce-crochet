@@ -28,7 +28,6 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .product-item {
-    color: $color-gray-200;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 
@@ -52,11 +51,11 @@ const props = defineProps<{
 
     // effetti all hover sul prodotto
     &:hover {
-        color: $color-secondary;
+        color: $color-gray-800;
         transform: scale(1.03);
 
         img {
-            border: 1px solid $color-gray-800;
+            border: 1px solid $color-primary;
             box-shadow: 2px 4px 10px rgba($color-black, 0.4);
         }
     }

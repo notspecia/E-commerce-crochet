@@ -20,7 +20,7 @@
     transition: color 0.3s ease;
 
     &:hover {
-        color: $color-secondary;
+        color: $color-gray-900;
     }
 }
 </style>

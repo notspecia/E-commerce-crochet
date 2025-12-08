@@ -46,6 +46,7 @@ const handleUser = (): void => {
 
 .email {
     font-size: 0.75rem;
+    font-weight: $font-weight-normal;
     color: $color-gray-500;
 }
 </style>

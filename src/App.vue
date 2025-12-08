@@ -24,8 +24,6 @@ onMounted(() => {
 
 
 <template>
-  <!-- overlay sfondo nero sopra bg-autunm body -->
-  <div className="app-bg" />
   <main class="container">
     <!-- Navbar per la navigazione tra le rotte -->
     <Navbar />
@@ -44,16 +42,6 @@ onMounted(() => {
 
 
 <style scoped lang="scss">
-// sfondo nero opaco per migliorare leggibilità testo su immagine
-.app-bg {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  background: #fec995;
-}
-
 // main continer con pagine, messo sopra lo sfondo nero opaco
 main.container {
   position: relative;

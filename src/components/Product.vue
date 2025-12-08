@@ -169,7 +169,7 @@ h2 {
     background-color: $color-gray-100;
     color: $color-black;
     padding: 8px 10px;
-    border: 1px solid $color-gray-900;
+
     border-radius: 5px;
 
     @media (max-width: $breakpoint-md) {
@@ -179,6 +179,10 @@ h2 {
     i {
         cursor: pointer;
         color: $color-black;
+
+        &:hover {
+            transform: scale(1.3);
+        }
     }
 
     i.disabled {

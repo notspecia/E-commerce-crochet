@@ -187,7 +187,7 @@ header {
     align-items: center;
     z-index: 1;
     font-size: 1.2rem;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 // immagine logo della navabr
@@ -248,16 +248,19 @@ i.user {
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        color: $color-primary;
+        color: $color-gray-800;
         animation: shake 0.4s ease-in-out;
     }
 }
 
 .btn-custom-primary {
     background-color: $color-primary;
+    color: $color-white;
     border: none;
 
     &:hover {
+        color: $color-white;
+        font-weight: $font-weight-bold;
         background-color: darken($color-primary, 10%);
     }
 }

@@ -86,7 +86,7 @@ const goDetailProduct = (documentId: string): void => {
             <!-- checkout summary container -->
             <div class="cart-summary border-top pt-4">
                 <div class="d-flex justify-content-between align-items-center fs-4 mb-3">
-                    <strong>Estimated total:</strong>
+                    <span class="total-label">Estimated total:</span>
                     <span class="price-block">{{ cartStore.cartTotal }}€</span>
                 </div>
                 <CheckoutButton />
@@ -108,11 +108,20 @@ const goDetailProduct = (documentId: string): void => {
     gap: 20px;
     width: 40%;
     height: 100%;
-    background: $body-bg;
+    background: $bg-sidebar;
     color: $color-gray-900;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px 20px;
     z-index: 3;
+
+    h2 {
+        font-family: $font-family-hand;
+    }
+
+    .total-label {
+        font-family: $font-family-hand;
+        font-weight: $font-weight-bold;
+    }
 
     .price-block {
         font-family: $font-family-base;
