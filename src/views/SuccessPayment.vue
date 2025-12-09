@@ -25,6 +25,10 @@
     align-items: center;
     justify-content: center;
 
+    h2 {
+        font-family: $font-family-hand;
+    }
+
     // Immagine di successo pagamento
     .success-image {
         width: 20vw;
