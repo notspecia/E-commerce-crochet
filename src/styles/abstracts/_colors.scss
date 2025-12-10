@@ -1,11 +1,20 @@
 @use "sass:color";
 
-// MAIN PALETTE COLORS of the website crochet giogi
-$color-primary: #E88C66; // arancio volpe (caldo e vivace, elemento chiave del logo)
-$color-secondary: #F2C6B4; // rosa cipria (delicato e accogliente)
-$color-third: #F6E9DD; // panna/beige chiaro (sfondo e spazi neutri)
-$color-fourth: #8FA087; // verde salvia tenue (per equilibrio e freschezza)
-$color-fifth: #5E6A60; // verde oliva scuro/grigio (per testi e contrasti)
+// MAIN PALETTE COLORS graduations of the primary color of the website crochet giogi
+$color-primary: #fac696;
+$color-primary-100: #f8b78a;
+$color-primary-200: #f6a87e;
+$color-primary-300: #f49972;
+$color-primary-400: #f28a65;
+$color-primary-500: #f07b59;
+$color-primary-600: #ee6c4d;
+$color-primary-700: #ec5d41;
+$color-primary-800: #ea4e35;
+$color-primary-900: #e83f29;
+// more color of palette based on primary
+$color-secondary: #c66129;
+$color-third: #d79f66;
+$color-fourth: #b5a584;
 
 // scale of grays
 $color-black: #000000;
@@ -21,15 +30,18 @@ $color-gray-800: #343a40;
 $color-gray-900: #212529;
 
 // background and text colors mains
-$body-bg: #fac696;
-$bg-sidebar: $color-third;
+$body-bg: $color-primary;
+$bg-sidebar: $color-gray-100;
 
 
 // gradients
 // gradients using sass:color to replace lighten()
-$gradient-primary: linear-gradient(90deg, $color-secondary, $color-primary);
-$gradient-secondary: linear-gradient(120deg, $color-gray-900 0%, #ef723c 100%);
-$gradient-third: linear-gradient(135deg, $color-primary 0%, #b17c65 100%);
-$gradient-fourth: linear-gradient(135deg,
-                color.adjust($color-primary) 0%,
-                color.adjust(#d09b86, $lightness: 10%) 100%);
+$gradient-primary: linear-gradient(135deg,
+        $color-primary-100 0%,
+        $color-primary-400 50%,
+        $color-primary-700 100%);
+
+$gradient-secondary: linear-gradient(135deg,
+        $color-primary-300 0%,
+        $color-primary-600 60%,
+        $color-primary-900 100%);

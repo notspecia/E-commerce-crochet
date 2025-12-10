@@ -24,7 +24,7 @@ import FormContactsMessage from '@/components/FormContactsMessage.vue';
 
 <style scoped lang="scss">
 h2 span {
-    color: $color-primary;
+    color: $color-primary-500;
     text-decoration: underline;
 }
 

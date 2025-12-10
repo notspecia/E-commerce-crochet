@@ -3,7 +3,7 @@
 
 // CTA BUTTON used in Home and Cart section (if cart is empty)
 .btn-one {
-    background-color: #f7a380;
+    background-color: $color-primary-400;
     color: $color-white;
     font-family: $font-family-base;
     font-weight: $font-weight-bold;
@@ -14,7 +14,7 @@
 
     &:hover {
         color: $color-white;
-        background-color: $color-primary;
+        background-color: $color-primary-500;
         transform: scale(1.01);
     }
 }
@@ -23,7 +23,7 @@
 .btn-two {
     font-weight: 600;
     color: $color-white;
-    background: $gradient-third;
+    background: $gradient-primary;
     border: none;
     border-radius: 10px;
     padding: 14px 20px;
@@ -32,8 +32,8 @@
     transition: all 0.3s ease;
 
     &:hover {
-        background: $gradient-fourth;
-        color: $color-gray-800;
+        background: $gradient-secondary;
+        color: $color-white;
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba($color-primary, 0.4);
     }

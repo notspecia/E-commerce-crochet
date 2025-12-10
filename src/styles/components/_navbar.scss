@@ -10,12 +10,12 @@
 
 // effetto hover sui link della navbar
 .nav-link a:hover {
-    color: $color-gray-800;
+    color: $color-gray-700;
 }
 
 // stile per il link attivo
 .nav-link a.router-link-active {
     font-weight: $font-weight-bold;
     padding-bottom: 6px;
-    border-bottom: 2px solid $color-primary;
+    border-bottom: 2px solid $color-primary-500;
 }

@@ -54,7 +54,7 @@ p {
     margin-bottom: 30px;
 
     :deep(strong) {
-        color: $color-primary;
+        color: $color-primary-800;
         font-weight: $font-weight-bold;
     }
 }

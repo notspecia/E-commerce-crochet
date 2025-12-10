@@ -41,7 +41,7 @@ const showFooter = computed(() => {
     bottom: 0;
     z-index: 4;
     background: $color-third;
-    color: $color-fifth;
+    color: $color-fourth;
     font-size: 0.9rem;
 
     .footer-link {
