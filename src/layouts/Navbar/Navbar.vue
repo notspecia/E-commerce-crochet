@@ -110,7 +110,7 @@ watchEffect(() => {
         <!-- immagine logo con click render alla HOME "/" + linka voci del sito 2 sezione -->
         <nav class="nav-left">
             <RouterLink to="/">
-                <img src="/images/logos/giogi-mascotte-logo.png" alt="logo sito" class="logo" />
+                <img src="@/assets/logos/header-logo.png" alt="logo sito" class="logo" />
             </RouterLink>
             <!-- nav lista con i link, spostata in menu a tendina per i mobile -->
             <ul class="nav-list">
@@ -132,8 +132,8 @@ watchEffect(() => {
         <!-- sezione a destra per gestione dei prodotti con carrello e select con lingua differente -->
         <div class="nav-right">
             <div class="nav-item dropdown dropdown-center">
-                <img v-if="selectedLang" :src="`/images/${selectedLang.flag}`" :alt="selectedLang.label"
-                    class="flag me-1" :key="selectedLang.code" />
+                <img v-if="selectedLang" :src="`${selectedLang.flag}`" :alt="selectedLang.label" class="flag me-1"
+                    :key="selectedLang.code" />
                 <a class="nav-link dropdown-toggle d-inline-block" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     {{ selectedLang?.label }}
@@ -188,94 +188,97 @@ header {
     z-index: 1;
     font-size: 1.2rem;
     padding: 0 15px;
-}
 
-// immagine logo della navabr
-.logo {
-    width: 120px;
-    height: 120px;
-    cursor: pointer;
+    // immagine logo della navabr
+    .logo {
+        width: 120px;
+        height: 120px;
+        cursor: pointer;
 
-    // icona logo + piccola per brk <= 576 (mobile)
-    @media (max-width: $breakpoint-sm) {
-        width: 80px;
-        height: 80px;
+        // icona logo + piccola per brk <= 576 (mobile)
+        @media (max-width: $breakpoint-sm) {
+            width: 80px;
+            height: 80px;
+        }
     }
-}
 
-// hamburger icon per aprire il menu mobile
-.hamburger {
-    display: none; // nascosta per brk > 992px
-    cursor: pointer;
+    // hamburger icon per aprire il menu mobile
+    .hamburger {
+        display: none; // nascosta per brk > 992px
+        cursor: pointer;
 
-    @media (max-width: $breakpoint-lg) {
-        display: block; // visibile per brk <= 992px (mobile)
+        @media (max-width: $breakpoint-lg) {
+            display: block; // visibile per brk <= 992px (mobile)
+        }
     }
-}
 
-// proprietà comuni di display per le 2 sezioni navbar 
-.nav-left,
-.nav-right,
-.nav-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    cursor: pointer;
-}
-
-.nav-list {
-    @media (max-width: $breakpoint-lg) {
-        display: none; // nascosta per brk <= 992px (mobile), sarà visibile con hamburger + tendina
+    // proprietà comuni di display per le 2 sezioni navbar 
+    .nav-left,
+    .nav-right,
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        cursor: pointer;
     }
-}
 
-// toggle per cambiare lingua (nascondo il dropdown per brk < 992px)
-.dropdown {
-    display: flex; // visibile per brk > 992px (desktop tablet)
-    align-items: center;
+    .nav-list {
+        gap: 15px;
 
-    @media (max-width: $breakpoint-lg) {
-        display: none; // nascosto per brk < 992px
+        @media (max-width: $breakpoint-lg) {
+            display: none; // nascosta per brk <= 992px (mobile), sarà visibile con hamburger + tendina
+        }
     }
-}
 
-// effetti animazione sul cart prodotti icon
-i.cart,
-i.user {
-    display: inline-block; // 🔑 così transform funziona SEMPRE
-    transition: all 0.2s ease-in-out;
+    // toggle per cambiare lingua (nascondo il dropdown per brk < 992px)
+    .dropdown {
+        display: flex; // visibile per brk > 992px (desktop tablet)
+        align-items: center;
 
-    &:hover {
-        color: $color-gray-800;
-        animation: shake 0.4s ease-in-out;
+        @media (max-width: $breakpoint-lg) {
+            display: none; // nascosto per brk < 992px
+        }
     }
-}
 
-.btn-custom-primary {
-    background-color: $color-primary;
-    color: $color-white;
-    border: none;
+    // effetti animazione sul cart prodotti icon
+    i.cart,
+    i.user {
+        display: inline-block; // 🔑 così transform funziona SEMPRE
+        transition: all 0.2s ease-in-out;
 
-    &:hover {
+        &:hover {
+            color: $color-gray-800;
+            transform: scale(1.25);
+        }
+    }
+
+    .btn-custom-primary {
+        background-color: $color-primary;
         color: $color-white;
-        font-weight: $font-weight-bold;
-        background-color: darken($color-primary, 10%);
-    }
-}
+        border: none;
 
-// bollino per il numero di prodotti nel carrello
-.cart-items {
-    position: absolute;
-    top: -2px;
-    right: -12px;
-    background-color: $color-primary;
-    color: $color-white;
-    font-size: 0.8rem;
-    font-family: $font-family-base;
-    font-weight: $font-weight-bold;
-    padding: 1px 7px;
-    border-radius: 100%;
+        &:hover {
+            color: $color-white;
+            font-weight: $font-weight-bold;
+            background-color: darken($color-primary, 10%);
+        }
+    }
+
+    // bollino per il numero di prodotti nel carrello
+    .cart-items {
+        position: absolute;
+        top: -2px;
+        right: -12px;
+        z-index: 1;
+        background-color: $color-primary-400;
+        color: $color-white;
+        font-size: 0.8rem;
+        font-family: $font-family-base;
+        font-weight: $font-weight-bold;
+        padding: 1px 7px;
+        border-radius: 100%;
+    }
 }
 </style>

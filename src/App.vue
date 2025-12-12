@@ -15,9 +15,9 @@ const cartStore = useCartStore();
 
 /* ONMOUNTED */
 // al montaggio dell'app carichiamo i prodotti tramite il metodo fetchProducts del Pinia Store
-onMounted(() => {
-  productsStore.fetchProducts();
-  cartStore.loadCart();
+onMounted(async () => {
+  await productsStore.fetchProducts();
+  await cartStore.loadCart();
 });
 </script>
 

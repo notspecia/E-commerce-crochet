@@ -24,7 +24,7 @@ html {
 
 body {
     min-height: 100vh;
-    background-color: $body-bg;
+    background: radial-gradient(125% 125% at 50% 10%, #fac696 40%, white 100%); // gradient di sfondo principale
     color: $color-black;
     font-family: $font-family-base;
     font-weight: $font-weight-normal;

@@ -71,7 +71,7 @@ p {
 
     .accordion-item:has(.accordion-button:not(.collapsed)) {
         border: 2px solid $color-black;
-        box-shadow: 6px 2px 12px 0 #ffffff;
+        box-shadow: 9px 4px 20px 0 #ffffff;
     }
 
 

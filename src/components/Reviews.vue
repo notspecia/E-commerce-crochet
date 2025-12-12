@@ -37,7 +37,8 @@ onMounted(() => {
 
                 <p class="review-user mb-1">
                     {{ review.email }} –
-                    <img v-for="n in review.rating" :key="`star-${review.id}-${n}`" src="/images/star-rate.png" />
+                    <img v-for="n in review.rating" :key="`star-${review.id}-${n}`"
+                        src="@/assets/images/star-rate.png" />
                 </p>
 
                 <p class="review-content">{{ review.comment }}</p>

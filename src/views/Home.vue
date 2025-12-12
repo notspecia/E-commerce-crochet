@@ -15,17 +15,17 @@ const router = useRouter();
   <h1 class="visually-hidden">Giogi Crochet pupazzi uncinetto</h1>
   <div class="header">
     <!-- mobile -->
-    <img src="/images/giogi-header-mobile.png" alt="Giogi Crochet – logo del sito" class="header-mobile" />
+    <img src="@/assets/images/giogi-header-mobile.png" alt="Giogi Crochet – logo del sito" class="header-mobile" />
     <!-- desktop -->
     <div class="header-desktop">
-      <img src="/images/giogi-header-desktop-label.png" class="label" alt="Testo hero" />
-      <img src="/images/giogi-header-desktop-figure.png" class="figure" alt="Figura persona con animale" />
+      <img src="@/assets/images/giogi-header-desktop-label.png" class="label" alt="Testo hero" />
+      <img src="@/assets/images/giogi-header-desktop-figure.png" class="figure" alt="Figura persona con animale" />
     </div>
   </div>
 
   <h2 class="mt-5">{{ $t('home.subtitle') }}</h2>
   <div class="text-center mt-5">
-    <button class="btn btn-one" @click="() => router.push(`/products`)">{{ $t('home.CTA') }}</button>
+    <button class="btn btn-one mb-5" @click="() => router.push(`/products`)">{{ $t('home.CTA') }}</button>
   </div>
   <!-- video crochet creazione di giogis -->
   <!-- <video class="hero-video" autoplay="true" controls loop poster="/images/logos/giogi-mascotte-logo.png" muted>

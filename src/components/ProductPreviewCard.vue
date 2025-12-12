@@ -1,25 +1,54 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { useCartStore } from '@/stores/cart';
+import { useUserStore } from '@/stores/user';
+import { useToastStore } from '@/stores/toast';
 import { API_BASE_URL } from '@/utils/costants';
 import type Product from '@/models/Product.model';
 
-
-/* USEROUTER */
-const router = useRouter();
 
 /* PROPS TS */
 const props = defineProps<{
     product: Product;
 }>();
+
+/* USEROUTER */
+const router = useRouter();
+
+/* CART e USER e TOAST PINIA STATE */
+const cartStore = useCartStore();
+const userStore = useUserStore();
+const toastStore = useToastStore();
+
+
+/* FUNCTION */
+// used on image and title click to go to product details page
+const goProductDetails = () => {
+    router.push(`/products/${props.product.documentId}`);
+}
+
+// funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
+const handleAddToCart = async () => {
+    if (!userStore.isLoggedIn) {
+        router.push('/register'); // se non loggato reindirizzo alla pagina di login
+        toastStore.addToast("light", "Devi essere registrato per poter effettuare un ordine!");
+        return;
+    }
+    await cartStore.addToCart(props.product);
+    cartStore.toggleCart();
+}
 </script>
 
 
 <template>
     <div class="col-12 col-sm-6 col-lg-4 col-xl-3 g-5">
-        <div @click="router.push(`/products/${props.product.documentId}`)" class="product-item">
+        <div class="product-item">
             <img :src="`${API_BASE_URL}${props.product.images[0].url}`"
-                :alt="`${props.product.images[0].alternativeText}`" />
-            <p class="product-title mt-3 mb-1">{{ props.product.title }}</p>
+                :alt="`${props.product.images[0].alternativeText}`" @click="goProductDetails" />
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <p class="product-title mb-0" @click="goProductDetails">{{ props.product.title }}</p>
+                <i class="bi bi-cart-plus cart-add fs-4" @click="handleAddToCart"></i>
+            </div>
             <p class="product-price">{{ props.product.price.toFixed(2) }}€</p>
         </div>
     </div>
@@ -28,8 +57,6 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .product-item {
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
 
     img {
         width: 100%;
@@ -37,27 +64,34 @@ const props = defineProps<{
         object-fit: cover;
         object-position: center;
         border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.02);
+            border: 1px solid $color-primary-700;
+        }
     }
 
     .product-title {
         font-size: 1.5rem;
         font-weight: $font-weight-bold;
+        cursor: pointer;
+    }
+
+    i.cart-add {
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: $color-gray-800;
+            transform: scale(1.2);
+        }
     }
 
     .product-price {
         font-size: 1.05rem;
         font-family: $font-family-base;
-    }
-
-    // effetti all hover sul prodotto
-    &:hover {
-        color: $color-gray-800;
-        transform: scale(1.03);
-
-        img {
-            border: 1px solid $color-primary;
-            box-shadow: 2px 4px 10px rgba($color-black, 0.4);
-        }
     }
 }
 </style>

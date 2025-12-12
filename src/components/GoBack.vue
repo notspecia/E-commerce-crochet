@@ -12,7 +12,7 @@
 
 <style lang="scss">
 .btn-back {
-    display: block;
+    display: inline-block;
     font-weight: $font-weight-bold;
     font-size: 1.2rem;
     cursor: pointer;
