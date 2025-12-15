@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import MarkdownIt from 'markdown-it';
 import { API_BASE_URL } from '@/utils/costants';
 import { goTopPage } from '@/utils/utils';
 import { useCartStore } from '@/stores/cart';
-import { useUserStore } from '@/stores/user';
-import { useToastStore } from '@/stores/toast';
 import Reviews from './Reviews.vue';
 import type Product from '@/models/Product.model';
+import MarkdownIt from 'markdown-it';
 
 
 /* PROPS TS */
@@ -16,14 +13,8 @@ const props = defineProps<{
     product: Product;
 }>();
 
-/* USEROUTER */
-const router = useRouter();
-
 /* CART e USER e TOAST PINIA STATE */
 const cartStore = useCartStore();
-const userStore = useUserStore();
-const toastStore = useToastStore();
-
 
 /* MARKDOWNS CONVERTER */
 const md = new MarkdownIt();
@@ -43,17 +34,10 @@ const mainImage = ref<string>(props.product.images[0]?.url || ''); // immagine p
 const setMainImage = (url: string) => {
     mainImage.value = url;
 };
-
 // funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
 const handleAddToCart = async () => {
-    if (!userStore.isLoggedIn) {
-        router.push('/register'); // se non loggato reindirizzo alla pagina di login
-        toastStore.addToast("light", "Devi essere registrato per poter effettuare un ordine!");
-        return;
-    }
     await cartStore.addToCart(props.product, quantity.value);
-    quantity.value = 1;
-    cartStore.toggleCart();
+    quantity.value = 1; // reset quantity after adding to cart
 }
 
 

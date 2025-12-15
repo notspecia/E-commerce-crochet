@@ -119,7 +119,6 @@ const goDetailProduct = (documentId: string): void => {
     }
 
     .total-label {
-        font-family: $font-family-hand;
         font-weight: $font-weight-bold;
     }
 

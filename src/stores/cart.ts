@@ -1,7 +1,9 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import { useProductsStore } from "./products";
 import { useUserStore } from "./user";
+import { useToastStore } from "./toast";
 import { goTopPage } from "../utils/utils";
 import { createUserCart, fetchUserCart, syncUserCart } from "../apis/Cart.api";
 import { API_BASE_URL } from "../utils/costants";
@@ -17,8 +19,12 @@ export const useCartStore = defineStore("cart", () => {
     const productsStore = useProductsStore();
     const { stateProducts } = productsStore; // ora stateProducts è reattivo e puoi usarlo nei computed
 
-    /* IMPORTS PINIA USER */
+    /* IMPORTS PINIA USER and TOAST */
     const userStore = useUserStore();
+    const toastStore = useToastStore();
+
+    /* USEROUTER */
+    const router = useRouter();
 
 
     /* --------------------------- STATE --------------------------- */
@@ -75,6 +81,11 @@ export const useCartStore = defineStore("cart", () => {
 
     // funzione per aggiungere un prodotto al carrello (se non presente lo aggiunge, se presente aumenta la quantità) e richiama il syncCart        
     const addToCart = async (product: Product, quantity: number = 1) => {
+        if (!userStore.isLoggedIn) {
+            router.push('/register'); // se non loggato reindirizzo alla pagina di registrazione
+            toastStore.addToast("light", "Devi essere registrato per poter effettuare un ordine!");
+            return;
+        }
         const existing = productsSelected.value.find(
             (i) => i.documentId === product.documentId
         );
@@ -85,6 +96,7 @@ export const useCartStore = defineStore("cart", () => {
             productsSelected.value.push({ productName: product.title, documentId: product.documentId, quantity });
         }
         await syncCart();
+        toggleCart();
     };
 
 

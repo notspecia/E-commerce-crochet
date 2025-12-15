@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useCartStore } from '@/stores/cart';
-import { useUserStore } from '@/stores/user';
-import { useToastStore } from '@/stores/toast';
 import { API_BASE_URL } from '@/utils/costants';
 import type Product from '@/models/Product.model';
 
@@ -17,25 +15,15 @@ const router = useRouter();
 
 /* CART e USER e TOAST PINIA STATE */
 const cartStore = useCartStore();
-const userStore = useUserStore();
-const toastStore = useToastStore();
-
 
 /* FUNCTION */
 // used on image and title click to go to product details page
 const goProductDetails = () => {
     router.push(`/products/${props.product.documentId}`);
 }
-
 // funzione handle per aggiungere il prodotto al carrello tramite il metodo addProduct del cartStore di pinia
 const handleAddToCart = async () => {
-    if (!userStore.isLoggedIn) {
-        router.push('/register'); // se non loggato reindirizzo alla pagina di login
-        toastStore.addToast("light", "Devi essere registrato per poter effettuare un ordine!");
-        return;
-    }
     await cartStore.addToCart(props.product);
-    cartStore.toggleCart();
 }
 </script>
 
@@ -57,7 +45,6 @@ const handleAddToCart = async () => {
 
 <style scoped lang="scss">
 .product-item {
-
     img {
         width: 100%;
         height: 270px;
@@ -69,7 +56,7 @@ const handleAddToCart = async () => {
 
         &:hover {
             transform: scale(1.02);
-            border: 1px solid $color-primary-700;
+            // border: 1px solid $color-primary-700;
         }
     }
 
@@ -84,8 +71,8 @@ const handleAddToCart = async () => {
         transition: all 0.2s ease;
 
         &:hover {
-            color: $color-gray-800;
-            transform: scale(1.2);
+            color: $color-gray-900;
+            transform: scale(1.1);
         }
     }
 
