@@ -67,7 +67,7 @@ onMounted(() => {
 
         <!-- COLONNA DESTRA: DETTAGLI -->
         <div class="col-12 col-md-6">
-            <h2 class="my-1">{{ props.product.title }}</h2>
+            <h2 class="header my-1">{{ props.product.title }}</h2>
             <p class="fs-4 my-4 price-block"> {{ props.product.price.toFixed(2) }}€</p>
             <!-- descrizioni aggiuntive sul prodotto  usando markdown-it converter con v-html -->
             <p class="fs-5 mt-4" v-html="descriptionMarkdown"></p>
@@ -78,8 +78,9 @@ onMounted(() => {
                 <i class="bi bi-plus" @click="quantity++"></i>
             </div>
             <!-- bottone per aggiungere il prodotto al carrello -->
-            <div class="button-add-product btn-two" @click="handleAddToCart">
-                <span>{{ $t('detailProduct.addToCart') }}</span> <i class="bi bi-cart fs-5 ms-2"></i>
+            <div class="button-add-product btn-one" @click="handleAddToCart">
+                <i class="bi bi-cart fs-4"></i>
+                <span>{{ $t('detailProduct.addToCart') }}</span>
             </div>
             <!-- width height data -->
             <!-- <p class="fs-6 mt-1">
@@ -95,94 +96,102 @@ onMounted(() => {
 
 
 <style scoped lang="scss">
-// cotainer con img principale selezionata
-.main-image-container {
-    text-align: center;
+.row {
+    margin-bottom: 7rem;
 
-    .main-image {
-        max-height: 500px;
-        border-radius: 5px;
-    }
-}
+    // cotainer con img principale selezionata
+    .main-image-container {
+        text-align: center;
 
-// container thumbnail con le immagini possibili da selezionare da mettere come principale visible
-.thumbnail-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    // immagini selezionabili style
-    .thumbnail {
-        width: 90px;
-        height: 90px;
-        object-fit: cover;
-        border: 2px solid transparent;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        // effetti hover images
-        &:hover {
-            transform: scale(1.05);
-            border-color: #aaa;
-        }
-
-        &.active {
-            border-color: $color-primary;
+        .main-image {
+            max-height: 500px;
+            border-radius: 5px;
         }
     }
-}
 
-// style colonna descrittiva
-h2 {
-    font-size: 2.7rem;
-}
+    // container thumbnail con le immagini possibili da selezionare da mettere come principale visible
+    .thumbnail-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
-.price-block {
-    font-family: $font-family-base;
-}
+        // immagini selezionabili style
+        .thumbnail {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
 
-// bottone modifica quantita da aggiungere al carrello 
-.button-quantity {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 30%;
-    font-size: 1.4rem;
-    background-color: $color-gray-100;
-    color: $color-black;
-    padding: 8px 10px;
+            // effetti hover images
+            &:hover {
+                transform: scale(1.05);
+                border-color: #aaa;
+            }
 
-    border-radius: 5px;
-
-    @media (max-width: $breakpoint-md) {
-        width: 40%;
+            &.active {
+                border-color: $color-primary;
+            }
+        }
     }
 
-    i {
-        cursor: pointer;
+    // style colonna descrittiva
+    h2 {
+        font-size: 2.7rem;
+    }
+
+    .price-block {
+        font-family: $font-family-base;
+    }
+
+    // bottone modifica quantita da aggiungere al carrello 
+    .button-quantity {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 30%;
+        font-size: 1.4rem;
+        background-color: $color-gray-100;
         color: $color-black;
+        padding: 8px 10px;
 
-        &:hover {
-            transform: scale(1.3);
+        border-radius: 5px;
+
+        @media (max-width: $breakpoint-md) {
+            width: 40%;
+        }
+
+        i {
+            cursor: pointer;
+            color: $color-black;
+
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+
+        i.disabled {
+            color: #ccc;
+            pointer-events: none;
         }
     }
 
-    i.disabled {
-        color: #ccc;
-        pointer-events: none;
+    // bottone aggiungi al carrello, COMBINATO CON btn-two + proprieta scss custom per questo
+    .button-add-product {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.7rem;
+        width: 90%;
+        font-size: 1.3rem;
+        font-family: $font-family-hand;
+        font-weight: $font-weight-normal;
+        border-radius: 5px;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
     }
-}
-
-// bottone aggiungi al carrello, COMBINATO CON btn-two + proprieta scss custom per questo
-.button-add-product {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    width: 90%;
-    font-size: 1.3rem;
-    font-weight: 600;
 }
 </style>

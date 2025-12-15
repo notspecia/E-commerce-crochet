@@ -14,7 +14,9 @@ onMounted(() => {
 
 <!-- TODO DA RIFARE ASPETTARE GRAFICA DIETRO -->
 <template>
-    <h3 class="mt-5 pt-5 fs-3">Customer Reviews</h3>
+    <h3 class="header title-line">
+        <span>Customer Reviews</span>
+    </h3>
 
     <div class="reviews-container">
 
@@ -59,6 +61,24 @@ onMounted(() => {
 
 
 <style lang="scss">
+h3.title-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, black 65%, rgb(86, 86, 86));
+        border-radius: 20px;
+    }
+
+    span {
+        white-space: nowrap;
+    }
+}
+
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
     // background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
@@ -68,9 +88,6 @@ onMounted(() => {
     max-height: 350px;
     overflow-y: auto;
 
-    h3 {
-        font-weight: $font-weight-bold;
-    }
 
     p {
         color: $color-gray-900;

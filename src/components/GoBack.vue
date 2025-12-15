@@ -4,19 +4,21 @@
 
 <template>
     <!-- BOTTONE per tornare indietro alla pagina prodotti -->
-    <span class="btn-back mb-5" @click="$router.back()">
-        <i class="bi bi-arrow-left"></i> {{ $t('global.goBack') }}
-    </span>
+    <div class="btn-back mb-5" @click="$router.back()">
+        <i class="bi bi-chevron-left me-3"></i>
+        <span>{{ $t('global.goBack') }}</span>
+    </div>
 </template>
 
 
 <style lang="scss">
 .btn-back {
     display: inline-block;
-    font-weight: $font-weight-bold;
+    background-color: #f4f4f4a4;
     font-size: 1.2rem;
     cursor: pointer;
-    padding: 0;
+    padding: 10px 20px;
+    border-radius: 50px;
     transition: color 0.3s ease;
 
     &:hover {
