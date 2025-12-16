@@ -18,7 +18,10 @@
 .nav-link a.router-link-active {
     background-color: #f4f4f482;
     font-weight: $font-weight-bold;
-    border-radius: 20px;
+    border: 1px solid $color-primary-200;
+    border-radius: 5px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 
     &:hover {
         color: $color-black;

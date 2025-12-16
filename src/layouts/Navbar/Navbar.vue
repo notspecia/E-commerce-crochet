@@ -96,7 +96,7 @@ watchEffect(() => {
     <!-- sfondo nero dietro il menu a tendina (quando aperto menu a tendina mobile ) -->
     <div v-if="menuIsOpen || cartStore.cartIsOpen" class="overlay" @click="handleOverlayClick" />
 
-    <header class="mb-5 pt-3" v-if="showNavbar">
+    <header class="pt-3" v-if="showNavbar">
         <!-- 
         hamburger icon per aprire menus, renderizzata sotto un brk specifico! 1 sezione (mobile) +
         componente mobile navbar con la tendina hamburger clicckato, passato booleano come props per montare il componente con animazione
@@ -145,7 +145,7 @@ watchEffect(() => {
             <!-- Gestione utente -->
             <div class="position-relative">
                 <!-- Utente non loggato -->
-                <i v-if="!userStore.isLoggedIn" class="bi bi-person-add fs-3 user" @click="handleUser"
+                <i v-if="!userStore.isLoggedIn" class="bi bi-person-add user" @click="handleUser"
                     title="Accedi o registrati"></i>
                 <!-- Utente loggato -->
                 <DropdownUser v-else @handleUser="handleUser" />
@@ -169,7 +169,7 @@ watchEffect(() => {
             componente cart con i prodotti dell'utente con animazione slide -->
             <div class="position-relative" @click="cartStore.toggleCart">
                 <span v-if="cartStore.cartCount > 0" class="cart-items">{{ cartStore.cartCount }}</span>
-                <i class="bi bi-cart fs-3 cart"></i>
+                <i class="bi bi-cart cart"></i>
             </div>
 
         </div>
@@ -188,6 +188,7 @@ header {
     z-index: 1;
     font-size: 1.2rem;
     padding: 0 15px;
+    margin-bottom: 60px;
 
     // immagine logo della navabr
     .logo {
@@ -247,9 +248,10 @@ header {
     i.user {
         display: inline-block; // 🔑 così transform funziona SEMPRE
         transition: all 0.2s ease-in-out;
+        font-size: 1.85rem;
 
         &:hover {
-            color: $color-gray-800;
+            color: $color-gray-900;
             transform: scale(1.1);
         }
     }

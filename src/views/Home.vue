@@ -36,41 +36,47 @@ const router = useRouter();
 
 
 <style scoped lang="scss">
-// header immagini hero MOBILE
-.header-mobile {
-  width: 80vw;
-  display: block;
-  margin: 0 auto;
+.header {
+  margin-top: 80px;
 
-  @media (min-width: $breakpoint-sm) {
-    display: none;
-  }
-}
-
-// header immagini hero DESKTOP
-.header-desktop {
-  display: none;
-
-  @media (min-width: $breakpoint-sm) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  // header immagini hero MOBILE
+  .header-mobile {
+    width: 80vw;
+    display: block;
     margin: 0 auto;
-    width: 33vw;
 
-    img {
-      width: 100%;
-      height: auto;
+    @media (min-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
 
-      // &.label {}
+  // header immagini hero DESKTOP
+  .header-desktop {
+    display: none;
 
-      &.figure {
-        width: 30%;
+    @media (min-width: $breakpoint-sm) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto;
+      width: 33vw;
+
+      img {
+        width: 100%;
+        height: auto;
+
+        // &.label {}
+
+        &.figure {
+          width: 30%;
+        }
       }
     }
   }
 }
+
+
 
 
 h2 {

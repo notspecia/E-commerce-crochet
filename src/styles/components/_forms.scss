@@ -13,7 +13,7 @@
      &:focus {
          color: $color-black;
          background-color: $color-white;
-         border: 1px solid $color-primary;
+         border: 1px solid $color-primary-200;
          box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.75);
      }
  }
@@ -30,6 +30,12 @@
 
      @media (max-width: $breakpoint-sm) {
          width: 100%; // width in % sotto il brk < sm
+     }
+
+     h2 {
+         font-family: $font-family-hand;
+         font-size: 2.2rem;
+
      }
 
      img.logo {
@@ -56,10 +62,15 @@
      .link-account {
          display: inline-block;
          width: fit-content;
-         color: $color-secondary;
+         color: $color-primary-600;
          text-decoration: underline;
          margin: 0 auto;
+         transition: color 0.2s ease-in-out;
          cursor: pointer;
+
+         &:hover {
+             color: $color-secondary
+         }
      }
 
      // UTILIZZA CON button -> btn-two!
