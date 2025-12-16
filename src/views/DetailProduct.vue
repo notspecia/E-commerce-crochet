@@ -5,6 +5,7 @@ import { useProductStore } from '@/stores/product';
 import Product from '@/components/Product.vue';
 import Loader from '@/components/Loader.vue';
 import GoBack from '@/components/GoBack.vue';
+import Reviews from '@/components/Reviews.vue';
 
 
 /* STORE PINIA product */
@@ -36,15 +37,18 @@ onMounted(() => {
 
 
 <template>
+    <!-- go to previous route -->
     <GoBack />
 
     <!-- loader in caso nel pinia store dei prodotti non sia ancora pronto -->
     <Loader v-if="productStore.stateProduct.isLoading" />
-    <!-- TODO - generic error, da mettere custom per ogni lingua  -->
+    <!-- generic error, da mettere custom per ogni lingua  -->
     <p v-else-if="productStore.stateProduct.error" class="text-danger">{{ productStore.stateProduct.error }}</p>
-    <!-- component con il dettaglio del prodotto da aggiungere e modificare il carrello -->
-    <Product v-else-if="productStore.stateProduct.product && !productStore.stateProduct.isLoading"
-        :product="productStore.stateProduct.product" />
+    <!-- template component con il dettaglio del prodotto + recensioni -->
+    <template v-else-if="productStore.stateProduct.product && !productStore.stateProduct.isLoading">
+        <Product :product="productStore.stateProduct.product" />
+        <Reviews :productId="productStore.stateProduct.product.documentId" />
+    </template>
 </template>
 
 

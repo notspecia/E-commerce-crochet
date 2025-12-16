@@ -35,7 +35,7 @@ const handleAddToCart = async () => {
                 :alt="`${props.product.images[0].alternativeText}`" @click="goProductDetails" />
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <p class="product-title mb-0" @click="goProductDetails">{{ props.product.title }}</p>
-                <i class="bi bi-cart-plus cart-add fs-4" @click="handleAddToCart"></i>
+                <i class="bi bi-cart-plus-fill cart-add fs-4" @click="handleAddToCart"></i>
             </div>
             <p class="product-price">{{ props.product.price.toFixed(2) }}€</p>
         </div>

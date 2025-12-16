@@ -22,7 +22,6 @@ const router = useRouter();
       <img src="@/assets/images/giogi-header-desktop-figure.png" class="figure" alt="Figura persona con animale" />
     </div>
   </div>
-
   <h2 class="mt-5">{{ $t('home.subtitle') }}</h2>
   <div class="text-center mt-5">
     <button class="btn btn-one mb-5" @click="() => router.push(`/products`)">{{ $t('home.CTA') }}</button>

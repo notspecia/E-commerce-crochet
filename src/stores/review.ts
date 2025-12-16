@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import qs from 'qs';
 import { reactive } from 'vue';
 import { API_BASE_URL } from '@/utils/costants';
-import { GetReviews } from '@/apis/Reviews.api';
+import { GetReviews, PostReview } from '@/apis/Reviews.api';
 import type Review from '@/models/Review.model';
 
 
@@ -22,7 +22,7 @@ export const useReviewsStore = defineStore('reviews', () => {
     // function to fetch reviews by productDocumentId of a product
     const fetchReviews = async (idDocument: string): Promise<void> => {
         try {
-            stateReviews.isLoading = true; // Imposta isLoading a true prima di iniziare il recupero
+            stateReviews.isLoading = true;
             // costruzione query string per filtrare le recensioni per productDocumentId
             const queryString = qs.stringify({
                 filters: {
@@ -39,5 +39,21 @@ export const useReviewsStore = defineStore('reviews', () => {
         };
     }
 
-    return { stateReviews, fetchReviews };
+    // function for create review authenticated
+    const createReview = async (review: Review, token: string): Promise<Review> => {
+        try {
+            const response = await PostReview(`${API_BASE_URL}/api/reviews`, review, token);
+            console.log(response);
+            return response;
+        } catch (error: any) {
+            throw error;
+        }
+    };
+
+
+    return {
+        stateReviews,
+        fetchReviews,
+        createReview
+    };
 });

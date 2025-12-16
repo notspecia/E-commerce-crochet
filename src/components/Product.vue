@@ -3,7 +3,6 @@ import { computed, onMounted, ref } from 'vue';
 import { API_BASE_URL } from '@/utils/costants';
 import { goTopPage } from '@/utils/utils';
 import { useCartStore } from '@/stores/cart';
-import Reviews from './Reviews.vue';
 import type Product from '@/models/Product.model';
 import MarkdownIt from 'markdown-it';
 
@@ -89,8 +88,6 @@ onMounted(() => {
             </p> -->
         </div>
     </div>
-    <!-- Component con recensione del prodotto dettaglio -->
-    <Reviews :productId="props.product.documentId" />
 </template>
 
 
@@ -132,7 +129,7 @@ onMounted(() => {
             }
 
             &.active {
-                border-color: $color-primary;
+                border-color: $color-primary-900;
             }
         }
     }

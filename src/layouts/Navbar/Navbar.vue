@@ -250,7 +250,7 @@ header {
 
         &:hover {
             color: $color-gray-800;
-            transform: scale(1.25);
+            transform: scale(1.1);
         }
     }
 

@@ -24,7 +24,7 @@ onMounted(async () => {
 
 
 <template>
-  <main class="container">
+  <main class="container z-3">
     <!-- Navbar per la navigazione tra le rotte -->
     <Navbar />
     <!-- Cart dei prodotti dell'utente -->
@@ -38,13 +38,3 @@ onMounted(async () => {
   <!-- Toast container per contenere tutti i messaggi di notifica -->
   <ToastContainer />
 </template>
-
-
-
-<style scoped lang="scss">
-// main continer con pagine, messo sopra lo sfondo nero opaco
-main.container {
-  position: relative;
-  z-index: 5;
-}
-</style>

@@ -26,30 +26,31 @@ export const GetReviews = async (path: string): Promise<Review[]> => {
 };
 
 
-// !SERVE TOKEN BEARER
 /**
  * Invia una nuova recensione al backend Strapi.
  *
  * @param {string} path - URL base dell'endpoint API (es: /api/recensioni).
  * @param {Object} review - Oggetto recensione con contenuto, voto, utente, prodotto.
+ * @param {string} token - Token di autenticazione Bearer per l'utente loggato.
  * @returns {Promise<Review>} - La recensione creata.
  * @throws {Error} - Se la richiesta HTTP fallisce.
  */
-// export const PostReview = async (path: string, review: Review): Promise<Review> => {
-//     const response = await fetch(path, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//             data: review, // Strapi 5 vuole sempre data: {}
-//         }),
-//     });
+export const PostReview = async (path: string, review: Review, token: string): Promise<Review> => {
+    const response = await fetch(path, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            data: review, // Strapi 5 vuole sempre data: {}
+        }),
+    });
 
-//     if (!response.ok) {
-//         throw new Error("Errore nell'invio della recensione, riprova più tardi :(");
-//     }
+    if (!response.ok) {
+        throw new Error("Errore nell'invio della recensione, riprova più tardi :(");
+    }
 
-//     const jsonResponse = await response.json();
-//     return jsonResponse.data;
-// };
+    const jsonResponse = await response.json();
+    return jsonResponse.data;
+};

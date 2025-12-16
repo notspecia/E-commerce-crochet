@@ -2,10 +2,17 @@
 import { onMounted } from 'vue';
 import { useReviewsStore } from '@/stores/review';
 import Loader from './Loader.vue';
+import ModalReview from '@/components/ModalReview.vue';
 
-const props = defineProps<{ productId: string }>();
+/* PROPS */
+const props = defineProps<{
+    productId: string
+}>();
+
+/* STORE PINIA reviews */
 const reviewsStore = useReviewsStore();
 
+/* ONMOUNTED */
 onMounted(() => {
     reviewsStore.fetchReviews(props.productId);
 });
@@ -19,7 +26,6 @@ onMounted(() => {
     </h3>
 
     <div class="reviews-container">
-
         <!-- Caricamento -->
         <Loader v-if="reviewsStore.stateReviews.isLoading" />
 
@@ -36,27 +42,21 @@ onMounted(() => {
         <!-- Recensioni -->
         <div v-else class="reviews-list">
             <div v-for="review in reviewsStore.stateReviews.reviews" :key="review.id" class="review-item mb-4">
-
                 <p class="review-user mb-1">
                     {{ review.email }} –
                     <img v-for="n in review.rating" :key="`star-${review.id}-${n}`"
                         src="@/assets/images/star-rate.png" />
                 </p>
-
                 <p class="review-content">{{ review.comment }}</p>
-
                 <p class="review-date">
                     {{ new Intl.DateTimeFormat('it-IT').format(new Date(review.publishedAt)) }}
                 </p>
             </div>
         </div>
-
-        <!-- Pulsante aggiungi recensione -->
-        <button class="btn btn-primary mt-3" @click="$emit('write-review')">
-            Scrivi una recensione
-        </button>
-
     </div>
+
+    <!-- Pulsante aggiungi recensione -->
+    <ModalReview class="mb-5" />
 </template>
 
 
@@ -70,7 +70,7 @@ h3.title-line {
         content: "";
         flex: 1;
         height: 2px;
-        background: linear-gradient(to right, black 65%, rgb(86, 86, 86));
+        background: linear-gradient(to right, black 65%, rgb(117, 117, 117));
         border-radius: 20px;
     }
 
@@ -81,13 +81,7 @@ h3.title-line {
 
 // container nella colonna descrittiva con tutte le recensioni overflow hidden scrollabili
 .reviews-container {
-    // background-color: rgba($color-primary, 0.05); // leggero tono caldo sullo sfondo
-    // border: 1px solid rgba($color-primary, 0.1);
-    border-radius: 12px;
     padding: 1.3rem;
-    max-height: 350px;
-    overflow-y: auto;
-
 
     p {
         color: $color-gray-900;
