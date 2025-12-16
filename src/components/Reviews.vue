@@ -56,7 +56,7 @@ onMounted(() => {
     </div>
 
     <!-- Pulsante aggiungi recensione -->
-    <ModalReview class="mb-5" />
+    <ModalReview />
 </template>
 
 

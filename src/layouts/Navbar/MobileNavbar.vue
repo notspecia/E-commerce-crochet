@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import { defineEmits } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n';
 import DropdownLanguages from '@/components/DropdownLanguages.vue';
 
@@ -11,8 +11,8 @@ defineProps<{
 }>()
 
 
-/* I18N LANG */
-const { locale } = useI18n(); // rendiamolo reattivo per il cambio lingua
+// /* I18N LANG */
+// const { locale } = useI18n(); // rendiamolo reattivo per il cambio lingua
 
 
 /* EMITS */

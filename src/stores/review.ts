@@ -1,13 +1,19 @@
-import { defineStore } from 'pinia';
-import qs from 'qs';
 import { reactive } from 'vue';
+import { defineStore } from 'pinia';
+import { useUserStore } from './user';
+import { useToastStore } from './toast';
 import { API_BASE_URL } from '@/utils/costants';
 import { GetReviews, PostReview } from '@/apis/Reviews.api';
 import type Review from '@/models/Review.model';
+import qs from 'qs';
 
 
 
 export const useReviewsStore = defineStore('reviews', () => {
+
+    /* IMPORTS PINIA USER and TOAST */
+    const userStore = useUserStore();
+    const toastStore = useToastStore();
 
     /* --------------STATE---------------- */
     // state reactive of the object whit array of reviews + bool loading and string error
@@ -40,9 +46,9 @@ export const useReviewsStore = defineStore('reviews', () => {
     }
 
     // function for create review authenticated
-    const createReview = async (review: Review, token: string): Promise<Review> => {
+    const createReview = async (review: Review): Promise<Review> => {
         try {
-            const response = await PostReview(`${API_BASE_URL}/api/reviews`, review, token);
+            const response = await PostReview(`${API_BASE_URL}/api/reviews`, review, userStore.stateUser.bearerToken);
             console.log(response);
             return response;
         } catch (error: any) {

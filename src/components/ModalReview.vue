@@ -1,50 +1,61 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router';
+import { useReviewsStore } from '@/stores/review';
+import { useProductStore } from '@/stores/product';
 import { useUserStore } from '@/stores/user'
+import { useToastStore } from '@/stores/toast';
+import { useI18n } from 'vue-i18n';
+import type Review from '@/models/Review.model'
 
-const userStore = useUserStore()
-const userEmail = userStore.email
 
-const rating = ref(0)
-const comment = ref('')
+/* I18N LANG */
+const { locale } = useI18n(); // recupero per settare la lingua di origine della recensione
 
+/* ROUTER */
+const router = useRouter();
+
+/* PINIA STORE review, product, user, toast */
+const reviewStore = useReviewsStore();
+const productStore = useProductStore();
+const userStore = useUserStore();
+const toastStore = useToastStore();
+
+/* REACTIVE */
+const reviewData = reactive<Review>({
+    productDocumentId: productStore.stateProduct.product?.documentId || '',
+    titleProduct: productStore.stateProduct.product?.title || '',
+    email: userStore.stateUser.user?.email,
+    rating: 0,
+    comment: '',
+    originLang: locale.value,
+    approved: false
+});
+
+/* FUNCTIONS */
+// REVIEW CHECK LOGIN
+const onWriteReview = (): void => {
+    if (!userStore.isLoggedIn) {
+        router.push('/register');
+        toastStore.addToast("light", "Devi essere registrato per poter effettuare un ordine!");
+    }
+};
+
+// invio della recensione
 const submitReview = async () => {
-    if (rating.value === 0) {
-        alert('Seleziona un voto')
-        return
-    }
+    console.log(reviewData);
 
-    const reviewData = {
-        email: userEmail,
-        rating: rating.value,
-        comment: comment.value
-    }
+    await reviewStore.createReview(reviewData);
 
-    try {
-        console.log('Invio recensione:', reviewData)
-
-        // TODO: chiamata reale al tuo store / API
-        // await reviewsStore.createReview(...)
-
-        // reset
-        rating.value = 0
-        comment.value = ''
-
-        // chiusura modale Bootstrap 5
-        const modalEl = document.getElementById('reviewModal')
-        if (modalEl) {
-            const modal = bootstrap.Modal.getInstance(modalEl)
-            modal?.hide()
-        }
-    } catch (err) {
-        console.error(err)
-    }
 }
+
 </script>
+
 
 <template>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+    <button @click="onWriteReview" type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#reviewModal">
         Scrivi una nuova recensione
     </button>
 
@@ -65,24 +76,24 @@ const submitReview = async () => {
                         <!-- Email -->
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" :value="userEmail" readonly />
+                            <input type="email" class="form-control" :value="reviewData.email" readonly />
                         </div>
 
                         <!-- Rating -->
                         <div class="mb-3">
                             <label class="form-label">Voto</label>
                             <div class="star-rating">
-                                <span v-for="star in 5" :key="star" class="star" :class="{ active: star <= rating }"
-                                    @click="rating = star">
+                                <span v-for="star in 5" :key="star" class="star"
+                                    :class="{ active: star <= reviewData.rating }" @click="reviewData.rating = star">
                                     ★
                                 </span>
                             </div>
                         </div>
 
                         <!-- Comment -->
-                        <div class="mb-3">
+                        <div class=" mb-3">
                             <label class="form-label">Commento</label>
-                            <textarea v-model="comment" class="form-control" rows="4" required></textarea>
+                            <textarea v-model="reviewData.comment" class="form-control" rows="4" required></textarea>
                         </div>
                     </div>
 
