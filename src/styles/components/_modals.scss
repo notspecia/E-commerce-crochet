@@ -1,0 +1,26 @@
+// overlay sfondo nero per menu/modali
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+.custom-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7); // filtro scuro
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal-content {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}

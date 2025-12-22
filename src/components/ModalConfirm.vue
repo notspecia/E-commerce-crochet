@@ -19,7 +19,7 @@ const onClose = (): void => {
 <template>
     <div v-if="show">
         <div class="modal-backdrop custom-backdrop" />
-        <div class="modal fade show" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal" tabindex="-1" role="dialog" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content text-black">
                     <div class="modal-header">
@@ -38,20 +38,4 @@ const onClose = (): void => {
     </div>
 </template>
 
-<style scoped lang="scss">
-.custom-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7); // filtro scuro
-}
-
-.modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .modal-content {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-}
-</style>
+<style scoped lang="scss"></style>

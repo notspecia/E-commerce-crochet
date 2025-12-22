@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useReviewsStore } from '@/stores/review';
 import Loader from './Loader.vue';
 import ModalReview from '@/components/ModalReview.vue';
@@ -11,6 +11,20 @@ const props = defineProps<{
 
 /* STORE PINIA reviews */
 const reviewsStore = useReviewsStore();
+
+/* REF */
+const showModalReview = ref<boolean>(false); // stato per gestire l'apertura/chiusura della modale recensione prodotto
+
+/* WATCH */
+// watch di controllo per la pagina prodotti per la scrittura della recensione tramite modale
+watch(showModalReview, (isOpen) => {
+    document.body.classList.toggle('no-scroll', isOpen);
+});
+
+/* FUNCTIONS */
+const handleReview = (): void => {
+    showModalReview.value = !showModalReview.value; // inversione value attiva disattiva
+}
 
 /* ONMOUNTED */
 onMounted(() => {
@@ -55,8 +69,10 @@ onMounted(() => {
         </div>
     </div>
 
+    <button class="btn-primary" @click="handleReview"> scrivi recensioni</button>
+
     <!-- Pulsante aggiungi recensione -->
-    <ModalReview />
+    <ModalReview :show="showModalReview" @close="handleReview" />
 </template>
 
 
